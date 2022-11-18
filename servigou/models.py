@@ -6,9 +6,10 @@ class User(AbstractUser):
     documento = models.IntegerField(null=True, blank=False)
     celular = models.IntegerField(null=True, blank=False)
     direccion = models.CharField(max_length=20, null=True, blank=False)
-    
+
     def __str__(self):
-        return self.name
+        return self.first_name
+
 
 class Ruta(models.Model):
     valor_km = models.BigIntegerField(null=False,blank=False)

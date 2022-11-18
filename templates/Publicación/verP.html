@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+{% block titulo %}Crear Publicación{% endblock  %}
+
+{% block contenido %}
+<h1>Crear Publicación</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre de la Publicación</th>
+            <th>Tipo de Archivo</th>
+            <th>Usuario</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in publicacion %}
+        <tr>
+            <td>{{ c.nombre_publicacion }}</td>
+            <td>{{ c.tipo_archivo }}</td>
+            <td>{{ c.User }}</td>
+            {% comment %} <td> <a href="{% url 'actualizarCitas' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
+            <td> <a href="{% url 'eliminarCita' id=c.id %}" class="btn btn-danger ">Eliminar</a></td> {% endcomment %}
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock  %}
