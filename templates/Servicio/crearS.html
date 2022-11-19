@@ -1,0 +1,11 @@
+{% comment %} {% extends 'layout/base.html' %}
+{% block titulo %}Crear Servicio{% endblock  %}
+
+{% block contenido %}
+<h1>Registro de Servicios</h1>
+<form method="POST" action="">
+{% csrf_token %}
+{{form}}
+<input type="submit" value="Guardar" class="btn btn-info">
+</form>
+{% endblock  %} {% endcomment %}

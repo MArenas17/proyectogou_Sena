@@ -1,0 +1,38 @@
+{% extends 'layout/base.html' %}
+{% block titulo %}Usuarios Creados{% endblock  %}
+
+{% block contenido %}
+<h1>Usuarios Creados</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre de usuario</th>
+            <th>nombre</th>
+            <th>Apellido</th>
+            <th>direccion</th>
+            <th>Correo</th>
+            <th>Grupo</th>
+            <th>Documento</th>
+            <th>Celular</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in usuario %}
+        <tr>
+            <td>{{ c.username }}</td>
+            <td>{{ c.first_name }}</td>
+            <td>{{ c.last_name}}</td>
+            <td>{{ c.direccion}}</td>
+            <td>{{ c.email }}</td>
+            <td>{{ c.groups }}</td>
+            <td>{{ c.documento }}</td>
+            <td>{{ c.celular }}</td>
+            <td> <a href="{% url 'actualizarU' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
+            <td> <a href="{% url 'eliminarU' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
+        </tr>
+        {% endfor %} 
+    </tbody>
+</table>
+{% endblock  %}     

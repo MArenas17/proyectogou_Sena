@@ -1,0 +1,34 @@
+{% extends 'layout/base.html' %}
+{% block titulo %}Crear Publicación{% endblock  %}
+
+{% block contenido %}
+<h1>Rutas Creadas</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Valor del Km</th>
+            <th>km Recorrido</th>
+            <th>Porcentaje de liquidación</th>
+            <th>Incremento</th>
+            <th>Total del Servicio</th>
+            <th>Total de liquidación</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in ruta %}
+        <tr>
+            <td>{{ c.valor_km }}</td>
+            <td>{{ c.km }}</td>
+            <td>{{ c.porcentaje_liquidacion }}</td>
+            <td>{{ c.incremento }}</td>
+            <td>{{ c.total_servicio}}</td>
+            <td>{{ c.total_liquidacion }}</td>
+            <td> <a href="{% url 'actualizarR' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
+            <td> <a href="{% url 'eliminarR' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
+        </tr>
+        {% endfor %} 
+    </tbody>
+</table>
+{% endblock  %}     

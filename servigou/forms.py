@@ -29,7 +29,7 @@ class RutaForm(ModelForm):
             'total_liquidacion': NumberInput(attrs={'class':'form-control'}),
         }
         labels = {
-            'valor_km':'Usuario',
+            'valor_km':'Valor por km',
             'km' : 'kilometros',
             'porcentaje_liquidacion': 'Porcentaje a liquidar',
             'incremento': 'Incremento del servicio',

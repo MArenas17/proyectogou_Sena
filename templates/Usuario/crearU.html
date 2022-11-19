@@ -1,8 +1,8 @@
 {% extends 'layout/base.html' %}
-{% block titulo %}Crear Publicación{% endblock  %}
+{% block titulo %}Crear Usuario{% endblock  %}
 
 {% block contenido %}
-<h1>Registro de Publicaciones</h1>
+<h1>Registro de Usuario</h1>
 <form method="POST" action="">
 {% csrf_token %}
 {{form}}

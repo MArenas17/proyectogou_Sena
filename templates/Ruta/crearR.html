@@ -1,21 +1,11 @@
 {% extends 'layout/base.html' %}
-
-{% block titulo %} Ruta {% endblock  %}
-
-{% block style %}
-    {% load static %}
-     <link rel="stylesheet" href="{% static 'css/styleRuta.css' %}"> 
-{% endblock  %}
+{% block titulo %}Crear Ruta{% endblock  %}
 
 {% block contenido %}
-<div class="contain">
-    <form action="" method="POST">
-        {% load static %}
-        {% csrf_token %}
-        {{formulario}}
-        <input type="submit" value="Enviar" class="btn btn-success btn-sm">
-    </form>
-</div>
-
-
+<h1>Registro de Rutas</h1>
+<form method="POST" action="">
+{% csrf_token %}
+{{form}}
+<input type="submit" value="Guardar" class="btn btn-info">
+</form>
 {% endblock  %}
