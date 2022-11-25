@@ -1,0 +1,26 @@
+header {
+    background-color: gainsboro;
+}
+
+.main{
+    display: flex;
+    width: 100vw;
+    height: 94vh;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.contain_login{
+    display: flex;
+}
+
+.contain_login label, .contain_login h2,.contain_login input{
+    font-size: 30px;
+    padding-top: 2vh;
+    border-radius: 20px;
+}
+
+.contain_login h2{
+    text-align: center;
+    font-size: 50px;
+}

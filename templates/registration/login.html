@@ -1,0 +1,22 @@
+
+{% extends 'layout/base.html' %}
+{% load static %}
+
+{% block titulo %}Inicio de sesion{% endblock  %}
+
+{% block contenido %}
+
+<div class="contain_login">
+  <div class="container">
+    <form class="form"  method="post">
+      <h2> Iniciar sesion </h2>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-success">Entrar</button>
+    </form>
+  </div>
+  <div class="img-login">
+    <img src="#" alt=""> 
+  </div>
+</div>
+{% endblock  %}

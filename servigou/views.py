@@ -113,16 +113,14 @@ def eliminarU(request,id):
 
 #endregion
 
-
-
-# def crearS(request):
-#     if request.method == 'POST':
-#         form = ServicioForm(request.POST)
-#         if form.is_valid:
-#             form.save()
-#             return redirect('crearS')
-#         else:
-#             return redirect('crearS')
-#     else:
-#         form = ServicioForm()
-#     return render (request, 'Servicio/CrearS.html',{'form':form})
+def crearS(request):
+     if request.method == 'POST':
+        form = ServicioForm(request.POST)
+        if form.is_valid:
+             form.save()
+             return redirect('crearS')
+        else:
+             return redirect('crearS')
+     else:
+         form = ServicioForm()
+     return render (request, 'Servicio/CrearS.html',{'form':form})

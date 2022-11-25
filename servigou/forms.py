@@ -60,7 +60,7 @@ class ServicioForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        exclude = ['user_permissions','is_staff','is_active','is_superuser','last_login','date_joined']
+        exclude = ['user_permissions','is_staff','is_active','is_superuser','last_login','date_joined','groups',]
         help_texts = {
             'username':None,'first_name':None,'last_name':None,'password':None,
             'direccion':None,'email':None,'groups':None
@@ -72,7 +72,6 @@ class UserForm(ModelForm):
             'password': PasswordInput(attrs={'class':'form-control'}) ,
             'direccion': TextInput(attrs={'class':'form-control'}) ,
             'email': EmailInput(attrs={'class':'form-control'}),
-            'groups': Select(attrs={'class':'form-control'}),
             'documento':NumberInput (attrs={'class':'form-control'}),
             'celular': NumberInput (attrs={'class':'form-control'}),
         }
