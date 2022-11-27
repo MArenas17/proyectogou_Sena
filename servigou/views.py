@@ -1,6 +1,10 @@
 from django.shortcuts import render,redirect
 from .forms import *
 from.models import *
+
+def index(request):
+    return render(request,'index.html')
+
 #region de Publicacion
 def crearpublicacion(request):
     if request.method == 'POST':
@@ -78,16 +82,16 @@ def eliminarR(request,id):
 #region de Usuario
 def crearU(request):
     if request.method == 'POST':
-        form = UserForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect('crearU')
-        else:
-            return redirect('crearU')
-    else:
-        form = UserForm()
-    return render (request, 'Usuario/crearU.html',{'form':form})
-
+        user = User.objects.create(
+        username = request.POST['username'],first_name = request.POST['first_name'],last_name = request.POST['last_name'],
+        password=request.POST['password'],direccion = request.POST['direccion'],email = request.POST['email'],documento = request.POST['documento'],celular = request.POST['celular'])
+        user.set_password(request.POST['password'])
+        user.save()
+        return redirect('crearU')
+    form = UserForm()
+    context = {
+        'form':form}
+    return render(request,'Usuario/crearU.html',context)
 def verU(request):
     usuario = User.objects.all()
     return render(request,'Usuario/verU.html',{'usuario':usuario})

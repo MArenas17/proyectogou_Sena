@@ -60,7 +60,7 @@ class ServicioForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        exclude = ['user_permissions','is_staff','is_active','is_superuser','last_login','date_joined','groups',]
+        fields = ('username','first_name','last_name','documento','email','direccion','celular','password',)
         help_texts = {
             'username':None,'first_name':None,'last_name':None,'password':None,
             'direccion':None,'email':None,'groups':None
@@ -69,14 +69,14 @@ class UserForm(ModelForm):
             'username': TextInput(attrs={'class':'form-control'}),
             'first_name': TextInput(attrs={'class':'form-control'}),
             'last_name': TextInput(attrs={'class':'form-control'}) ,
-            'password': PasswordInput(attrs={'class':'form-control'}) ,
-            'direccion': TextInput(attrs={'class':'form-control'}) ,
-            'email': EmailInput(attrs={'class':'form-control'}),
             'documento':NumberInput (attrs={'class':'form-control'}),
+            'email': EmailInput(attrs={'class':'form-control'}),
+            'direccion': TextInput(attrs={'class':'form-control'}) ,
             'celular': NumberInput (attrs={'class':'form-control'}),
+            'password': PasswordInput(attrs={'class':'form-control'}) ,
         }
         labels = {
             'documento':'Documento',
             'celular' : 'Número de Celular',
-            'direccion': 'Dirección'
+            'direccion': 'Dirección de residencia'
         }

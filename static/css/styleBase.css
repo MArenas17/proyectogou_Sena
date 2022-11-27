@@ -1,6 +1,3 @@
-header {
-    background-color: gainsboro;
-}
 
 .main{
     display: flex;
@@ -12,15 +9,65 @@ header {
 
 .contain_login{
     display: flex;
+    
 }
 
 .contain_login label, .contain_login h2,.contain_login input{
-    font-size: 30px;
-    padding-top: 2vh;
-    border-radius: 20px;
+    font-size: 15px;
+    justify-content: space-around;
+    right: 10%;
+
 }
 
 .contain_login h2{
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
+    
+    
+}
+
+.container_reg {
+    padding: 0%;
+    margin: 0% ;
+    display: flex;
+    margin: 0%;
+    
+}
+
+.logo{
+    position: relative;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    top: 10%;
+
+}
+
+.container_flex{
+    text-align: center; 
+    justify-content: center;
+    justify-items: center;
+    
+}
+.btn{
+    margin: 0.5%;
+}
+.container{
+    text-align: center;
+    
+}
+.nav-wrapper {
+    background-color:#DEDEDE;
+}
+.brand-logo{
+    background-color:#DEDEDE;
+}
+#botones{
+    text-align: center; 
+    justify-content: center;
+    justify-items: center;
+   
+}
+.container-index{
+    
 }

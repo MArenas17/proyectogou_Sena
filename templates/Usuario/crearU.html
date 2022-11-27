@@ -2,12 +2,15 @@
 {% block titulo %}Crear Usuario{% endblock  %}
 
 {% block contenido %}
-<div class="container">
-<form method="POST" action="">
-<h1>Registro de Usuario</h1>
-{% csrf_token %}
-{{form}}
-<input type="submit" value="Guardar" class="btn btn-info">
-</form>
+<div class="container_reg">
+    
+    <form method="POST" action=""><br>
+    <h2>Registro de Usuario</h2>
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Guardar" class="btn btn-info">
+    </form>
+
 </div>
 {% endblock  %}
+
