@@ -3,7 +3,7 @@ from django.urls import path
 from .import views
 urlpatterns = [
     path('index/', views.index, name= 'index'),
-    #URL DE PUBLICACION
+    ##URL DE PUBLICACION
     path('CrearPublicacion/', views.crearpublicacion, name='Crearpublicacion' ),
     path('verP/', views.verP, name='verP'),
     path('actualizarP/<int:id>', views.actualizarP, name='actualizarP'),
