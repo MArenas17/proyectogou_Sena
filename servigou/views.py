@@ -74,7 +74,7 @@ def actualizarR(request, id):
         form = RutaForm(request.POST, instance = ruta)
         if form.is_valid:
             form.save()
-        return redirect('verR')
+            return redirect('verR')
     else:
         form = RutaForm(instance = ruta)
     context = {
@@ -115,7 +115,10 @@ def actualizarU(request, id):
         form = UserForm(request.POST, instance = usuario)
         if form.is_valid:
             form.save()
-        return redirect('verU')
+            user = User.objects.get(id=id)
+            user.set_password(request.POST['password'])
+            user.save()
+            return redirect('verU')
     else:
         form = UserForm(instance = usuario)
     context = {

@@ -1,10 +1,10 @@
 
 .main{
-    margin-top: 5%;
     display: flex;
     width: 100vw;
-    height: 50vh;
+    height: 100vh;
     justify-content: space-around;
+    align-content: center;
     align-items: center;
     font-size: 12px;
 }
