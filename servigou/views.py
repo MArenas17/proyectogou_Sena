@@ -1,11 +1,14 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 from .forms import *
 from.models import *
 
+@login_required(login_url='login')
 def index(request):
     return render(request,'index.html')
 
 #region de Publicacion
+@login_required(login_url='login')
 def crearpublicacion(request):
     if request.method == 'POST':
         form = PublicacionForm(request.POST)
@@ -18,10 +21,12 @@ def crearpublicacion(request):
         form = PublicacionForm()
     return render (request, 'Publicación/CrearP.html',{'form':form})
 
+@login_required(login_url='login')
 def verP(request):
     publicacion = Publicacion.objects.all()
     return render(request,'Publicación/verP.html',{'publicacion':publicacion})
 
+@login_required(login_url='login')
 def actualizarP(request, id):
     publicacion = Publicacion.objects.get(id = id)
     if request.method == 'POST':
@@ -36,6 +41,7 @@ def actualizarP(request, id):
         'id': id}
     return render(request,'Publicación/CrearP.html',context)
 
+@login_required(login_url='login')
 def eliminarP(request,id):
     publicacion = Publicacion.objects.get(id = id)
     publicacion.delete()
@@ -43,6 +49,7 @@ def eliminarP(request,id):
 
 #endregion
 #region de Ruta
+@login_required(login_url='login')
 def crearR(request):
     if request.method == 'POST':
         form = RutaForm(request.POST)
@@ -55,10 +62,12 @@ def crearR(request):
         form = RutaForm()
     return render (request, 'Ruta/crearR.html',{'form':form})
 
+@login_required(login_url='login')
 def verR(request):
     ruta = Ruta.objects.all()
     return render(request,'Ruta/verR.html',{'ruta':ruta})
 
+@login_required(login_url='login')
 def actualizarR(request, id):
     ruta = Ruta.objects.get(id = id)
     if request.method == 'POST':
@@ -73,6 +82,7 @@ def actualizarR(request, id):
         'id': id}
     return render(request,'Ruta/crearR.html',context)
 
+@login_required(login_url='login')
 def eliminarR(request,id):
     ruta = Ruta.objects.get(id = id)
     ruta.delete()
@@ -92,10 +102,13 @@ def crearU(request):
     context = {
         'form':form}
     return render(request,'Usuario/crearU.html',context)
+
+@login_required(login_url='login')
 def verU(request):
     usuario = User.objects.all()
     return render(request,'Usuario/verU.html',{'usuario':usuario})
 
+@login_required(login_url='login')
 def actualizarU(request, id):
     usuario = User.objects.get(id = id)
     if request.method == 'POST':
@@ -116,15 +129,85 @@ def eliminarU(request,id):
     return redirect('verU')
 
 #endregion
-
+#region de Servicio
+@login_required(login_url='login')
 def crearS(request):
-     if request.method == 'POST':
+    if request.method == 'POST':
         form = ServicioForm(request.POST)
         if form.is_valid:
-             form.save()
-             return redirect('crearS')
+            form.save()
+            return redirect('crearS')
         else:
-             return redirect('crearS')
-     else:
-         form = ServicioForm()
-     return render (request, 'Servicio/CrearS.html',{'form':form})
+            return redirect('crearS')
+    else:
+        form = ServicioForm()
+    return render (request,'Servicio/crearS.html',{'form':form})
+
+@login_required(login_url='login')
+def verS(request):
+    usuario = Servicio.objects.all()
+    return render(request,'Servicio/verS.html',{'usuario':usuario})
+
+@login_required(login_url='login')
+def actualizarS(request, id):
+    servicios = Servicio.objects.get(id = id)
+    if request.method == 'POST':
+        form = ServicioForm(request.POST, instance = servicios)
+        if form.is_valid:
+            form.save()
+        return redirect('verS')
+    else:
+        form = ServicioForm(instance = servicios)
+    context = {
+        'form':form,
+        'id': id}
+    return render(request,'Servicio/crearS.html',context)
+
+@login_required(login_url='login')
+def eliminarS(request,id):
+    usuario = Servicio.objects.get(id = id)
+    usuario.delete()
+    return redirect('verS')
+
+#endregion
+
+#region de Rol
+@login_required(login_url='login')
+def crearRol(request):
+    if request.method == 'POST':
+        form = RolForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('crearRol')
+        else:
+            return redirect('crearRol')
+    else:
+        form = RolForm()
+    return render (request,'Rol/crearRol.html',{'form':form})
+
+@login_required(login_url='login')
+def verRol(request):
+    usuario = Rol.objects.all()
+    return render(request,'Rol/verRol.html',{'usuario':usuario})
+
+@login_required(login_url='login')
+def actualizarRol(request, id):
+    rol = Rol.objects.get(id = id)
+    if request.method == 'POST':
+        form = RolForm(request.POST, instance = rol)
+        if form.is_valid:
+            form.save()
+        return redirect('verRol')
+    else:
+        form = RolForm(instance = rol)
+    context = {
+        'form':form,
+        'id': id}
+    return render(request,'Rol/crearRol.html',context)
+
+@login_required(login_url='login')
+def eliminarRol(request,id):
+    rol = Rol.objects.get(id = id)
+    rol.delete()
+    return redirect('verRol')
+#endregion

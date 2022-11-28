@@ -1,6 +1,8 @@
 {% extends 'layout/base.html' %}
 {% block titulo %}Crear Usuario{% endblock  %}
 
+
+
 {% block contenido %}
 <div class="container_reg">
     
@@ -9,8 +11,9 @@
     {% csrf_token %}
     {{form}}
     <input type="submit" value="Guardar" class="btn btn-info">
+    <a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
     </form>
-
+ 
 </div>
 {% endblock  %}
 

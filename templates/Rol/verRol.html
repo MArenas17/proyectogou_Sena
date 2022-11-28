@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+{% block titulo %}Roles{% endblock  %}
+
+{% block contenido %}
+<h1>Roles</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Rol a Ocupar</th>
+            <th>Nivel del Rol</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in usuario %}
+        <tr>
+            <td>{{ c.nombre_rol }}</td>
+            <td>{{ c.nivel_permiso }}</td>
+            <td> <a href="{% url 'actualizarRol' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
+            <td> <a href="{% url 'eliminarRol' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
+        </tr>
+        {% endfor %} 
+    </tbody>
+</table>
+<a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+
+{% endblock  %}      

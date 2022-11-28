@@ -1,26 +1,32 @@
 {% extends 'layout/base.html' %}
-{% block titulo %}Crear Publicación{% endblock  %}
+{% block titulo %}Ver publicación{% endblock  %}
 
 {% block contenido %}
-<h1>Crear Publicación</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre de la Publicación</th>
-            <th>Tipo de Archivo</th>
-            <th>Usuario</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for c in publicacion %}
-        <tr>
-            <td>{{ c.nombre_publicacion }}</td>
-            <td>{{ c.tipo_archivo }}</td>
-            <td>{{ c.User }}</td>
-            <td> <a href="{% url 'actualizarP' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
-            <td> <a href="{% url 'eliminarP' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
-        </tr>
-        {% endfor %} 
-    </tbody>
-</table>
-{% endblock  %}      
+<h4>Publicaciones</h4>
+<div class="container-tot">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre de la Publicación</th>
+                <th>Tipo de Archivo</th>
+                <th>Usuario</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in publicacion %}
+            <tr>
+                <td>{{ c.nombre_publicacion }}</td>
+                <td>{{ c.tipo_archivo }}</td>
+                <td>{{ c.User }}</td>
+                <td><a href="{% url 'actualizarP' id=c.id %}" class="btn btn-info">Actualizar</a></td>
+                <td> <a href="{% url 'eliminarP' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+    <a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+
+    {% endblock  %} 
+</div>     

@@ -2,6 +2,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+
+
 class User(AbstractUser):
     documento = models.IntegerField(null=True, blank=False)
     celular = models.IntegerField(null=True, blank=False)
@@ -21,23 +23,35 @@ class Ruta(models.Model):
     
     def __str__(self):
         return self.km
+
 #De uno a muchos
 class Servicio(models.Model):
     fecha_hora = models.DateTimeField(null=False,blank=False)
     estado_servicio = models.CharField( max_length=10,null=False,blank=False)
     producto = models.CharField(max_length=200)
-    User = models.ForeignKey(User, on_delete=models.PROTECT)
-    ruta = models.ForeignKey(Ruta, on_delete=models.PROTECT )
-    
-    def __str__(self):
-        return self.documento
+    User = models.ForeignKey(User, on_delete=models.CASCADE)
+
+class ServicioRuta(models.Model):
+    ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE)
+    servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
 
 #De uno a muchos
 class Publicacion(models.Model):
-    nombre_publicacion = models.CharField(null=False, blank=False, max_length=20 )
+    nombre_publicacion = models.CharField(null=False, blank=False, max_length=20)
     tipo_archivo = models.CharField(null=False, blank=False, max_length=8)
-    User = models.ForeignKey(User, on_delete=models.PROTECT )
+    User = models.ForeignKey(User, on_delete=models.CASCADE )
 
     def __str__(self):
         return self.nombre_publicacion
-#De muchos a muchos
+
+class Rol(models.Model):
+    nombre_rol = models.CharField(null=False, blank=False, max_length=10)
+    nivel_permiso = models.IntegerField(null=True, blank=True)
+        
+    def __str__(self):
+        return self.nombre_rol
+
+class UsuarioRol(models.Model):
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
+    fecha_registro= models.DateField(null=False, blank=False)

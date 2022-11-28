@@ -2,7 +2,7 @@
 from django.urls import path
 from .import views
 urlpatterns = [
-    path('index/', views.index, name= 'index'),
+    path('', views.index, name= 'index'),
     #URL DE PUBLICACION
     path('CrearPublicacion/', views.crearpublicacion, name='Crearpublicacion' ),
     path('verP/', views.verP, name='verP'),
@@ -23,5 +23,14 @@ urlpatterns = [
     
      #URL DE SERVICIO
     path('crearS/', views.crearS, name="crearS"),
+    path('verS/', views.verS, name="verS"),
+    path('actualizarS/<int:id>', views.actualizarS, name='actualizarS'),
+    path('eliminarS/<int:id>', views.eliminarS, name='eliminarS'),
+
+    #URL DE ROL
+    path('crearRol/', views.crearRol, name="crearRol"),
+    path('verRol/', views.verRol, name="verRol"),
+    path('actualizarRol/<int:id>', views.actualizarRol, name='actualizarRol'),
+    path('eliminarRol/<int:id>', views.eliminarRol, name='eliminarRol'),
 ]
     

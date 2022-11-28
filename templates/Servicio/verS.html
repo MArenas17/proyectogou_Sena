@@ -1,0 +1,31 @@
+{% extends 'layout/base.html' %}
+{% block titulo %}Servicios{% endblock  %}
+
+{% block contenido %}
+<h1>Servicios</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Fecha</th>
+            <th>Estado del servicio</th>
+            <th>Producto</th>
+            <th>Usuario</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in usuario %}
+        <tr>
+            <td>{{ c.fecha_hora }}</td>
+            <td>{{ c.estado_servicio  }}</td>
+            <td>{{ c.producto}}</td>
+            <td>{{ c.User}}</td>
+            <td> <a href="{% url 'actualizarS' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
+            <td> <a href="{% url 'eliminarS' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
+        </tr>
+        {% endfor %} 
+    </tbody>
+</table>
+<a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+{% endblock  %}     

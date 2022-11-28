@@ -1,0 +1,16 @@
+{% block contenido %}
+
+
+  <nav>
+    <div class="nav-wrapper">
+        <img src="{% static 'img/logo.png'%}"  alt="" class="brand-logo" >
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a href="index" style="color: black;">Inicio</a></li>
+          <li><a href="badges.html" style="color: black;">Nosotros</a></li>
+          <li><a href="{% url 'login' %}"  style="color: black;">Cerrar Sesión</a></li>
+        </ul>
+      </div>
+    </nav>
+  
+  {% endblock  %}
+

@@ -1,10 +1,12 @@
 
 .main{
+    margin-top: 5%;
     display: flex;
     width: 100vw;
-    height: 94vh;
+    height: 50vh;
     justify-content: space-around;
     align-items: center;
+    font-size: 12px;
 }
 
 .contain_login{
@@ -62,12 +64,12 @@
 .brand-logo{
     background-color:#DEDEDE;
 }
-#botones{
-    text-align: center; 
-    justify-content: center;
-    justify-items: center;
-   
+
+.container-footer{
+    position: absolute;
+    bottom: 0%;
+    width: 100vw;
+    height:20vh ;
+    background-color: #DEDEDE;
 }
-.container-index{
-    
-}
+

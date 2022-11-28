@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput
-from .models import Ruta,Publicacion,User,Servicio
+from .models import Ruta,Publicacion,User,Servicio,Rol
 
 class PublicacionForm(ModelForm):
     class Meta:
@@ -80,3 +80,18 @@ class UserForm(ModelForm):
             'celular' : 'Número de Celular',
             'direccion': 'Dirección de residencia'
         }
+
+class RolForm(ModelForm):
+    class Meta:
+        model = Rol
+        fields = '__all__'
+        widgets = {
+            'nombre_rol ': TextInput(attrs={'class':'form-control'}),
+            'nivel_permiso': NumberInput (attrs={'class':'form-control'}),
+            },
+        labels = {
+            'nombre_rol':'Rol',
+            'nivel_permiso' : 'Nivel de permiso',
+        }
+
+

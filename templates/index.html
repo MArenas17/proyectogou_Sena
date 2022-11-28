@@ -6,37 +6,50 @@
 
 
 {% block header %}
-<div class="container-index">
-    <nav>
-        <div class="nav-wrapper">
-          <img src="{% static 'img/logo.png'%}"  alt="" class="brand-logo" >
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="index" style="color: black;">Inicio</a></li>
-            <li><a href="badges.html" style="color: black;">Nosotros</a></li>
-            <li><a href="{% url 'login' %}"  style="color: black;">Cerrar Sesión</a></li>
-          </ul>
-        </div>
-      </nav>
-
-  
-  <div class="row" >
-    <div class="col-10" >
-      Contenido vistas
+<nav>
+  <div class="nav-wrapper">
+      <img src="{% static 'img/logo.png'%}"  alt="" class="brand-logo" >
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="index" style="color: black;">Inicio</a></li>
+        <li><a href="badges.html" style="color: black;">Nosotros</a></li>
+        <li><a href="{% url 'logout' %}"  style="color: black;">Cerrar Sesión</a></li>
+      </ul>
     </div>
-    <div class="col-2 border">
+  </nav>
+  
+  {% endblock  %}
+  {% block contenido %}
+  <div class="row" >
+    <div class="col-12">
+      {{request.user}}
       <h6><b>USUARIO</b></h6>
-      <a class="btn red darken-3" href="{% url 'verU' %}" >Ver </a>
-      <a class="btn red darken-3" href="{% url 'crearU' %}">Registrar </a>
+      <a class="btn-small red darken-3" href="{% url 'verU' %}" >Ver </a>
+      <a class="btn-small red darken-3" href="{% url 'crearU' %}">Registrar </a>
       <h6><b>RUTA</b></h6>
-      <a class="btn red darken-3" href="{% url 'verR' %}"> Ver </a>
-      <a class="btn red darken-3" href="{% url 'crearR' %}">Registrar</a>
-      <h6><b>SERVICIO</b></h6>
-      <a class="btn red darken-3" href="#">Ver </a>
-      <a class="btn red darken-3" href="#">Registrar </a>
+      <a class="btn-small red darken-3" href="{% url 'verR' %}"> Ver </a>
+      <a class="btn-small red darken-3" href="{% url 'crearR' %}">Registrar</a>
       <h6><b>PUBLICACIÓN</b></h6>
-      <a class="btn red darken-3" href="{% url 'verP' %}">Ver </a>
-      <a class="btn red darken-3" href="{% url 'Crearpublicacion' %}">Registrar</a>
+      <a class="btn-small red darken-3" href="{% url 'verP' %}">Ver </a>
+      <a class="btn-small red darken-3" href="{% url 'Crearpublicacion' %}">Registrar</a>
+      <h6><b>ROL</b></h6>
+      <a class="btn-small red darken-3" href="{% url 'verRol' %}">Ver </a>
+      <a class="btn-small red darken-3" href="{% url 'crearRol' %}">Registrar</a>
+      <h6><b>SERVICIO</b></h6>
+      <a class="btn-small red darken-3" href="{% url 'verS' %}">Ver </a>
+      <a class="btn-small red darken-3" href="{% url 'crearS' %}">Registrar</a>
     </div>
   </div>
-</div>
-{% endblock  %}
+  {% endblock  %}
+  
+  {% block footer %}
+  <div class="container-footer">
+    <div class="row">
+      <div class="col-6">
+        
+      </div>
+      <div class="col-6">
+       
+      </div>
+    </div>
+  </div>
+  {% endblock  %}

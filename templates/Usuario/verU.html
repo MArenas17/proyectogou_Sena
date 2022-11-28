@@ -1,37 +1,63 @@
 {% extends 'layout/base.html' %}
+{% load static %}
 {% block titulo %}Usuarios Creados{% endblock  %}
 
 {% block contenido %}
-<h1>Usuarios Creados</h1>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Nombre de usuario</th>
-            <th>nombre</th>
-            <th>Apellido</th>
-            <th>direccion</th>
-            <th>Correo</th>
-            <th>Documento</th>
-            <th>Celular</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for c in usuario %}
-        <tr>
-            <td>{{ c.username }}</td>
-            <td>{{ c.first_name }}</td>
-            <td>{{ c.last_name}}</td>
-            <td>{{ c.direccion}}</td>
-            <td>{{ c.email }}</td>
-            <td>{{ c.groups }}</td>
-            <td>{{ c.documento }}</td>
-            <td>{{ c.celular }}</td>
-            <td> <a href="{% url 'actualizarU' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
-            <td> <a href="{% url 'eliminarU' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
-        </tr>
-        {% endfor %} 
-    </tbody>
-</table>
-{% endblock  %}     
+<h4>Usuarios</h4><br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Nombre de usuario</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Direccion</th>
+                <th>Correo</th>
+                <th>Grupo</th>
+                <th>Documento</th>
+                <th>Celular</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in usuario %}
+            <tr>
+                <td>{{ c.username }}</td>
+                <td>{{ c.first_name }}</td>
+                <td>{{ c.last_name}}</td>
+                <td>{{ c.direccion}}</td>
+                <td>{{ c.email }}</td>
+                <td>{{ c.groups }}</td>
+                <td>{{ c.documento }}</td>
+                <td>{{ c.celular }}</td>
+                <td><a href="{% url 'actualizarU' id=c.id %}" class="btn btn-info">Actualizar</a></td>
+                <td> <a onclick = "borrar('{{c.id}}')" class="btn btn-danger ">Eliminar</a></td>
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+    <a href="{% url 'index' %}" class="btn btn-info">Atras</a>
+    {% endblock  %}    
+    
+{% block script %}
+<script>
+    function borrar(id){
+        swal({
+            title : 'Esta seguro que desea borrar ?',
+            text : 'Si lo borras no podras recuperarlo',
+            icon : 'warning',
+            buttons : true ,
+            dangerMode : true ,
+        })
+        .then ((willDelete)=>{
+            if (willDelete){
+                location.href = "/eliminarU/"+id
+            }
+            else{
+                swal ('No se borro el registro')
+            }
+        });
+    }
+</script>
+{% endblock  %}

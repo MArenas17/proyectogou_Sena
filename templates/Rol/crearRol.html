@@ -1,15 +1,13 @@
- {% extends 'layout/base.html' %}
-{% block titulo %}Crear Servicio{% endblock  %}
+{% extends 'layout/base.html' %}
+{% block titulo %}Crear Rol{% endblock  %}
 
 {% block contenido %}
-<h1>Registro de Servicios</h1>
+<h1>Registro de Roles</h1>
 <form method="POST" action="">
 {% csrf_token %}
 {{form}}
 <input type="submit" value="Guardar" class="btn btn-info">
 <a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+
 </form>
-{% endblock  %} 
-
-
-
+{% endblock  %}
