@@ -8,26 +8,59 @@
     <link rel="stylesheet" href="{% static 'css/styleBase.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/aos/aos.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}">
+    <!-- google fonts -->
+    <link rel="stylesheet" href="{% static 'assets/fuente/fuentegoogle.css' %}">
+
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet"> 
+
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet"> 
+
+    <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png' %}" rel="icon"> 
+  <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"> 
     {% block style %}{% endblock %}  
 
 </head>
   <body>
-    
 
     {% block header %}
     {% endblock  %}
 
-    
-    <div class="main">
-    {% block contenido %}{% endblock %}
-    </div>
+    {% block aside %}
+    {% endblock  %}
 
-    {% block footer %}{% endblock  %}
-    {% block script %}{% endblock %}
+    <main id="main">
+    {% block contenido %}
+    {% endblock %}
+    </main>
+
+    {% block footer %}
+    {% endblock  %}
+    {% block script %}
     <script src="{% static 'js/sweetalert.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'js/materialize.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script> 
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> 
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script> 
+    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script> 
+    <script src="{% static 'assets/vendor/typed.js/typed.min.js' %}"></script> 
+    <script src="{% static 'assets/vendor/typed.js/typed.min.js' %}"></script> 
+    <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script> 
+    <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'assets/js/main.js' %}"></script> 
+  {% endblock %}
 </body>
 </html>

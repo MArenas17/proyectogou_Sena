@@ -16,11 +16,14 @@
 
 <div class="contain_login">
   <div class="container" >
-    
+    <li class="nav-item">
+      <a class="nav-link" href="menu.html">Menu</a>
+    </li>
       <form class="form"  method="post">
       <h2> Iniciar sesión </h2>
       {% csrf_token %}
       {{ form.as_p }}
+      
       <button type="submit" class="btn btn-success">Entrar</button>
       <p>Si aún no te encuentras registrado </p>
       <a href="{% url 'crearU' %}">¡Regístrate!</a> 

@@ -214,3 +214,6 @@ def eliminarRol(request,id):
     rol.delete()
     return redirect('verRol')
 #endregion
+
+def inicio(request):
+    return render(request, 'layout\partials\Pprincipal\inicio.html')
