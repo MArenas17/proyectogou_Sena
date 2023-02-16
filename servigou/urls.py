@@ -32,8 +32,5 @@ urlpatterns = [
     path('verRol/', views.verRol, name="verRol"),
     path('actualizarRol/<int:id>', views.actualizarRol, name='actualizarRol'),
     path('eliminarRol/<int:id>', views.eliminarRol, name='eliminarRol'),
-
-    #URL DE INICIO
-    path('inicio/',views.inicio, name="inicio")
 ]
     

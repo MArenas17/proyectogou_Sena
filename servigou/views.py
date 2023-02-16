@@ -3,9 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import *
 from.models import *
 
-@login_required(login_url='login')
 def index(request):
-    return render(request,'index.html')
+    return render(request,'layout\partials\Pprincipal\inicio.html')
 
 #region de Publicacion
 @login_required(login_url='login')
@@ -214,6 +213,3 @@ def eliminarRol(request,id):
     rol.delete()
     return redirect('verRol')
 #endregion
-
-def inicio(request):
-    return render(request, 'layout\partials\Pprincipal\inicio.html')

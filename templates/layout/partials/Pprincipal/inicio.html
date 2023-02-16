@@ -1,25 +1,23 @@
-{% extends 'layout/base.html' %}
-{% load static %}
+{% extends 'layout/base2.html' %}
 
 
 {% block contenido %}
+   {% include 'layout/partials/Pprincipal/navegacion.html' %} 
 
     {% include 'layout/partials/Pprincipal/hero.html' %}
 
-    {% include 'layout/partials/Pprincipal/testimonios.html' %}
-
-    {% include 'layout/partials/Pprincipal/catalogo.html' %}
-
-    {% include 'layout/partials/Pprincipal/contactos.html' %}
-
     {% include 'layout/partials/Pprincipal/iniciarsesion.html' %}
-    
-    {% include 'layout/partials/Pprincipal/navegacion.html' %}
-
-    {% include 'layout/partials/Pprincipal/quienessomos.html' %}
 
     {% include 'layout/partials/Pprincipal/registro.html' %}
 
     {% include 'layout/partials/Pprincipal/servicios.html' %}
+
+    {% include 'layout/partials/Pprincipal/catalogo.html' %}
+
+    {% include 'layout/partials/Pprincipal/testimonios.html' %}
+
+    {% include 'layout/partials/Pprincipal/quienessomos.html' %}
+
+    {% include 'layout/partials/Pprincipal/contactos.html' %} 
     
-{% endblock %}
+{% endblock %} 
