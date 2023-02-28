@@ -11,9 +11,9 @@
        <img src="{% static 'img/alpus.jpeg' %}" alt="" class="img-fluid rounded-circle">
        <h1 class="text-light"><a href="index.html">GO! Domicilios</a></h1>
        <div class="social-links mt-3 text-center">
-         <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-         <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-         <a href="#" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
+        <a href="https://www.facebook.com/gou.domicilos" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/gou.domicilios/" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://wa.me/3242119191" class="whatsapp"><i class="bx bxl-whatsapp"></i></a>
        </div>
      </div>
 
@@ -21,8 +21,8 @@
        <ul>
          <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Inicio</span></a></li>
          <li><a href="#about" class="nav-link scrollto"><i class="bx bx-group"></i> <span>¿Quienes Somos?</span></a></li>
-         <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Inicio de Sesión</span></a></li>
-         <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-user-plus"></i> <span>Registro</span></a></li>
+         <li><a href="{% url 'login' %}" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Inicio de Sesión</span></a></li> 
+         <li><a href="{% url 'crearU' %}" class="nav-link scrollto"><i class="bx bx-user-plus"></i> <span>Registro</span></a></li>
          <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Servicios</span></a></li>
          <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Catálogo</span></a></li>
          <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contactos</span></a></li>

@@ -1,4 +1,4 @@
-{% extends 'layout/base.html' %}
+{% extends 'layout/base2.html' %}
 {% block titulo %}Crear Usuario{% endblock  %}
 
 
@@ -10,8 +10,9 @@
     <h3>Registro de Usuario</h3>
     {% csrf_token %}
     {{form.as_table}}
-    <input type="submit" value="Guardar" class="btn btn-info">
-    <a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+    
+    <div class="text-center"><button type="submit" id ="boton_crearU">Enviar</button></div>
+    <a href="{% url 'index' %} ">Atrás</a>
     </form>
  
 </div>

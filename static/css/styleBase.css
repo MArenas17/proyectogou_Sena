@@ -28,11 +28,14 @@
     
 }
 
-.container_reg {
-    padding: 0%;
-    margin: 0% ;
-    display: flex;
-    margin: 0%;
+#boton_crearU
+{
+    background: #E74C3C;
+    border: 0;
+    padding: 10px 24px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 4px;
     
 }
 

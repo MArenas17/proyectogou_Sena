@@ -1,5 +1,5 @@
 
-{% extends 'layout/base.html' %}
+{% extends 'layout/base2.html' %}
 {% load static %}
 
 {% block titulo %}Inicio de sesion{% endblock  %}
@@ -16,9 +16,7 @@
 
 <div class="contain_login">
   <div class="container" >
-    <li class="nav-item">
-      <a class="nav-link" href="menu.html">Menu</a>
-    </li>
+  
       <form class="form"  method="post">
       <h2> Iniciar sesión </h2>
       {% csrf_token %}
