@@ -137,7 +137,9 @@ h6 {
   }
 
   #main {
+
     margin-left: 0;
+    margin: 10%;
   }
 }
 
@@ -247,7 +249,7 @@ h6 {
 #hero .hero-container {
   position: relative;
   z-index: 5;
-  min-width: 300px;
+  min-width: 150px;
 }
 
 #hero h1 {

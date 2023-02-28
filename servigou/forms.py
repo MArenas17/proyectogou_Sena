@@ -60,7 +60,7 @@ class ServicioForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ('username','first_name','last_name','documento','email','direccion','celular','password',)
+        fields = ('first_name','documento','email','direccion','celular','password',)
         help_texts = {
             'username':None,'first_name':None,'last_name':None,'password':None,
             'direccion':None,'email':None,'groups':None
@@ -78,7 +78,9 @@ class UserForm(ModelForm):
         labels = {
             'documento':'Documento',
             'celular' : 'Número de Celular',
-            'direccion': 'Dirección de residencia'
+            'direccion': 'Dirección de residencia',
+            'email': 'Email',
+            'first_name': 'Nombre completo'
         }
 
 class RolForm(ModelForm):

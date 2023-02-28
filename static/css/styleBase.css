@@ -1,18 +1,14 @@
 
-.main{
+#main_form{
     display: flex;
-    width: 100vw;
-    height: 100vh;
     justify-content: space-around;
     align-content: flex-start;
     align-items: flex-start;
     font-size: 12px;
-}
-
-.contain_login{
-    display: flex;
     
 }
+
+
 
 .contain_login label, .contain_login h2,.contain_login input{
     font-size: 15px;
@@ -27,26 +23,35 @@
     
     
 }
+/* Container */
 
-#boton_crearU
-{
-    background: #E74C3C;
-    border: 0;
-    padding: 10px 24px;
-    color: #fff;
-    transition: 0.4s;
-    border-radius: 4px;
+.container_reg {
+    padding:2%;
+    background: #fff;   
+    margin: 2%;
+    box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
     
 }
 
-.logo{
-    position: relative;
-    justify-content: center;
-    justify-items: center;
-    text-align: center;
-    top:10%;
+.contain_login{
+    margin-top:12%;
+    padding:2%;
+    background: #fff;  
+    box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
+} 
+/* Botones */
 
+.boton
+{
+    background: #E74C3C;
+    border: 0;
+    padding: 6px 20px;
+    color: #fff;
+    transition: 0.4s;
+    border-radius: 5px;
+    
 }
+
 
 .container_flex{
     text-align: center; 
