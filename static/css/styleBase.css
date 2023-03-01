@@ -1,28 +1,17 @@
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
 
+/* container de los formularios */
 #main_form{
     display: flex;
-    justify-content: space-around;
-    align-content: flex-start;
-    align-items: flex-start;
-    font-size: 12px;
-    
+    align-items: center;
+    justify-content: center;
 }
 
-
-
-.contain_login label, .contain_login h2,.contain_login input{
-    font-size: 15px;
-    justify-content: space-around;
-    right: 10%;
-
-}
-
-.contain_login h2{
-    text-align: center;
-    font-size: 40px;
-    
-    
-}
 /* Container */
 
 .container_reg {
@@ -53,36 +42,3 @@
 }
 
 
-.container_flex{
-    text-align: center; 
-    justify-content: center;
-    justify-items: center;
-    
-}
-.btn{
-    margin: 0.5%;
-}
-.container{
-    text-align: center;
-    
-}
-.nav-wrapper {
-    background-color:#DEDEDE;
-}
-.brand-logo{
-    background-color:#DEDEDE;
-    
-}
-
-.footer{
-    width: 100vw;
-    height:20vh ;
-    background-color: #f50606;
-}
-
-.opciones{
-    text-align: center;
-    width: 20vw;
-    height:70vh ;
-    background-color: #DEDEDE;
-}

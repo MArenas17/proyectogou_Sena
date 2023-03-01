@@ -3,6 +3,9 @@ from django.urls import path
 from .import views
 urlpatterns = [
     path('', views.index, name= 'index'),
+
+    #HOME
+    path('home/', views.home, name= 'home'),
     
     #URL DE PUBLICACION
     path('CrearPublicacion/', views.crearpublicacion, name='Crearpublicacion' ),

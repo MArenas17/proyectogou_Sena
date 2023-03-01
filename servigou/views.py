@@ -6,6 +6,10 @@ from.models import *
 def index(request):
     return render(request,'layout\partials\Pprincipal\inicio.html')
 
+@login_required(login_url='login')
+def home(request):
+    return render(request,'layout\partials\home.html')
+
 #region de Publicacion
 @login_required(login_url='login')
 def crearpublicacion(request):
@@ -92,8 +96,8 @@ def eliminarR(request,id):
 def crearU(request):
     if request.method == 'POST':
         user = User.objects.create(
-        username = request.POST['username'],first_name = request.POST['first_name'],last_name = request.POST['last_name'],
-        password=request.POST['password'],direccion = request.POST['direccion'],email = request.POST['email'],documento = request.POST['documento'],celular = request.POST['celular'])
+        username = request.POST['username'],first_name = request.POST['first_name'],
+password=request.POST['password'],direccion = request.POST['direccion'],email = request.POST['email'],documento = request.POST['documento'],celular = request.POST['celular'])
         user.set_password(request.POST['password'])
         user.save()
         return redirect('crearU')

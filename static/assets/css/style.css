@@ -10,16 +10,17 @@
 --------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
-  color: #272829;
+  color: #0f0f0f;
+  text-align: left;
 }
 
 a {
-  color: #149ddd;
+  color: #E74C3C;
   text-decoration: none;
 }
 
 a:hover {
-  color: #37b3ed;
+  color: #E74C3C;
   text-decoration: none;
 }
 
@@ -299,6 +300,7 @@ h6 {
 section {
   padding: 60px 0;
   overflow: hidden;
+
 }
 
 .section-bg {
@@ -360,7 +362,7 @@ section {
 .about .content ul i {
   font-size: 16px;
   margin-right: 5px;
-  color: #149ddd;
+  color: #E74C3C;
   line-height: 0;
 }
 
@@ -383,7 +385,7 @@ section {
 .facts .count-box i {
   display: block;
   font-size: 44px;
-  color: #149ddd;
+  color: #E74C3C;
   float: left;
   line-height: 0;
 }
@@ -453,7 +455,7 @@ section {
   width: 1px;
   height: 10px;
   transition: 0.9s;
-  background-color: #149ddd;
+  background-color: #E74C3C;
 }
 
 /*--------------------------------------------------------------
@@ -643,7 +645,7 @@ section {
 }
 
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #149ddd;
+  background-color: #E74C3C;
 }
 
 .portfolio-details .portfolio-info {
@@ -823,11 +825,11 @@ section {
   height: 12px;
   background-color: #fff;
   opacity: 1;
-  border: 1px solid #149ddd;
+  border: 1px solid #E74C3C;
 }
 
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #149ddd;
+  background-color: #E74C3C;
 }
 
 /*--------------------------------------------------------------
