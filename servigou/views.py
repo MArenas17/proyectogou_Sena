@@ -6,9 +6,6 @@ from.models import *
 def index(request):
     return render(request,'layout\partials\Pprincipal\inicio.html')
 
-@login_required(login_url='login')
-def home(request):
-    return render(request,'layout\partials\home.html')
 
 #region de Publicacion
 @login_required(login_url='login')
@@ -216,4 +213,20 @@ def eliminarRol(request,id):
     rol = Rol.objects.get(id = id)
     rol.delete()
     return redirect('verRol')
+#endregion
+
+#region home
+
+@login_required(login_url='login')
+def home_admin(request):
+    return render(request,'layout\partials\home_admin.html')
+
+@login_required(login_url='login')
+def home_repartidor(request):
+    return render(request,'layout\partials\home_repartidor.html')
+
+@login_required(login_url='login')
+def home_usuario(request):
+    return render(request,'layout\partials\home_usuario.html')
+
 #endregion

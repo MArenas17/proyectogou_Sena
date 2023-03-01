@@ -1,0 +1,34 @@
+{% extends 'layout/base2.html' %}
+{% load static %}
+
+{% block contenido %}
+{% load static %}
+
+ <!-- ======= Mobile nav toggle button ======= -->
+ <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+ <!-- ======= Header ======= -->
+ <header id="header">
+   <div class="d-flex flex-column">
+
+     <div class="profile">
+       <img src="{% static 'img/alpus.jpeg' %}" alt="" class="img-fluid rounded-circle">
+       <h1 class="text-light"><a href="index.html">GO! Domicilios</a></h1>
+     </div>
+
+     <nav id="navbar" class="nav-menu navbar">
+       <ul>
+         <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Inicio</span></a></li>
+         <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-plus"></i> <span>Servicios Pendientes</span></a></li> 
+         <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-x
+          "></i> <span>Servicios Cancelados</span></a></li>
+         <li><a href="#services" class="nav-link scrollto"><i class="bx bx-calendar-check"></i> <span>Servicios Realizados</span></a></li>
+         <li><a href="{% url 'index' %}" class="nav-link scrollto"><i class="bx bx-exit"></i> <span>Cerrar Sesión</span></a></li>
+       </ul>
+     </nav><!-- .nav-menu -->
+   </div>
+ </header><!-- End Header -->
+ 
+
+  {% endblock  %}
+
