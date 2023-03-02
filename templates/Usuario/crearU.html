@@ -5,9 +5,8 @@
 
 {% block contenido %}
 <div class="container_reg">
-
-    
-    
+    <div class="card-title text-center mb-8 fw-dark fs-8">
+    <img src="" alt="">
     <form method="POST" action=""><br>
     <h3>Registro de Usuario</h3>
     {% csrf_token %}
@@ -17,7 +16,7 @@
     <a href="{% url 'index' %}" class ="boton">Cancelar</a>
     
     </form>
- 
+</div>
 </div>
 {% endblock  %}
 
