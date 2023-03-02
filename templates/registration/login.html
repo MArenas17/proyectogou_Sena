@@ -2,20 +2,18 @@
 de sesion{% endblock %} {% block contenido %}
 
 <div class="contain_login">
-    <div class=" text-center mb-2 fw-dark fs-3">
-      
-
         <form class="form" method="post">
           <h2>Iniciar sesión</h2>
           {% csrf_token %} 
-          {{ form.as_p }}
-          <button type="submit" class="boton">Entrar</button>
-          <a href="{% url 'index' %}" class="boton">Cancelar</a>
-          <p>Si aún no te encuentras registrado</p>
-          <a href="{% url 'crearU' %}">¡Regístrate!</a>
+          {{ form.as_table }}
+          <br>
+          <br>
+          <button type="submit" class="boton" style="margin-left: 250px;">Entrar</button>
+          <p style="margin-left: 180px;">Si aún no te encuentras registrado</p>
+          <a style="margin-left: 270px;" href="{% url 'index' %}">Volver</a>
+          <br>
+          <a style="margin-left: 254px;" href="{% url 'crearU' %}">¡Regístrate!</a>
+
         </form>
-      </div>
-    </div>
-  </div>
 </div>
 {% endblock %}
