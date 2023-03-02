@@ -6,6 +6,17 @@
 */
 
 /*--------------------------------------------------------------
+register
+----------------------------------------------------------------*/
+.container_reg{
+  background-color: #BFC9CA;
+}
+.contain_login{
+  background-color: #BFC9CA;
+}
+
+
+/*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 body {
@@ -141,6 +152,10 @@ h6 {
   #main {
     margin: 0%;
   }
+}
+
+#id_username,#id_password{
+  border: 1px solid black;
 }
 
 /*--------------------------------------------------------------
@@ -714,7 +729,7 @@ section {
 }
 
 .services .icon-box:hover .icon i {
-  color: #E74C3C;;
+  color: #E74C3C;
 }
 
 .services .title {
@@ -722,14 +737,15 @@ section {
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 18px;
+  color: #E74C3C;
 }
 
 .services .title a {
-  color: #343a40;
+  color: #121111;
 }
 
 .services .title a:hover {
-  color: #149ddd;
+  color:#E74C3C ;
 }
 
 .services .description {

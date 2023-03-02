@@ -1,23 +1,19 @@
-
-{% extends 'layout/base_form.html' %}
-{% load static %}
-
-{% block titulo %}Inicio de sesion{% endblock  %}
-
-{% block contenido %}
+{% extends 'layout/base_form.html' %} {% load static %} {% block titulo %}Inicio
+de sesion{% endblock %} {% block contenido %}
 
 <div class="contain_login">
-  
-      <form class="form"  method="post">
-      <h2> Iniciar sesión </h2>
-      {% csrf_token %}
-      {{ form.as_p }}
-      
-      <button type="submit" class ="boton">Enviar</button>
-      <a href="{% url 'index' %}" class ="boton">Cancelar</a>
-      <p>Si aún no te encuentras registrado </p>
-      <a href="{% url 'crearU' %}">¡Regístrate!</a> 
-    </form>
-  
+        <form class="form" method="post">
+          <h2>Iniciar sesión</h2>
+          {% csrf_token %} 
+          {{ form.as_table }}
+          <br>
+          <br>
+          <button type="submit" class="boton" style="margin-left: 250px;">Entrar</button>
+          <p style="margin-left: 180px;">Si aún no te encuentras registrado</p>
+          <a style="margin-left: 270px;" href="{% url 'index' %}">Volver</a>
+          <br>
+          <a style="margin-left: 254px;" href="{% url 'crearU' %}">¡Regístrate!</a>
+
+        </form>
 </div>
-{% endblock  %}
+{% endblock %}

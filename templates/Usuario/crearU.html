@@ -1,13 +1,9 @@
 {% extends 'layout/base_form.html' %}
+{% load static %}
 {% block titulo %}Crear Usuario{% endblock  %}
-
-
 
 {% block contenido %}
 <div class="container_reg">
-
-    
-    
     <form method="POST" action=""><br>
     <h3>Registro de Usuario</h3>
     {% csrf_token %}
@@ -17,7 +13,7 @@
     <a href="{% url 'index' %}" class ="boton">Cancelar</a>
     
     </form>
- 
+
 </div>
 {% endblock  %}
 
