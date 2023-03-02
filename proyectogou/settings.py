@@ -129,5 +129,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'servigou.User'
 
-LOGIN_REDIRECT_URL="home_repartidor"
+LOGIN_REDIRECT_URL="contenido_admin"
 LOGOUT_REDIRECT_URL = "inicio"

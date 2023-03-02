@@ -129,7 +129,7 @@ h6 {
 }
 
 #main {
-  margin-left: 300px;
+  margin-left:22%;
 }
 
 @media (max-width: 1199px) {
@@ -139,9 +139,7 @@ h6 {
   }
 
   #main {
-
-    margin-left: 0;
-    margin: 10%;
+    margin: 0%;
   }
 }
 

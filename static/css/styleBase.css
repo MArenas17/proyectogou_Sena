@@ -1,8 +1,9 @@
 *{
-    padding: 0;
-    margin: 0;
-    border: 0;
+    padding: 0%;
+    margin:0%;
+    border: 0%;
     box-sizing: border-box;
+    
 }
 
 /* container de los formularios */
@@ -28,6 +29,14 @@
     background: #fff;  
     box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
 } 
+
+#main .contain_admin{
+    box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
+
+}
+
+
+
 /* Botones */
 
 .boton
@@ -41,4 +50,11 @@
     
 }
 
+.custom-modal-dialog {
+    max-width: 100%;
+    width: 100%;
+    margin: 1.75rem auto;
+    max-height: 90%;
+    height: 90%;
+  }
 
