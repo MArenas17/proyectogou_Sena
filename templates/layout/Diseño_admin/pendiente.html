@@ -1,0 +1,33 @@
+{% extends 'layout\Diseño_admin\base_admin.html' %}
+{% load static %}
+
+
+{% block contenido %}
+<div class="contain_admin">
+    <h3>Pedidos Pendientes</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Fecha y Hora</th>
+                <th>Estado del Pedido</th>
+                <th>Descripción del pedido</th>
+                <th>Contacto</th>
+                <th>Nombre</th>
+                <th>Dirección</th>
+                <th>$ Domicilio</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in servicios %}
+            <tr>
+                <td>{{ c.fecha_hora }}</td>
+                <td>{{ c.estado_servicio}}</td>
+                <td>{{ c.User}}</td>
+                <td> <a href="{% url 'eliminarS' id=c.id %}" class="boton">X</a></td>
+            </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+
+</div>
+{% endblock contenido %}

@@ -18,7 +18,7 @@ class Ruta(models.Model):
     km = models.IntegerField(null=False,blank=False)
     porcentaje_liquidacion = models.DecimalField(null=False,blank=False,max_digits=7,decimal_places=2)
     incremento = models.IntegerField(null=True, blank=True)
-    total_servicio = models.DecimalField(null=False,blank=False,max_digits=7,decimal_places=2)
+    transporte = models.DecimalField(null=False,blank=False,max_digits=7,decimal_places=2)
     total_liquidacion = models.DecimalField(null=False,blank=False,max_digits=7,decimal_places=2)
     
     def __str__(self):

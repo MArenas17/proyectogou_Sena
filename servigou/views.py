@@ -7,6 +7,7 @@ def index(request):
     return render(request,'layout\partials\Pprincipal\inicio.html')
 
 
+
 #region de Publicacion
 @login_required(login_url='login')
 def crearpublicacion(request):
@@ -172,7 +173,7 @@ def actualizarS(request, id):
 def eliminarS(request,id):
     usuario = Servicio.objects.get(id = id)
     usuario.delete()
-    return redirect('verS')
+    return redirect(contenido_admin)
 
 #endregion
 
@@ -223,8 +224,11 @@ def eliminarRol(request,id):
 def contenido_admin(request):
     servicios = Servicio.objects.all()
     context = {'servicios':servicios}
-    print(servicios)
     return render(request,'layout\Diseño_admin/contenido_admin.html',context)
+
+@login_required(login_url='login')
+def contenido_cliente(request):
+    return render(request,'layout\Diseño_cliente\contenido_cliente.html')
 
 
 #endregion
