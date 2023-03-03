@@ -3,14 +3,15 @@
 {% block titulo %}Crear Usuario{% endblock  %}
 
 {% block contenido %}
-<div class="container_reg">
+<div class="container_reg" style="width: 430px;">
     <form method="POST" action=""><br>
     <h3>Registro de Usuario</h3>
     {% csrf_token %}
     {{form.as_table}}
     <br>
-    <button type="submit" class ="boton">Enviar</button>
-    <a href="{% url 'index' %}" class ="boton">Cancelar</a>
+    <button style="margin-left: 90px;" type="submit" class ="boton">Enviar</button>
+    <a href="{% url 'index' %}" class ="boton">Cancelar</a><br>
+    <a style="margin-left: 160px;" href="{% url 'index' %}">Volver</a>
     
     </form>
 
