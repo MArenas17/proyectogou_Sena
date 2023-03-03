@@ -7,6 +7,7 @@ def index(request):
     return render(request,'layout\partials\Pprincipal\inicio.html')
 
 
+
 #region de Publicacion
 @login_required(login_url='login')
 def crearpublicacion(request):
@@ -97,6 +98,8 @@ def crearU(request):
 password=request.POST['password'],direccion = request.POST['direccion'],email = request.POST['email'],documento = request.POST['documento'],celular = request.POST['celular'])
         user.set_password(request.POST['password'])
         user.save()
+        user.groups.add(request.POST['groups'])
+        user.save()
         return redirect('crearU')
     form = UserForm()
     context = {
@@ -170,7 +173,7 @@ def actualizarS(request, id):
 def eliminarS(request,id):
     usuario = Servicio.objects.get(id = id)
     usuario.delete()
-    return redirect('verS')
+    return redirect(contenido_admin)
 
 #endregion
 
@@ -218,15 +221,14 @@ def eliminarRol(request,id):
 #region home
 
 @login_required(login_url='login')
-def home_admin(request):
-    return render(request,'layout\partials\home_admin.html')
+def contenido_admin(request):
+    servicios = Servicio.objects.all()
+    context = {'servicios':servicios}
+    return render(request,'layout\Diseño_admin/contenido_admin.html',context)
 
 @login_required(login_url='login')
-def home_repartidor(request):
-    return render(request,'layout\partials\home_repartidor.html')
+def contenido_cliente(request):
+    return render(request,'layout\Diseño_cliente\contenido_cliente.html')
 
-@login_required(login_url='login')
-def home_usuario(request):
-    return render(request,'layout\partials\home_usuario.html')
 
 #endregion

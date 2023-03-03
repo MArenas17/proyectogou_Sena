@@ -60,7 +60,7 @@ class ServicioForm(ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ('username','first_name','documento','email','direccion','celular','password',)
+        fields = ('username','first_name','last_name','documento','email','direccion','celular','password','groups' )
         help_texts = {
             'username':None,'first_name':None,'last_name':None,'password':None,
             'direccion':None,'email':None,'groups':None
@@ -68,18 +68,22 @@ class UserForm(ModelForm):
         widgets = {
             'username': TextInput(attrs={'class':'form-control'}),
             'first_name': TextInput(attrs={'class':'form-control'}),
+            'last_name': TextInput(attrs={'class':'form-control'}),
             'documento':NumberInput (attrs={'class':'form-control'}),
             'email': EmailInput(attrs={'class':'form-control'}),
             'direccion': TextInput(attrs={'class':'form-control'}) ,
             'celular': NumberInput (attrs={'class':'form-control'}),
             'password': PasswordInput(attrs={'class':'form-control'}) ,
+            'groups' : Select(attrs={'class':'form-control'})
         }
         labels = {
             'documento':'Documento',
             'celular' : 'Número de Celular',
             'direccion': 'Dirección de residencia',
             'email': 'Email',
-            'first_name': 'Nombre completo'
+            'first_name': 'Nombre',
+            'last_name': 'Apellido',
+            'groups' : 'Rol'
         }
 
 class RolForm(ModelForm):
