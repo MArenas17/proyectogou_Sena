@@ -219,6 +219,13 @@ def eliminarRol(request,id):
 #endregion
 
 #region home
+@login_required(login_url='login')
+def inicio(request):
+    return render (request,'layout\Diseño_admin\home.html')
+
+@login_required(login_url='login')
+def inicio_cliente(request):
+    return render (request,'layout\Diseño_cliente\home_cliente.html')
 
 @login_required(login_url='login')
 def contenido_admin(request):

@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput
+from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput,ChoiceField
 from .models import Ruta,Publicacion,User,Servicio,Rol
 
 class PublicacionForm(ModelForm):
@@ -42,10 +42,12 @@ class ServicioForm(ModelForm):
     class Meta:
         model = Servicio
         fields = '__all__'
+        tipo_servicio = (('Mensajería', 'Mensajería'),('Ajuste de mercado', 'Ajuste de mercado'),('Pago de factura','Pago de factura'))
         widgets = {
             'fecha_hora': DateTimeInput(attrs={'type':'date','class':'form-control'}),
             'estado_servicio':TextInput(attrs={'class':'form-control'}),
-            'producto':TextInput(attrs={'class':'form-control'}),
+            'tipo':Select(attrs={'class':'form-control'},choices= tipo_servicio),
+            'descripcion':TextInput(attrs={'class':'form-control'}),
             'User':Select(attrs={'class':'form-control'}),
             'ruta':Select(attrs={'class':'form-control'}),
         }
@@ -54,6 +56,7 @@ class ServicioForm(ModelForm):
             'fecha_hora' : 'Fecha y Hora',
             'estado_servicio': 'Estado del servicio',
             'producto': 'Producto',
+            'tipo': 'Tipo de servicio que desea solicitar',
             'ruta': 'Ruta'
         }
 
