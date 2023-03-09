@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils import timezone
 
 
 
@@ -26,10 +27,15 @@ class Ruta(models.Model):
 
 #De uno a muchos
 class Servicio(models.Model):
-    fecha_hora = models.DateTimeField(null=False,blank=False)
+    fecha_hora = models.DateTimeField(default=timezone.now)
     estado_servicio = models.CharField( max_length=10,null=False,blank=False)
-    tipo = models.CharField( max_length=10,null=False,blank=False)
-    descripcion = models.CharField(max_length=500)
+    tipo = models.CharField( max_length=50,null=False,blank=False)
+    descripcion = models.CharField(max_length=1000, default="Añade tu descripcion")
+    sector = models.CharField(max_length=30)
+    establecimiento = models.CharField(max_length=100)
+    supermercado =  models.CharField(max_length=10)
+    referencia_pago = models.CharField(max_length=20)
+    entidad_pago = models.CharField(max_length=30)
     User = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class ServicioRuta(models.Model):

@@ -5,10 +5,8 @@ urlpatterns = [
     path('', views.index, name= 'index'),
 
     #HOME
-    path('contenido_admin/', views.contenido_admin, name= 'contenido_admin'),
-    path('contenido_cliente/', views.contenido_cliente, name= 'contenido_cliente'),
+    path('home_cliente/', views.home_cliente, name= 'home_cliente'),
     path('home/', views.inicio, name= 'home'),
-    path('home_cliente/', views.inicio_cliente, name= 'home_cliente'),
     
     #URL DE PUBLICACION
     path('CrearPublicacion/', views.crearpublicacion, name='Crearpublicacion' ),

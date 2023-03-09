@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput,ChoiceField
+from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput,ChoiceField,HiddenInput
 from .models import Ruta,Publicacion,User,Servicio,Rol
 
 class PublicacionForm(ModelForm):
@@ -41,20 +41,30 @@ class RutaForm(ModelForm):
 class ServicioForm(ModelForm):
     class Meta:
         model = Servicio
-        fields = ('tipo',)
-        tipo_servicio = (('Mensajería', 'Mensajería'),('Ajuste de mercado', 'Ajuste de mercado'),('Pago de factura','Pago de factura'),('Pedimos por ti','Pedimos por ti'))
+        fields = ('tipo','descripcion','sector','establecimiento','supermercado','referencia_pago','entidad_pago','User')
+        tipo_servicio = (('Selecciona una opción', 'Selecciona una opción'),('Mensajería', 'Mensajería'),('Ajuste de mercado', 'Ajuste de mercado'),('Pago de factura','Pago de factura'),('Pedimos por ti','Pedimos por ti'),('Cajero en casa','Cajero en casa'),)
+        supermercado = (('Selecciona una opción', 'Selecciona una opción'),('D1','D1'),('La vaquita','La vaquita'),('Olimpica','Olimpica'),('Éxito','Éxito'),('La bodeguita','La bodeguita'),)
         widgets = {
-            
             'tipo':Select(attrs={'class':'form-control'},choices= tipo_servicio),
-            
+            'descripcion': TextInput(attrs={'class':'form-control'}),
+            'sector' :TextInput(attrs={'class':'form-control'}),
+            'establecimiento': TextInput(attrs={'class':'form-control'}),
+            'supermercado' :Select(attrs={'class':'form-control'},choices= supermercado),
+            'referencia_pago': TextInput(attrs={'class':'form-control'}), 
+            'entidad_pago': TextInput(attrs={'class':'form-control'}),
+            'User': HiddenInput(attrs={'class':'form-control'}),
+
         }
         labels = {
-            'User':'Usuario',
-            'fecha_hora' : 'Fecha y Hora',
-            'estado_servicio': 'Estado del servicio',
-            'producto': 'Producto',
+
             'tipo': 'Tipo de servicio que desea solicitar',
-            'ruta': 'Ruta'
+            'descripcion': 'Descripción del producto',
+            'sector':'Sector o Barrio',
+            'establecimiento' : 'Establecimiento',
+            'supermercado' : 'Supermercado',
+            'referencia_pago' : 'Referencia de pago',
+            'entidad_pago' : 'Entidad a la que se le va aplicar el pago',
+            
         }
 
 class UserForm(ModelForm):

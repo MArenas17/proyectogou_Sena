@@ -138,15 +138,16 @@ def eliminarU(request,id):
 #region de Servicio
 @login_required(login_url='login')
 def crearS(request):
+    idUser = request.user.id
     if request.method == 'POST':
-        form = ServicioForm(request.POST)
+        form = ServicioForm(request.POST, initial={"User":idUser})
         if form.is_valid:
             form.save()
             return redirect('crearS')
         else:
             return redirect('crearS')
     else:
-        form = ServicioForm()
+        form = ServicioForm(initial={"User":idUser})
     return render (request,'Servicio/crearS.html',{'form':form})
 
 @login_required(login_url='login')
@@ -224,7 +225,7 @@ def inicio(request):
     return render (request,'layout\Diseño_admin\home.html')
 
 @login_required(login_url='login')
-def inicio_cliente(request):
+def home_cliente(request):
     return render (request,'layout\Diseño_cliente\home_cliente.html')
 
 @login_required(login_url='login')
@@ -233,9 +234,6 @@ def contenido_admin(request):
     context = {'servicios':servicios}
     return render(request,'layout\Diseño_admin/contenido_admin.html',context)
 
-@login_required(login_url='login')
-def contenido_cliente(request):
-    return render(request,'layout\Diseño_cliente\contenido_cliente.html')
 
 
 #endregion
