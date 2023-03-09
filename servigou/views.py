@@ -100,7 +100,7 @@ password=request.POST['password'],direccion = request.POST['direccion'],email = 
         user.save()
         user.groups.add(request.POST['groups'])
         user.save()
-        return redirect('crearU')
+        return redirect('login')
     form = UserForm()
     context = {
         'form':form}
