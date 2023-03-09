@@ -45,10 +45,13 @@
 
      <nav id="navbar" class="nav-menu navbar">
        <ul>
-         <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-exclamation
+        <li><a href="{% url 'home' %}" class="nav-link scrollto"><i class="bx bx-home
+          "></i> <span >Inicio</span></a></li> 
+
+         <li><a href="{% url 'contenido_admin' %}" class="nav-link scrollto"><i class="bx bx-calendar-exclamation
           "></i> <span >Servicios Pendientes</span></a></li> 
 
-         <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-star"></i> <span >Servicios Asignados</span></a></li> 
+         <li><a href="#"  class="nav-link scrollto"><i class="bx bx-calendar-star"></i> <span >Servicios Asignados</span></a></li> 
          
          <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-check"></i> <span>Servicios Realizados</span></a></li>
          

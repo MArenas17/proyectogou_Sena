@@ -28,7 +28,8 @@ class Ruta(models.Model):
 class Servicio(models.Model):
     fecha_hora = models.DateTimeField(null=False,blank=False)
     estado_servicio = models.CharField( max_length=10,null=False,blank=False)
-    producto = models.CharField(max_length=200)
+    tipo = models.CharField( max_length=10,null=False,blank=False)
+    descripcion = models.CharField(max_length=500)
     User = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class ServicioRuta(models.Model):
