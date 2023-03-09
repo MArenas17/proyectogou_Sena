@@ -30,7 +30,7 @@ class Servicio(models.Model):
     fecha_hora = models.DateTimeField(default=timezone.now)
     estado_servicio = models.CharField( max_length=10,null=False,blank=False)
     tipo = models.CharField( max_length=50,null=False,blank=False)
-    descripcion = models.CharField(max_length=1000, default="Añade tu descripcion")
+    descripcion = models.CharField(max_length=1000)
     sector = models.CharField(max_length=30)
     establecimiento = models.CharField(max_length=100)
     supermercado =  models.CharField(max_length=10)
