@@ -41,15 +41,12 @@ class RutaForm(ModelForm):
 class ServicioForm(ModelForm):
     class Meta:
         model = Servicio
-        fields = '__all__'
-        tipo_servicio = (('Mensajería', 'Mensajería'),('Ajuste de mercado', 'Ajuste de mercado'),('Pago de factura','Pago de factura'))
+        fields = ('tipo',)
+        tipo_servicio = (('Mensajería', 'Mensajería'),('Ajuste de mercado', 'Ajuste de mercado'),('Pago de factura','Pago de factura'),('Pedimos por ti','Pedimos por ti'))
         widgets = {
-            'fecha_hora': DateTimeInput(attrs={'type':'date','class':'form-control'}),
-            'estado_servicio':TextInput(attrs={'class':'form-control'}),
+            
             'tipo':Select(attrs={'class':'form-control'},choices= tipo_servicio),
-            'descripcion':TextInput(attrs={'class':'form-control'}),
-            'User':Select(attrs={'class':'form-control'}),
-            'ruta':Select(attrs={'class':'form-control'}),
+            
         }
         labels = {
             'User':'Usuario',
