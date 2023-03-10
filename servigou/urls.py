@@ -39,5 +39,7 @@ urlpatterns = [
     path('verRol/', views.verRol, name="verRol"),
     path('actualizarRol/<int:id>', views.actualizarRol, name='actualizarRol'),
     path('eliminarRol/<int:id>', views.eliminarRol, name='eliminarRol'),
+
+    # path('servicios_asignados/', views.servicios_asignados, name="servicios_asignados"),
 ]
     

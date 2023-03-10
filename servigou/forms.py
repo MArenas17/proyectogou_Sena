@@ -42,14 +42,14 @@ class ServicioForm(ModelForm):
     class Meta:
         model = Servicio
         fields = ('__all__')
-        tipos = (('Mensajería','Mensajería'),('Ajustes de mercado','Ajustes de mercado'),('Cajero en casa','Cajero en casa'),('Pago de factura','Pago de factura'),('Pedimos por ti','Pedimos por ti'),)
+        tipos = (('Seleciona una opción','Seleciona una opción'),('Mensajería','Mensajería'),('Ajustes de mercado','Ajustes de mercado'),('Cajero en casa','Cajero en casa'),('Pago de factura','Pago de factura'),('Pedimos por ti','Pedimos por ti'),)
         widgets = {
             'fecha_hora': DateTimeInput(attrs={'class':'form-control','readonly': 'readonly'}),
             'tipo': Select(attrs={'class':'form-control'}, choices=tipos),
             'sector':TextInput(attrs={'class':'form-control'}),
             'direccion':TextInput(attrs={'class':'form-control'}),
             'celular':NumberInput (attrs={'class':'form-control'}),
-            'descripcion':TextInput(attrs={'class':'form-control'}),
+            'descripcion':TextInput(attrs={'class':'form-control','placeholder': 'Ejemplo : Necesito que por favor me traigan del D1 una libra de panela, de la carniceria la fama una libra de carne para sudar' }),
             'User': HiddenInput(attrs={'class':'form-control'}),
 
         }

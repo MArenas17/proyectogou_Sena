@@ -227,6 +227,8 @@ def eliminarRol(request,id):
 #region home
 @login_required(login_url='login')
 def inicio(request):
+    if request.user.groups.filter(name='Cliente').exists():
+        return redirect('home_cliente')
     return render (request,'layout\Diseño_admin\home.html')
 
 @login_required(login_url='login')
@@ -250,3 +252,11 @@ def mensajeria(request):
 
 #endregion
 
+# def servicios_asignados(request,id):
+#     # Busca el pedido en la base de datos
+#     servicio = Servicio.objects.get(id=id)
+#     # Realiza las acciones necesarias para aprobar el pedido
+#     servicio.aprobado = True
+#     servicio.save()
+#     # Redirige al usuario al HTML "Servicios Asignados"
+#     return render (request,'layout\Diseño_admin\servicios_asignados.html')
