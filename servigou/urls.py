@@ -3,11 +3,13 @@ from django.urls import path
 from .import views
 urlpatterns = [
     path('', views.index, name= 'index'),
+    
 
     #HOME
     path('home_cliente/', views.home_cliente, name= 'home_cliente'),
+    path('contenido_admin/', views.contenido_admin, name= 'contenido_admin'),
     path('home/', views.inicio, name= 'home'),
-    
+
     #URL DE PUBLICACION
     path('CrearPublicacion/', views.crearpublicacion, name='Crearpublicacion' ),
     path('verP/', views.verP, name='verP'),
@@ -28,7 +30,7 @@ urlpatterns = [
     
      #URL DE SERVICIO
     path('crearS/', views.crearS, name="crearS"),
-    path('verS/', views.verS, name="verS"),
+    path('pendiente/', views.pendiente, name="pendiente"),
     path('actualizarS/<int:id>', views.actualizarS, name='actualizarS'),
     path('eliminarS/<int:id>', views.eliminarS, name='eliminarS'),
 

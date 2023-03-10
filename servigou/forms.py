@@ -41,31 +41,27 @@ class RutaForm(ModelForm):
 class ServicioForm(ModelForm):
     class Meta:
         model = Servicio
-        fields = ('tipo','descripcion','sector','establecimiento','supermercado','referencia_pago','entidad_pago','User')
-        tipo_servicio = (('Selecciona una opción', 'Selecciona una opción'),('Mensajería', 'Mensajería'),('Ajuste de mercado', 'Ajuste de mercado'),('Pago de factura','Pago de factura'),('Pedimos por ti','Pedimos por ti'),('Cajero en casa','Cajero en casa'),)
-        supermercado = (('Selecciona una opción', 'Selecciona una opción'),('D1','D1'),('La vaquita','La vaquita'),('Olimpica','Olimpica'),('Éxito','Éxito'),('La bodeguita','La bodeguita'),)
+        fields = ('__all__')
+        tipos = (('Mensajería','Mensajería'),('Ajustes de mercado','Ajustes de mercado'),('Cajero en casa','Cajero en casa'),('Pago de factura','Pago de factura'),('Pedimos por ti','Pedimos por ti'),)
         widgets = {
-            'tipo':Select(attrs={'class':'form-control'},choices= tipo_servicio),
-            'descripcion': TextInput(attrs={'class':'form-control'}),
-            'sector' :TextInput(attrs={'class':'form-control'}),
-            'establecimiento': TextInput(attrs={'class':'form-control'}),
-            'supermercado' :Select(attrs={'class':'form-control'},choices= supermercado),
-            'referencia_pago': TextInput(attrs={'class':'form-control'}), 
-            'entidad_pago': TextInput(attrs={'class':'form-control'}),
+            'fecha_hora': DateTimeInput(attrs={'class':'form-control','readonly': 'readonly'}),
+            'tipo': Select(attrs={'class':'form-control'}, choices=tipos),
+            'sector':TextInput(attrs={'class':'form-control'}),
+            'direccion':TextInput(attrs={'class':'form-control'}),
+            'celular':NumberInput (attrs={'class':'form-control'}),
+            'descripcion':TextInput(attrs={'class':'form-control'}),
             'User': HiddenInput(attrs={'class':'form-control'}),
 
         }
         labels = {
-
-            'tipo': 'Tipo de servicio que desea solicitar',
-            'descripcion': 'Descripción del producto',
-            'sector':'Sector o Barrio',
-            'establecimiento' : 'Establecimiento',
-            'supermercado' : 'Supermercado',
-            'referencia_pago' : 'Referencia de pago',
-            'entidad_pago' : 'Entidad a la que se le va aplicar el pago',
-            
+            'fecha_hora' : 'Fecha y Hora',
+            'sector': 'Sector o barrio',
+            'direccion' : 'Dirección',
+            'celular' : 'Celular',
+            'descripcion' : '¿Que deseas solicitar?'
         }
+
+
 
 class UserForm(ModelForm):
     class Meta:

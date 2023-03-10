@@ -10,10 +10,12 @@
         <thead>
           <tr>
             <th scope="col">Fecha y Hora</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Contacto</th>
-            <th scope="col">Nombre</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Sector</th>
             <th scope="col">Dirección</th>
+            <th scope="col">Celular</th>
+            <th scope="col">Descripción</th>
+            <th scope="col">Nombre</th>
             <th scope="col">$</th>
           </tr>
         </thead>
@@ -21,10 +23,12 @@
           {% for c in servicios %}
           <tr>
             <td>{{ c.fecha_hora }}</td>
-            <td>{{ c.estado_servicio }}</td>
-            <td>{{ c.User }}</td>
-            <td>{{ c.User }}</td>
-            <td>{{ c.User }}</td>
+            <td>{{ c.tipo }}</td>
+            <td>{{ c.sector }}</td>
+            <td>{{ c.direccion }}</td>
+            <td>{{ c.celular }}</td>
+            <td>{{ c.descripcion }}</td>
+            <td>{{ c.ruta__transporte }}</td>
             <td>{{ c.User }}</td>
             <td><a href="{% url 'eliminarS' id=c.id %}" class="btn btn-danger">A</a></td>
             <td><a href="{% url 'eliminarS' id=c.id %}" class="btn btn-danger">C</a></td>

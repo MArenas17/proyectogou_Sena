@@ -143,17 +143,22 @@ def crearS(request):
         form = ServicioForm(request.POST, initial={"User":idUser})
         if form.is_valid:
             form.save()
-            return redirect('crearS')
+            return redirect('home_cliente')
         else:
-            return redirect('crearS')
+            return redirect('home_cliente')
     else:
         form = ServicioForm(initial={"User":idUser})
-    return render (request,'Servicio/crearS.html',{'form':form})
+    return render (request,'layout\Diseño_cliente\crearS.html',{'form':form})
 
+# @login_required(login_url='login')
+# def pendiente(request):
+#     usuario = Servicio.objects.all()
+#     return render(request,'layout\Diseño_admin\pendiente.html',{'usuario':usuario})
 @login_required(login_url='login')
-def verS(request):
-    usuario = Servicio.objects.all()
-    return render(request,'Servicio/verS.html',{'usuario':usuario})
+def pendiente(request):
+    servicios = Servicio.objects.select_related('ruta').values(
+        'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
+    return render(request,'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
 
 @login_required(login_url='login')
 def actualizarS(request, id):
@@ -237,3 +242,11 @@ def contenido_admin(request):
 
 
 #endregion
+
+#region Pedidos
+
+def mensajeria(request):
+    return render (request,'layout\Diseño_cliente\mensajeria.html')
+
+#endregion
+
