@@ -6,7 +6,16 @@ from django.core.paginator import Paginator
 
 
 def index(request):
-    return render(request,'layout\partials\Pprincipal\inicio.html')
+    if request.method == 'POST':
+        form = PqrsForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('index')
+        else:
+            return redirect('index')
+    
+    form = PqrsForm()
+    return render(request,'layout\partials\Pprincipal\inicio.html',{'form':form})
 
 #region de Publicacion
 @login_required(login_url='login')
@@ -156,8 +165,8 @@ def crearS(request):
 #     return render(request,'layout\Diseño_admin\pendiente.html',{'usuario':usuario})
 @login_required(login_url='login')
 def pendiente(request):
-    servicios = Servicio.objects.select_related('ruta').values(
-        'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
+    servicios = Servicio.objects.select_related('ruta').filter(estado='sin_asignar').values(
+    'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
     return render(request,'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
 
 @login_required(login_url='login')
@@ -237,10 +246,29 @@ def home_cliente(request):
 
 @login_required(login_url='login')
 def contenido_admin(request):
-    servicios = Servicio.objects.all()
+    servicios = Servicio.objects.filter(estado = 'sin_asignar')
     context = {'servicios':servicios}
     return render(request,'layout\Diseño_admin/contenido_admin.html',context)
 
 
 
+#endregion
+
+#region de pqrs
+def crearpqrs(request):
+    if request.method == 'POST':
+        form = PqrsForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('index')
+        else:
+            return redirect('index')
+    else:
+        form = PqrsForm()
+        print(form)
+    return render (request, 'layout\partials\Pprincipal\contactos.html',{'form':form})
+
+def verpqrs(request):
+    pqrs = Pqrs.objects.all()
+    return render(request,'layout\Diseño_admin\verpqrs.html',{'pqrs':pqrs})
 #endregion

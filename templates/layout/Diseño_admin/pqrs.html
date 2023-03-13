@@ -1,0 +1,12 @@
+{% extends 'layout/base2.html' %}
+
+{% block contenido %}
+<h1>Registro de Publicaciones</h1>
+<form method="POST" action="">
+{% csrf_token %}
+{{form}}
+<input type="submit" value="Guardar" class="btn btn-info">
+<a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+
+</form>
+{% endblock contenido %}
