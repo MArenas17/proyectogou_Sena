@@ -45,6 +45,12 @@ class ServicioRuta(models.Model):
     ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE)
     servicio = models.ForeignKey(Servicio, on_delete=models.CASCADE)
 
+class Pqrs(models.Model):
+    nombre:models.CharField(max_length=50, null=False, blank=False)
+    email: models.EmailField( null=False, blank=False)
+    asunto: models.CharField(max_length=30, null=False, blank=False)
+    mensaje: models.TextField(max_length=500,null=False, blank=False)
+    User = models.ForeignKey(User, on_delete=models.CASCADE)
 # De uno a muchos
 
 

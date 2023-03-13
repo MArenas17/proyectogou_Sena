@@ -41,7 +41,7 @@ urlpatterns = [
     path('actualizarRol/<int:id>', views.actualizarRol, name='actualizarRol'),
     path('eliminarRol/<int:id>', views.eliminarRol, name='eliminarRol'),
 
-   
+   path('crearpqrs/', views.crearpqrs, name="crearpqrs"),
 
 
 ]

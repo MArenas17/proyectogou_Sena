@@ -244,3 +244,21 @@ def contenido_admin(request):
 
 
 #endregion
+
+#region de pqrs
+def crearpqrs(request):
+    if request.method == 'POST':
+        form = PqrsForm(request.POST)
+        if form.is_valid:
+            form.save()
+            return redirect('index')
+        else:
+            return redirect('index')
+    else:
+        form = PublicacionForm()
+    return render (request, 'layout\Diseño_admin\pqrs.html',{'form':form})
+
+def verpqrs(request):
+    pqrs = Pqrs.objects.all()
+    return render(request,'layout\Diseño_admin\verpqrs.html',{'pqrs':pqrs})
+#endregion

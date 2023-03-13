@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput,ChoiceField,HiddenInput
-from .models import Ruta,Publicacion,User,Servicio,Rol
+from .models import Ruta,Publicacion,User,Servicio,Rol, Pqrs
 
 class PublicacionForm(ModelForm):
     class Meta:
@@ -105,4 +105,20 @@ class RolForm(ModelForm):
             'nivel_permiso' : 'Nivel de permiso',
         }
 
-
+class PqrsForm(ModelForm):
+    class Meta:
+        model = Pqrs
+        fields = '__all__'
+        asunto = (('Selecione una opción','Selecione una opción'),('Peticiones','Peticiones'),('Quejas','Quejas'),('Reclamos','Reclamos'),('Sugerencias','Sugerencias'),('Felicitaciones','Felicitaciones'),)
+        widgets = {
+            'nombre ': TextInput(attrs={'class':'form-control'}),
+            'email': EmailInput(attrs={'class':'form-control'}),
+            'asunto': Select(attrs={'class':'form-control'}, choices=asunto),
+            'mensaje': TextInput(attrs={'class':'form-control'}),
+        }
+        labels = {
+            'nombre ':'Nombre',
+            'email':'Correo Electrónico',
+            'asunto':'Asunto',
+            'mensaje':'Mensaje',
+        }
