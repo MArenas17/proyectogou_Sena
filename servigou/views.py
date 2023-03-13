@@ -159,10 +159,6 @@ def crearS(request):
         form = ServicioForm(initial={"User":idUser})
     return render (request,'layout\Diseño_cliente\crearS.html',{'form':form})
 
-# @login_required(login_url='login')
-# def pendiente(request):
-#     usuario = Servicio.objects.all()
-#     return render(request,'layout\Diseño_admin\pendiente.html',{'usuario':usuario})
 @login_required(login_url='login')
 def pendiente(request):
     servicios = Servicio.objects.select_related('ruta').filter(estado='sin_asignar').values(
@@ -250,23 +246,6 @@ def contenido_admin(request):
     context = {'servicios':servicios}
     return render(request,'layout\Diseño_admin/contenido_admin.html',context)
 
-
-
-#endregion
-
-#region de pqrs
-def crearpqrs(request):
-    if request.method == 'POST':
-        form = PqrsForm(request.POST)
-        if form.is_valid:
-            form.save()
-            return redirect('index')
-        else:
-            return redirect('index')
-    else:
-        form = PqrsForm()
-        print(form)
-    return render (request, 'layout\partials\Pprincipal\contactos.html',{'form':form})
 
 def verpqrs(request):
     pqrs = Pqrs.objects.all()
