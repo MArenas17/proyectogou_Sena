@@ -11,9 +11,6 @@ register
 .container_reg{
   background-color: #EAEDED;
 }
-.contain_login{
-  background-color: #EAEDED;
-}
 
 
 /*--------------------------------------------------------------
@@ -854,9 +851,9 @@ section {
 
 .contact .info {
   padding: 30px;
-  background: #fff;
-  width: 100%;
-  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+  background: rgb(255, 252, 252);
+  width: 585px;
+  box-shadow: 0 0 24px 0 rgba(13, 12, 12, 0.12);
 }
 
 .contact .info i {

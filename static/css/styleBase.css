@@ -34,9 +34,11 @@
 
 .contain_login{
     margin-top:12%;
-    padding:2%;
-    background: #fff;  
+    padding:5%;
+    background: #EAEDED;  
     box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
+    background: url("/static/img/marca.jpeg") top center;
+
 } 
 
 .contain_admin{
