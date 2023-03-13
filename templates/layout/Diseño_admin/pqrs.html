@@ -1,5 +1,12 @@
 {% extends 'layout/base2.html' %}
 
 {% block contenido %}
-<h1> Lorem, ipsum dolor sit amet consectetur adipisicing elit. Veniam animi dolores velit voluptates repellat maiores enim iure ratione? Ea, placeat nobis cum repellendus quas vel minima? Soluta dignissimos ab corrupti?</h1>
+<h1>Registro de Publicaciones</h1>
+<form method="POST" action="">
+{% csrf_token %}
+{{form}}
+<input type="submit" value="Guardar" class="btn btn-info">
+<a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+
+</form>
 {% endblock contenido %}

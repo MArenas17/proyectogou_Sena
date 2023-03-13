@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput,ChoiceField,HiddenInput
+from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput,ChoiceField,HiddenInput,Textarea
 from .models import Ruta,Publicacion,User,Servicio,Rol, Pqrs
 
 class PublicacionForm(ModelForm):
@@ -49,7 +49,7 @@ class ServicioForm(ModelForm):
             'sector':TextInput(attrs={'class':'form-control'}),
             'direccion':TextInput(attrs={'class':'form-control'}),
             'celular':NumberInput (attrs={'class':'form-control'}),
-            'descripcion':TextInput(attrs={'class':'form-control','placeholder': 'Ejemplo : Necesito que por favor me traigan del D1 una libra de panela, de la carniceria la fama una libra de carne para sudar' }),
+            'descripcion':Textarea(attrs={'class':'form-control','placeholder': 'Ejemplo : Necesito que por favor me traigan del D1 una libra de panela, de la carniceria la fama una libra de carne para sudar' }),
             'User': HiddenInput(attrs={'class':'form-control'}),
 
         }
@@ -111,13 +111,14 @@ class PqrsForm(ModelForm):
         fields = '__all__'
         asunto = (('Selecione una opción','Selecione una opción'),('Peticiones','Peticiones'),('Quejas','Quejas'),('Reclamos','Reclamos'),('Sugerencias','Sugerencias'),('Felicitaciones','Felicitaciones'),)
         widgets = {
-            'nombre ': TextInput(attrs={'class':'form-control'}),
+            'nombre': TextInput(attrs={'class':'form-control'}),
             'email': EmailInput(attrs={'class':'form-control'}),
             'asunto': Select(attrs={'class':'form-control'}, choices=asunto),
-            'mensaje': TextInput(attrs={'class':'form-control'}),
+            'mensaje': Textarea(attrs={'class':'form-control'}),
+            'User' : HiddenInput
         }
         labels = {
-            'nombre ':'Nombre',
+            'nombre':'Nombre',
             'email':'Correo Electrónico',
             'asunto':'Asunto',
             'mensaje':'Mensaje',
