@@ -32,6 +32,9 @@ urlpatterns = [
      #URL DE SERVICIO
     path('crearS/', views.crearS, name="crearS"),
     path('pendiente/', views.pendiente, name="pendiente"),
+    path('asignado/', views.asignado, name="asignado"),
+    path('cancelado/', views.cancelado, name="cancelado"),
+    path('realizado/', views.realizado, name="realizado"),
     path('actualizarS/<int:id>', views.actualizarS, name='actualizarS'),
     path('eliminarS/<int:id>', views.eliminarS, name='eliminarS'),
 
@@ -41,8 +44,6 @@ urlpatterns = [
     path('actualizarRol/<int:id>', views.actualizarRol, name='actualizarRol'),
     path('eliminarRol/<int:id>', views.eliminarRol, name='eliminarRol'),
 
-   path('crearpqrs/', views.crearpqrs, name="crearpqrs"),
-
-
+    path('verpqrs/', views.verpqrs, name="verpqrs"),
 ]
     

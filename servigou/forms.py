@@ -50,6 +50,7 @@ class ServicioForm(ModelForm):
             'direccion':TextInput(attrs={'class':'form-control'}),
             'celular':NumberInput (attrs={'class':'form-control'}),
             'descripcion':Textarea(attrs={'class':'form-control','placeholder': 'Ejemplo : Necesito que por favor me traigan del D1 una libra de panela, de la carniceria la fama una libra de carne para sudar' }),
+            'estado':HiddenInput,
             'User': HiddenInput(attrs={'class':'form-control'}),
 
         }
@@ -115,7 +116,7 @@ class PqrsForm(ModelForm):
             'email': EmailInput(attrs={'class':'form-control'}),
             'asunto': Select(attrs={'class':'form-control'}, choices=asunto),
             'mensaje': Textarea(attrs={'class':'form-control'}),
-            'User' : HiddenInput
+            
         }
         labels = {
             'nombre':'Nombre',
