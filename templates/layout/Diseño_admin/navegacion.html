@@ -20,13 +20,13 @@
 
         <li><a href="{% url 'pendiente' %}" class="nav-link scrollto"><i class="bx bx-calendar-exclamation"></i> <span >Servicios Pendientes</span></a></li> 
 
-        <li><a href="#"  class="nav-link scrollto"><i class="bx bx-calendar-star"></i> <span >Servicios Asignados</span></a></li> 
+        <li><a href="{% url 'asignado' %}"  class="nav-link scrollto"><i class="bx bx-calendar-star"></i> <span >Servicios Asignados</span></a></li> 
          
-        <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-check"></i> <span>Servicios Realizados</span></a></li>
+        <li><a href="{% url 'realizado' %}" class="nav-link scrollto"><i class="bx bx-calendar-check"></i> <span>Servicios Realizados</span></a></li>
          
-        <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-x"></i> <span >Servicios cancelados</span></a></li> 
+        <li><a href="{% url 'cancelado' %}" class="nav-link scrollto"><i class="bx bx-calendar-x"></i> <span >Servicios cancelados</span></a></li> 
 
-        <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-x"></i> <span >PQRSF</span></a></li> 
+        <li><a href="{% url 'verpqrs' %}" class="nav-link scrollto"><i class="bx bx-calendar-x"></i> <span >PQRSF</span></a></li> 
 
          <li><a href="{% url 'index' %}" class="nav-link scrollto"><i class="bx bx-exit"></i> <span>Cerrar Sesión</span></a></li>
        </ul>

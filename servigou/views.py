@@ -165,6 +165,25 @@ def pendiente(request):
     'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
     return render(request,'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
 
+
+@login_required(login_url='login')
+def asignado(request):
+    servicios = Servicio.objects.select_related('ruta').filter(estado='asignado').values(
+    'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
+    return render(request,'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
+
+@login_required(login_url='login')
+def cancelado(request):
+    servicios = Servicio.objects.select_related('ruta').filter(estado='cancelado').values(
+    'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
+    return render(request,'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
+
+@login_required(login_url='login')
+def realizado(request):
+    servicios = Servicio.objects.select_related('ruta').filter(estado='realizado').values(
+    'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
+    return render(request,'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
+
 @login_required(login_url='login')
 def actualizarS(request, id):
     servicios = Servicio.objects.get(id = id)
