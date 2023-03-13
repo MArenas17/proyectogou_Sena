@@ -1,0 +1,38 @@
+{% extends 'layout\Diseño_admin\base_admin.html' %}
+
+{% block contenido %}
+
+
+    <!-- ======= Mobile nav toggle button ======= -->
+ <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+ <!-- ======= Header ======= -->
+ <header id="header">
+   <div class="d-flex flex-column">
+
+     <div class="profile">
+       <img src="{% static '\img\LOGO GO!.png' %}" alt="" class="img-fluid rounded-circle">
+       <h1 class="text-light"><a href="index.html">GO! Domicilios</a></h1>
+     </div>
+
+     <nav id="navbar" class="nav-menu navbar">
+       <ul>
+        <li><a href="{% url 'home' %}" class="nav-link scrollto"><i class="bx bx-home
+          "></i> <span >Inicio</span></a></li> 
+
+         <li><a href="{% url 'pendiente' %}" class="nav-link scrollto"><i class="bx bx-calendar-exclamation
+          "></i> <span >Servicios Pendientes</span></a></li> 
+
+         <li><a href="#"  class="nav-link scrollto"><i class="bx bx-calendar-star"></i> <span >Servicios Asignados</span></a></li> 
+         
+         <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-check"></i> <span>Servicios Realizados</span></a></li>
+         
+        <li><a href="#" class="nav-link scrollto"><i class="bx bx-calendar-x"></i> <span >Servicios cancelados</span></a></li> 
+
+         <li><a href="{% url 'index' %}" class="nav-link scrollto"><i class="bx bx-exit"></i> <span>Cerrar Sesión</span></a></li>
+       </ul>
+     </nav><!-- .nav-menu -->
+   </div>
+ </header><!-- End Header -->
+
+{% endblock contenido %}

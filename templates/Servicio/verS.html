@@ -22,7 +22,7 @@
             <td>{{ c.producto}}</td>
             <td>{{ c.User}}</td>
             <td> <a href="{% url 'actualizarS' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
-            <td> <a href="{% url 'eliminarS' id=c.id %}" class="btn btn-danger ">Eliminar</a></td>
+            <td> <a href="{% url 'eliminarS' id=c.id %}" class="btn btn-info ">Eliminar</a></td>
         </tr>
         {% endfor %} 
     </tbody>

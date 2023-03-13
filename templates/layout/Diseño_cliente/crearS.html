@@ -1,13 +1,15 @@
-{% extends 'layout/base2.html' %}
+{% extends 'layout/base_form.html' %}
 
 {% block contenido %}
+<div id="conte_servicio">
 <h3>Registro de Servicio</h3>
 <form method="POST" action="">
 {% csrf_token %}
 {{form}}
 <input type="submit" value="Guardar" class="boton">
-<a href="{% url 'index' %}" class="boton">Atrás</a>
+<a href="{% url 'index' %} "type="submit" class="boton">Atrás</a>
 </form>
+</div>
 {% endblock  %} 
 
 

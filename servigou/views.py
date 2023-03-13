@@ -2,11 +2,11 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .forms import *
 from.models import *
+from django.core.paginator import Paginator
+
 
 def index(request):
     return render(request,'layout\partials\Pprincipal\inicio.html')
-
-
 
 #region de Publicacion
 @login_required(login_url='login')
@@ -244,19 +244,3 @@ def contenido_admin(request):
 
 
 #endregion
-
-#region Pedidos
-
-def mensajeria(request):
-    return render (request,'layout\Diseño_cliente\mensajeria.html')
-
-#endregion
-
-# def servicios_asignados(request,id):
-#     # Busca el pedido en la base de datos
-#     servicio = Servicio.objects.get(id=id)
-#     # Realiza las acciones necesarias para aprobar el pedido
-#     servicio.aprobado = True
-#     servicio.save()
-#     # Redirige al usuario al HTML "Servicios Asignados"
-#     return render (request,'layout\Diseño_admin\servicios_asignados.html')

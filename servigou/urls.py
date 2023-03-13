@@ -1,6 +1,7 @@
 
 from django.urls import path
 from .import views
+
 urlpatterns = [
     path('', views.index, name= 'index'),
     
@@ -40,6 +41,8 @@ urlpatterns = [
     path('actualizarRol/<int:id>', views.actualizarRol, name='actualizarRol'),
     path('eliminarRol/<int:id>', views.eliminarRol, name='eliminarRol'),
 
-    # path('servicios_asignados/', views.servicios_asignados, name="servicios_asignados"),
+   
+
+
 ]
     

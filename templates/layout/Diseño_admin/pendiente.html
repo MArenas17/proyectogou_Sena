@@ -4,39 +4,41 @@
 {% block contenido %}
 <div class="contain_admin">
     
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <h3>Pedidos Pendientes</h3>
-        <thead>
-          <tr>
-            <th scope="col">Fecha y Hora</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Sector</th>
-            <th scope="col">Dirección</th>
-            <th scope="col">Celular</th>
-            <th scope="col">Descripción</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">$</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for c in servicios %}
-          <tr>
-            <td>{{ c.fecha_hora }}</td>
-            <td>{{ c.tipo }}</td>
-            <td>{{ c.sector }}</td>
-            <td>{{ c.direccion }}</td>
-            <td>{{ c.celular }}</td>
-            <td>{{ c.descripcion }}</td>
-            <td>{{ c.User }}</td>
-            <td>{{ c.ruta__transporte }}</td>
-            <td><a href="#" class="btn btn-danger">A</a></td>
-            <td><a href="#" class="btn btn-danger">C</a></td>
-            <td><a href="{% url 'eliminarS' id=c.id %}" class="btn btn-danger">X</a></td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <h3>Pedidos Pendientes</h3>
+      <thead>
+        <tr>
+          <th scope="col">Fecha y Hora</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Sector</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">$</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in servicios %}
+        <tr>
+          <td>{{ c.fecha_hora }}</td>
+          <td>{{ c.tipo }}</td>
+          <td>{{ c.sector }}</td>
+          <td>{{ c.direccion }}</td>
+          <td>{{ c.celular }}</td>
+          <td>{{ c.descripcion }}</td>
+          <td>{{ c.User }}</td>
+          <td>{{ c.ruta__transporte }}</td>
+          <td><a href="#" class="btn btn-danger">A</a></td>
+          <td><a href="#" class="btn btn-danger">C</a></td>
+          <td><a href="{% url 'eliminarS' id=c.id %}" class="btn btn-danger">X</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
+
+  
+
 {% endblock contenido %}
