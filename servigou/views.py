@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.checks import messages
 from django.shortcuts import render, redirect
 
 from .forms import *
@@ -151,6 +152,7 @@ def actualizarU(request, id):
     return render(request, 'Usuario/crearU.html', context)
 
 
+
 def eliminarU(request, id):
     usuario = User.objects.get(id=id)
     usuario.delete()
@@ -287,10 +289,10 @@ def home_cliente(request):
 
 
 @login_required(login_url='login')
-def contenido_admin(request):
+def pendiente(request):
     servicios = Servicio.objects.filter(estado='sin_asignar')
     context = {'servicios': servicios}
-    return render(request, 'layout\Diseño_admin/contenido_admin.html', context)
+    return render(request, 'layout\Diseño_admin/pendiente.html', context)
 
 
 def verpqrs(request):

@@ -46,12 +46,12 @@
      <nav id="navbar" class="nav-menu navbar">
         <ul>
           <li><a href="{% url 'home_cliente' %}" class="nav-link scrollto"><i class="bx bx-home
-          "></i> <span >Inicios</span></a></li> 
+          "></i> <span >Inicio</span></a></li>
 
           <li><a href="{% url 'crearS' %}" class="nav-link scrollto"><i class="bx bx-calendar-plus
           "></i> <span>¡Haz tu pedido aqui!</span></a></li>
 
-          <li><a href="#" class="nav-link scrollto"><i class="bx bx-user
+          <li><a href="{% url 'actualizarU' id=c.id %}" class="nav-link scrollto"><i class="bx bx-user
             "></i> <span>Actualiza tus Datos</span></a></li>
                 
 

@@ -5,12 +5,12 @@
 
 <div class="contain_login">
         <form class="form" method="post">
-          <h2>Iniciar sesión</h2>
+          <h2>Iniciar Sesión</h2>
           {% csrf_token %} 
           {{ form.as_table }}
           <br>
           <br>
-          <button type="submit" class="boton" style="margin-left: 250px;">Entrar</button>
+          <button type="submit" class="boton" style="margin-left: 250px;">Ingresar</button>
           <p style="margin-left: 180px;">Si aún no te encuentras registrado</p>
           <a style="margin-left: 254px;" href="{% url 'crearU' %}">¡Regístrate!</a>
           <br>

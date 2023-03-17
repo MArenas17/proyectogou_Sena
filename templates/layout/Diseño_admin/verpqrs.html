@@ -1,9 +1,10 @@
+{% extends 'layout\Diseño_admin\base_admin.html' %}
 {% load static %}
 
 {% block contenido %}
 
-
-  <div class="table-responsive">
+<div class="contain_admin">
+<div class="table-responsive">
     <table class="table table-striped">
       <h3>PQRSF</h3>
       <thead>
@@ -12,7 +13,7 @@
           <th scope="col">Email</th>
           <th scope="col">Asunto</th>
           <th scope="col">Mensaje</th>
-          
+
         </tr>
       </thead>
       <tbody>
@@ -22,11 +23,13 @@
           <td>{{ c.email }}</td>
           <td>{{ c.asunto}}</td>
           <td>{{ c.mensaje }}</td>
-        
+
         </tr>
         {% endfor %}
       </tbody>
     </table>
   </div>
+</div>
+
 
 {% endblock contenido %}

@@ -5,9 +5,9 @@
 <h3>Registro de Servicio</h3>
 <form method="POST" action="">
 {% csrf_token %}
-{{form}}
-<input type="submit" value="Guardar" class="boton">
-<a href="{% url 'index' %} "type="submit" class="boton">Atrás</a>
+{{form}}<br>
+<input type="submit" value="Guardar" class="boton" >
+<a href="{% url 'home' %} "type="submit" class="boton">Cancelar</a>
 </form>
 </div>
 {% endblock  %} 
