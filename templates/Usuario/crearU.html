@@ -4,14 +4,14 @@
  {% block contenido %}
 <div class="container_reg" style="width: 430px">
   <form method="POST" action="">
-    <br />
+    <br/>
     <h3>Registro de Usuario</h3>
     {% csrf_token %} {{form.as_table}}
     <br />
     <button style="margin-left: 90px" type="submit" class="boton">
       Enviar
     </button>
-    <a href="{% url 'index' %}" class="boton">Cancelar </a><br />
+    <a href="{% url 'home_cliente' %}" class="boton">Cancelar </a><br />
   </form>
 </div>
 {% endblock %}

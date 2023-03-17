@@ -133,24 +133,51 @@ def verU(request):
     return render(request, 'Usuario/verU.html', {'usuario': usuario})
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
+# def actualizarU(request, id):
+#     usuario = User.objects.get(id=id)
+#     if request.method == 'POST':
+#         form = UserForm(request.POST, instance=usuario)
+#         if form.is_valid:
+#             form.save()
+#             user = User.objects.get(id=id)
+#             user.set_password(request.POST['password'])
+#             user.save()
+#             return redirect('verU')
+#     else:
+#         form = UserForm(instance=usuario)
+#     context = {
+#         'form': form,
+#         'id': id}
+#     return render(request, 'Usuario/crearU.html', context)
+
+@login_required(login_url="login")
 def actualizarU(request, id):
-    usuario = User.objects.get(id=id)
-    if request.method == 'POST':
+    usuario = UserForm.objects.get(id=id)
+    if request.method == "POST":
         form = UserForm(request.POST, instance=usuario)
-        if form.is_valid:
-            form.save()
-            user = User.objects.get(id=id)
-            user.set_password(request.POST['password'])
-            user.save()
-            return redirect('verU')
+        if form.is_valid():
+            identification = form.cleaned_data["documento"]
+            email = form.cleaned_data["email"]
+            existing_client_identification = (
+                User.objects.filter(documento=identification).exclude(id=id).exists()
+            )
+            existing_client_email = (
+                User.objects.filter(email=email).exclude(id=id).exists()
+            )
+            if existing_client_identification:
+                messages.error(request, "El documento ya existe")
+                return render(request, "Usuario/crearU.html", {"form": form})
+            elif existing_client_email:
+                messages.error(request, "El email ya existe")
+                return render(request, "Usuario/crearU.html", {"form": form})
+            else:
+                form.save()
+                return redirect('verU')
     else:
         form = UserForm(instance=usuario)
-    context = {
-        'form': form,
-        'id': id}
-    return render(request, 'Usuario/crearU.html', context)
-
+    context = {"form": form}
+    return render(request, "Usuario/crearU.html", context)
 
 
 def eliminarU(request, id):
