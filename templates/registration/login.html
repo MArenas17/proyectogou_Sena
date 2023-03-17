@@ -15,7 +15,13 @@
           <a style="margin-left: 254px;" href="{% url 'crearU' %}">¡Regístrate!</a>
           <br>
           <a style="margin-left: 270px;" href="{% url 'index' %}">Volver</a>
-
         </form>
 </div>
+{% if request.user.is_authenticated%}
+<script>
+  window.addEventListener('load',function(){
+    fetch("{% url 'logout' %}",{method:"GET", credentials:"same-origin"})
+  })
+</script>
+{% endif %}
 {% endblock %}
