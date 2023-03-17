@@ -16,28 +16,30 @@
 #conte_servicio{
     align-items: center;
     justify-content: center;
-    background-color: #c1c7c7;
-    width: 70%;
-    margin-top: 85px;
-    padding:2%;
+    background-color: #e1e8e8;
+    width: 60%;
+    margin-top: 45px;
+    padding:1%;
+    box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
 }
 
 /* Container */
 
 .container_reg {
-    padding:2%;
-    background: #fff;   
+    padding:1%;
+    background-color: #e1e8e8;
     margin: 2%;
     box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
     
 }
 
 .contain_login{
+    align-items: center;
+    justify-content: center;
     margin-top:12%;
-    padding:5%;
-    background: #EAEDED;  
+    padding:2%;
+    background-color: #e1e8e8;
     box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
-    background: url("/static/img/marca.jpeg") top center;
 
 } 
 

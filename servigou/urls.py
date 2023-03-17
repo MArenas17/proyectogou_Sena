@@ -8,7 +8,7 @@ urlpatterns = [
 
     #HOME
     path('home_cliente/', views.home_cliente, name= 'home_cliente'),
-    path('contenido_admin/', views.contenido_admin, name= 'contenido_admin'),
+    path('pendiente/', views.pendiente, name= 'pendiente'),
     path('home/', views.inicio, name= 'home'),
 
     #URL DE PUBLICACION

@@ -1,5 +1,8 @@
-from django.forms import ModelForm, TextInput,DateTimeInput,Select,NumberInput,PasswordInput,EmailInput,ChoiceField,HiddenInput,Textarea
-from .models import Ruta,Publicacion,User,Servicio,Rol, Pqrs
+from django.forms import ModelForm, TextInput, DateTimeInput, Select, NumberInput, PasswordInput, EmailInput, \
+    HiddenInput, Textarea
+
+from .models import Ruta, Publicacion, User, Servicio, Rol, Pqrs
+
 
 class PublicacionForm(ModelForm):
     class Meta:

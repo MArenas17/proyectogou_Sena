@@ -1,31 +1,35 @@
-{% extends 'layout/base2.html' %}
+{% extends 'layout\Diseño_admin\base_admin.html' %}
+{% load static %}
 
-{% block  contenido %}
-<h1>Servicios</h1>
-<table class="table table-striped">
-    <thead>
+{% block contenido %}
+
+<div class="contain_admin">
+<div class="table-responsive">
+    <table class="table table-striped">
+      <h3>PQRSF</h3>
+      <thead>
         <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Asunto</th>
-            <th>Mensaje</th>
-            <th></th>
-            <th></th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Email</th>
+          <th scope="col">Asunto</th>
+          <th scope="col">Mensaje</th>
+
         </tr>
-    </thead>
-    <tbody>
+      </thead>
+      <tbody>
         {% for c in pqrs %}
         <tr>
-            <td>{{ c.nombre }}</td>
-            <td>{{ c.email  }}</td>
-            <td>{{ c.asunto}}</td>
-            <td>{{ c.mensaje}}</td>
-            <td> <a href="{% url 'actualizarS' id=c.id %}" class="btn btn-info ">Actualizar</a></td>
-            <td> <a href="{% url 'eliminarS' id=c.id %}" class="btn btn-info ">Eliminar</a></td>
-        </tr>
-        {% endfor %} 
-    </tbody>
-</table>
-<a href="{% url 'index' %}" class="btn btn-info">Atrás</a>
+          <td>{{ c.nombre }}</td>
+          <td>{{ c.email }}</td>
+          <td>{{ c.asunto}}</td>
+          <td>{{ c.mensaje }}</td>
 
-{% endblock  contenido %} 
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+{% endblock contenido %}
