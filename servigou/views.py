@@ -259,7 +259,7 @@ def actualizarS(request, id):
 def eliminarS(request, id):
     usuario = Servicio.objects.get(id=id)
     usuario.delete()
-    return redirect(contenido_admin)
+    return redirect(crearU)
 
 
 # endregion
