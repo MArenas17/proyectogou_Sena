@@ -45,5 +45,10 @@ urlpatterns = [
     path('eliminarRol/<int:id>', views.eliminarRol, name='eliminarRol'),
 
     path('verpqrs/', views.verpqrs, name="verpqrs"),
+
+    #Home_domici
+    path('Home_repartidor/', views.Home_repartidor, name= 'Home_repartidor'),
+    #end_domi
+
 ]
     

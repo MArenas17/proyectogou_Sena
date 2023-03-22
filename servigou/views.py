@@ -326,3 +326,9 @@ def verpqrs(request):
     pqrs = Pqrs.objects.all()
     return render(request, 'layout/Diseño_admin/verpqrs.html', {'pqrs': pqrs})
 # endregion
+
+#domiciliario
+@login_required(login_url='login')
+def Home_repartidor(request):
+    return render(request, 'layout\Diseño_repartidor\Home_repartidor.html')
+#enddomiciliario
