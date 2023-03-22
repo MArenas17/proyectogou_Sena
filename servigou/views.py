@@ -1,6 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.core.checks import messages
 from django.shortcuts import render, redirect
+import tkinter as tk
+from tkinter import messagebox
 
 from .forms import *
 from .models import *
@@ -219,16 +221,22 @@ def asignado(request):
 
 @login_required(login_url='login')
 def cancelado(request):
-    servicios = Servicio.objects.select_related('ruta').filter(estado='cancelado').values(
-        'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
-    return render(request, 'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
+    servicios = Servicio.objects.filter(estado='cancelado')
+    return render(request, 'layout\Diseño_admin\cancelado.html', {'servicios': servicios})
 
 
 @login_required(login_url='login')
 def realizado(request):
-    servicios = Servicio.objects.select_related('ruta').filter(estado='realizado').values(
-        'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
+    servicios = Servicio.objects.filter(estado='realizado')
     return render(request, 'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
+
+
+def cancelarServicio(request, id):
+    servicio = Servicio.objects.get(id=id)
+    servicio.estado = "cancelado"
+    servicio.save()
+    print(id)
+    return redirect('pendiente')
 
 
 @login_required(login_url='login')
@@ -307,6 +315,8 @@ def eliminarRol(request, id):
 def inicio(request):
     if request.user.groups.filter(name='Cliente').exists():
         return redirect('home_cliente')
+    elif request.user.groups.filter(name='Repartidor').exists():
+        return redirect('Home_repartidor')
     return render(request, 'layout\Diseño_admin\home.html')
 
 

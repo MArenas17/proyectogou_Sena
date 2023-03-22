@@ -1,0 +1,43 @@
+{% extends 'layout\Diseño_admin\base_admin.html' %}
+{% load static %}
+
+{% block contenido %}
+
+<div class="contain_admin">
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <h3>Pedidos Cancelados</h3>
+      <thead>
+        <tr>
+          <th scope="col">Fecha y Hora</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Sector</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">$</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in servicios %}
+        <tr>
+          <td>{{ c.fecha_hora }}</td>
+          <td><button id="boton1" class="btn btn-link" onclick="mostrarSweetAlert({{ c.id }})">{{ c.tipo }}</button></td>
+          <td>{{ c.sector }}</td>
+          <td>{{ c.direccion }}</td>
+          <td>{{ c.celular }}</td>
+          <td>{{ c.descripcion }}</td>
+          <td>{{ c.User }}</td>
+          <td>{{ c.ruta__transporte }}</td>
+
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+
+{% endblock contenido %}
