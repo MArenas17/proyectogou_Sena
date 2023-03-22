@@ -37,6 +37,7 @@ urlpatterns = [
     path('realizado/', views.realizado, name="realizado"),
     path('actualizarS/<int:id>', views.actualizarS, name='actualizarS'),
     path('eliminarS/<int:id>', views.eliminarS, name='eliminarS'),
+    path('cancelar/servicio/<int:id>', views.cancelarServicio, name='cancelarS'),
 
     #URL DE ROL
     path('crearRol/', views.crearRol, name="crearRol"),

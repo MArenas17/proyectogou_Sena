@@ -78,11 +78,7 @@
     
 }
 
-.custom-modal-dialog {
-    max-width: 100%;
-    width: 100%;
-    margin: 1.75rem auto;
-    max-height: 90%;
-    height: 90%;
-  }
+#boton1{
+     color: #E74C3C;
+}
 

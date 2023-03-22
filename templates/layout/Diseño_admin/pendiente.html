@@ -24,7 +24,7 @@ function mostrarSweetAlert(id) {
       /*window.location.href = 'https://ejemplo.com/opcion1';*/
         console.log("Click en Asignar" + id)
     } else if (result.isDenied) {
-      /*window.location.href = 'https://ejemplo.com/opcion2';*/
+      window.location.href = '/cancelar/servicio/'+id;
         console.log("Click en Cancelar" + id)
     } else if (result.isDismissed) {
         Swal.fire({
@@ -77,7 +77,7 @@ function mostrarSweetAlert(id) {
         {% for c in servicios %}
         <tr>
           <td>{{ c.fecha_hora }}</td>
-          <td><button class="btn btn-secondary" onclick="mostrarSweetAlert({{ c.id }})">{{ c.tipo }}</button></td>
+          <td><button  id="boton1" class="btn btn-link " onclick="mostrarSweetAlert({{ c.id }})">{{ c.tipo }}</button></td>
           <td>{{ c.sector }}</td>
           <td>{{ c.direccion }}</td>
           <td>{{ c.celular }}</td>
