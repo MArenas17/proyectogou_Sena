@@ -51,10 +51,10 @@
           <li><a href="{% url 'crearS' %}" class="nav-link scrollto"><i class="bx bx-calendar-plus
           "></i> <span>¡Haz tu pedido aqui!</span></a></li>
 
-            <li><a href="#" class="nav-link scrollto"><i class="bx bx-box
+            <li><a href="{% url 'pendiente_cliente' %}" class="nav-link scrollto"><i class="bx bx-box
           "></i> <span>Mis Pedidos</span></a></li>
 
-          <li><a href="#" class="nav-link scrollto"><i class="bx bx-user
+          <li><a href="{% url 'actualizarU' id=request.user.id %}" class="nav-link scrollto"><i class="bx bx-user
             "></i> <span>Actualiza tus Datos</span></a></li>
                 
 

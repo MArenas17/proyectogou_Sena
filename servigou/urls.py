@@ -28,16 +28,19 @@ urlpatterns = [
     path('verU/', views.verU, name='verU'),
     path('actualizarU/<int:id>', views.actualizarU, name='actualizarU'),
     path('eliminarU/<int:id>', views.eliminarU, name='eliminarU'),
+
     
      #URL DE SERVICIO
     path('crearS/', views.crearS, name="crearS"),
     path('pendiente/', views.pendiente, name="pendiente"),
+    path('pendiente/<int:id>', views.pendiente, name="pendiente"),
     path('asignado/', views.asignado, name="asignado"),
     path('cancelado/', views.cancelado, name="cancelado"),
     path('realizado/', views.realizado, name="realizado"),
     path('actualizarS/<int:id>', views.actualizarS, name='actualizarS'),
     path('eliminarS/<int:id>', views.eliminarS, name='eliminarS'),
     path('cancelar/servicio/<int:id>', views.cancelarServicio, name='cancelarS'),
+    path('pendiente_cliente/', views.pendiente_cliente, name='pendiente_cliente'),
 
     #URL DE ROL
     path('crearRol/', views.crearRol, name="crearRol"),
@@ -49,7 +52,10 @@ urlpatterns = [
 
     #Home_domici
     path('Home_repartidor/', views.Home_repartidor, name= 'Home_repartidor'),
+    path('pendiente_rep/', views.pendiente_rep, name= 'pendiente_rep'),
     #end_domi
+
+    path('asignacion/<int:id>', views.asignacion, name='asignacion')
 
 ]
     

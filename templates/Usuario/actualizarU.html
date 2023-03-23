@@ -5,14 +5,13 @@
 <div class="container_reg" style="width: 430px">
   <form method="POST" action="">
     <br/>
-    <h3>Registro de Usuario</h3>
+    <h3>Actualizar datos</h3>
     {% csrf_token %} {{form.as_table}}
     <br />
-    <button class="boton" type="submit" class="boton">
+    <button  type="submit" class="boton">
       Enviar
     </button>
-    <a href="{% url 'index' %}">Volver</a>
+    <a id="boton1" href="{% url 'home' %}" class="btn btn-link" >Cancelar </a><br />
   </form>
 </div>
 {% endblock %}
-templates\layout\partials\Pprincipal\testimonios.html

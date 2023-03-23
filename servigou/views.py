@@ -1,8 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.core.checks import messages
 from django.shortcuts import render, redirect
-import tkinter as tk
-from tkinter import messagebox
 
 from .forms import *
 from .models import *
@@ -155,31 +152,18 @@ def verU(request):
 
 @login_required(login_url="login")
 def actualizarU(request, id):
-    usuario = UserForm.objects.get(id=id)
+    usuario = User.objects.get(id=id)
     if request.method == "POST":
-        form = UserForm(request.POST, instance=usuario)
-        if form.is_valid():
-            identification = form.cleaned_data["documento"]
-            email = form.cleaned_data["email"]
-            existing_client_identification = (
-                User.objects.filter(documento=identification).exclude(id=id).exists()
-            )
-            existing_client_email = (
-                User.objects.filter(email=email).exclude(id=id).exists()
-            )
-            if existing_client_identification:
-                messages.error(request, "El documento ya existe")
-                return render(request, "Usuario/crearU.html", {"form": form})
-            elif existing_client_email:
-                messages.error(request, "El email ya existe")
-                return render(request, "Usuario/crearU.html", {"form": form})
-            else:
-                form.save()
-                return redirect('verU')
+        formUpdate = UserForm2(request.POST, instance=usuario)
+        if formUpdate.is_valid():
+            formUpdate.save()
+            return redirect('home')
+        else:
+            print(formUpdate.errors)
     else:
-        form = UserForm(instance=usuario)
+        form = UserForm2(instance=usuario)
     context = {"form": form}
-    return render(request, "Usuario/crearU.html", context)
+    return render(request, "Usuario/actualizarU.html", context)
 
 
 def eliminarU(request, id):
@@ -206,17 +190,9 @@ def crearS(request):
 
 
 @login_required(login_url='login')
-def pendiente(request):
-    servicios = Servicio.objects.select_related('ruta').filter(estado='sin_asignar').values(
-        'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
-    return render(request, 'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
-
-
-@login_required(login_url='login')
 def asignado(request):
-    servicios = Servicio.objects.select_related('ruta').filter(estado='asignado').values(
-        'fecha_hora', 'tipo', 'sector', 'direccion', 'celular', 'descripcion', 'ruta__transporte')
-    return render(request, 'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
+    servicios = Servicio.objects.filter(estado='asignado')
+    return render(request, 'layout/Diseño_admin/asignados.html', {'servicios': servicios})
 
 
 @login_required(login_url='login')
@@ -259,7 +235,7 @@ def actualizarS(request, id):
 def eliminarS(request, id):
     usuario = Servicio.objects.get(id=id)
     usuario.delete()
-    return redirect(crearU)
+    return redirect(pendiente_cliente)
 
 
 # endregion
@@ -317,7 +293,7 @@ def inicio(request):
         return redirect('home_cliente')
     elif request.user.groups.filter(name='Repartidor').exists():
         return redirect('Home_repartidor')
-    return render(request, 'layout\Diseño_admin\home.html')
+    return render(request, 'layout\Diseño_admin\home.html', {})
 
 
 @login_required(login_url='login')
@@ -329,16 +305,45 @@ def home_cliente(request):
 def pendiente(request):
     servicios = Servicio.objects.filter(estado='sin_asignar')
     context = {'servicios': servicios}
-    return render(request, 'layout\Diseño_admin/pendiente.html', context)
+    return render(request, 'layout/Diseño_admin/pendiente.html', context)
 
 
 def verpqrs(request):
     pqrs = Pqrs.objects.all()
     return render(request, 'layout/Diseño_admin/verpqrs.html', {'pqrs': pqrs})
+
+
 # endregion
 
-#repartidor
+# region repartidor
 @login_required(login_url='login')
 def Home_repartidor(request):
     return render(request, 'layout\Diseño_repartidor\Home_repartidor.html')
-#endrepartidor
+
+
+@login_required(login_url='login')
+def pendiente_rep(request):
+    repartidor = request.user.id
+    print(repartidor)
+    servicios = Servicio.objects.filter(estado='asignado',Repartidor_id=repartidor)
+    return render(request, 'layout\Diseño_repartidor\pendiente_rep.html', {'servicios': servicios})
+
+
+@login_required(login_url='login')
+def pendiente_cliente(request):
+    servicios = Servicio.objects.filter(estado='sin_asignar')
+    return render(request, 'layout\Diseño_cliente\pendiente_cliente.html', {'servicios': servicios})
+
+
+def asignacion(request, id):
+    form = AsignacionForm()
+    servicio = Servicio.objects.get(id=id)
+    if request.method == 'POST':
+        repartidor = User.objects.get(id = request.POST['Repartidor'])
+        servicio.Repartidor = repartidor
+        servicio.estado = 'asignado'
+        servicio.save()
+        return redirect('pendiente')
+    context = {'form': form}
+    return render(request, 'layout/Diseño_admin/asignacion.html', context)
+# endregion

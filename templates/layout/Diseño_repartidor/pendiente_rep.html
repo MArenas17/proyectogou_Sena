@@ -1,4 +1,4 @@
-{% extends 'layout/Diseño_admin/base_admin.html' %}
+{% extends 'layout\Diseño_repartidor\base_repartidor.html' %}
 {% load static %}
 
 {% block contenido %}
@@ -21,7 +21,7 @@ function mostrarSweetAlert(id) {
   }).then((result) => {
     /* Comprueba si se ha hecho clic en el botón de confirmación */
     if (result.isConfirmed) {
-      window.location.href = '/asignacion/'+id;
+      /*window.location.href = 'https://ejemplo.com/opcion1';*/
         console.log("Click en Asignar" + id)
     } else if (result.isDenied) {
       window.location.href = '/cancelar/servicio/'+id;
@@ -54,11 +54,13 @@ function mostrarSweetAlert(id) {
 }
 </script>
 
+
+
 <div class="contain_admin">
     
   <div class="table-responsive">
     <table class="table table-striped">
-      <h3>Pedidos Pendientes </h3>
+      <h3>Pedidos Pendientes</h3>
       <thead>
         <tr>
           <th scope="col">Fecha y Hora</th>
@@ -82,6 +84,7 @@ function mostrarSweetAlert(id) {
           <td>{{ c.descripcion }}</td>
           <td>{{ c.User }}</td>
           <td>{{ c.ruta__transporte }}</td>
+          
         </tr>
         {% endfor %}
       </tbody>
@@ -89,4 +92,6 @@ function mostrarSweetAlert(id) {
   </div>
 
 
+
 {% endblock contenido %}
+

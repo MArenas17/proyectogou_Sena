@@ -1,0 +1,68 @@
+{% extends 'layout/Diseño_cliente/base_cliente.html' %}
+{% load static %}
+
+{% block contenido %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function eliminarS(id){
+        Swal.fire({
+            title : 'Esta seguro que desea borrar ?',
+            text : 'Si lo borras no podras recuperarlo',
+            icon : 'warning',
+            buttons : true ,
+            dangerMode : true ,
+        })
+        .then ((willDelete)=>{
+            if (willDelete){
+                location.href = "/eliminarS/"+id
+            }
+            else{
+                swal ('No se borro el registro')
+            }
+        });
+    }
+</script>
+
+
+
+<div class="contain_admin">
+    
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <h3>Pedidos Solicitados</h3>
+      <thead>
+        <tr>
+          <th scope="col">Fecha y Hora</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Sector</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">$</th>
+          <th scope="col"></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in servicios %}
+        <tr>
+          <td>{{ c.fecha_hora }}</td>
+          <td>{{ c.tipo }}</td>
+          <td>{{ c.sector }}</td>
+          <td>{{ c.direccion }}</td>
+          <td>{{ c.celular }}</td>
+          <td>{{ c.descripcion }}</td>
+          <td>{{ c.User }}</td>
+          <td>{{ c.ruta__transporte }}</td>
+          <td> <button onclick = "eliminarS('{{c.id}}')" class="btn btn-link " id="boton1">Eliminar</button></td>
+
+        </tr>
+        {% endfor %}
+
+      </tbody>
+    </table>
+  </div>
+
+{% endblock contenido %}
+

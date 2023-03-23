@@ -1,0 +1,33 @@
+{% extends 'layout/Diseño_admin/base_admin.html' %}
+
+{% block contenido %}
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  $("#myModal").modal("show");
+});
+</script>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel" style="color: #181818">Asignar pedido</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" class="btn btn-success" value="Asignar">
+          <a href="{% url 'pendiente' %} " class="btn btn-danger">Cancelar</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+{% endblock %}
+
+
+
