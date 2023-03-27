@@ -331,7 +331,7 @@ def pendiente_rep(request):
 
 @login_required(login_url='login')
 def pendiente_cliente(request):
-    servicios = Servicio.objects.filter(estado='sin_asignar')
+    servicios = Servicio.objects.filter(estado='sin_asignar', User=request.user)
     return render(request, 'layout\Diseño_cliente\pendiente_cliente.html', {'servicios': servicios})
 
 

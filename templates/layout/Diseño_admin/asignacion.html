@@ -11,14 +11,14 @@ document.addEventListener('DOMContentLoaded', function () {
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel" style="color: #181818">Asignar pedido</h4>
+        <h4 class="modal-title" id="myModalLabel" style="color: #181818">Asignar Pedido</h4>
       </div>
       <div class="modal-body">
         <form method="post">
           {% csrf_token %}
           {{ form.as_p }}
-          <input type="submit" class="btn btn-success" value="Asignar">
-          <a href="{% url 'pendiente' %} " class="btn btn-danger">Cancelar</a>
+          <input type="submit" class="boton " value="Asignar">
+          <a href="{% url 'pendiente' %} " class="boton1">Cancelar</a>
         </form>
       </div>
     </div>

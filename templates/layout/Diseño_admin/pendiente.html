@@ -10,12 +10,13 @@ function mostrarSweetAlert(id) {
     showDenyButton: true,
     showCancelButton: true,
     confirmButtonText: `Asignar`,
-    denyButtonText: `Cancelar`,
-    cancelButtonText: `Eliminar`,
+    cancelButtonText:`Cancelar`,
+    denyButtonText: `Eliminar`,
+
     customClass: {
-        confirmButton: 'btn btn-primary mx-1',
-        cancelButton: 'btn btn-danger mx-1',
+        confirmButton: 'btn btn-dark mx-1',
         denyButton: 'btn btn-secondary mx-1',
+        cancelButton: 'boton mx-1',
     },
     buttonsStyling: false,
   }).then((result) => {
@@ -24,13 +25,12 @@ function mostrarSweetAlert(id) {
       window.location.href = '/asignacion/'+id;
         console.log("Click en Asignar" + id)
     } else if (result.isDenied) {
-      window.location.href = '/cancelar/servicio/'+id;
+
         console.log("Click en Cancelar" + id)
-    } else if (result.isDismissed) {
         Swal.fire({
-          title: '¿Estás seguro de que quieres eliminar?',
+          title: '¿Estás seguro de que quieres eliminar el servicio?',
           showDenyButton: true,
-          showCancelButton: true,
+          showCancelButton: false,
           confirmButtonText: `Sí, eliminar`,
           denyButtonText: `Cancelar`,
           customClass: {
@@ -40,15 +40,12 @@ function mostrarSweetAlert(id) {
           buttonsStyling: false,
         }).then((result) => {
           if (result.isConfirmed) {
-            /*window.location.href = 'https://ejemplo.com/opcion3';*/
+            window.location.href = '/cancelar/servicio/'+id;
             console.log("Confirmado eliminar" + id)
           } else if (result.isDenied) {
             console.log("Cancelar eliminación" + id)
           }
         });
-    } else {
-      /*window.location.href = 'https://ejemplo.com/opcion4';*/
-      console.log("Click en Salir" + id)
     }
   });
 }
