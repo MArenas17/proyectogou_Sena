@@ -346,4 +346,11 @@ def asignacion(request, id):
         return redirect('pendiente')
     context = {'form': form}
     return render(request, 'layout/Diseño_admin/asignacion.html', context)
+
+def ServicioRealizado(request, id):
+    servicio = Servicio.objects.get(id=id)
+    servicio.estado = 'realizado'
+    servicio.save()
+    print(id)
+    return redirect('pendiente_rep')
 # endregion

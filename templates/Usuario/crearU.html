@@ -1,18 +1,18 @@
 {% extends 'layout/base_form.html' %}
  {% load static %}
-  {% block titulo %}Crear Usuario {% endblock %}
+
+
  {% block contenido %}
+
+
 <div class="container_reg" style="width: 430px">
   <form method="POST" action="">
     <br/>
     <h3>Registro de Usuario</h3>
     {% csrf_token %} {{form.as_table}}
     <br />
-    <button class="boton" type="submit" class="boton">
-      Enviar
-    </button>
-    <a href="{% url 'index' %}">Volver</a>
+    <button class="boton" type="submit" onclick="mostrarSweetAlert()">Enviar</button>
+    <a class="boton1" href="{% url 'index' %}">Volver</a>
   </form>
 </div>
 {% endblock %}
-templates\layout\partials\Pprincipal\testimonios.html
