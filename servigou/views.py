@@ -211,14 +211,14 @@ def realizado(request):
     servicios = Servicio.objects.filter(estado='realizado')
     return render(request, 'layout\Diseño_repartidor\Realizado.html', {'servicios': servicios})
 
-
+@login_required(login_url='login')
 def cancelarServicio(request, id):
     servicio = Servicio.objects.get(id=id)
     servicio.estado = "cancelado"
     servicio.save()
     print(id)
     return redirect('pendiente')
-
+@login_required(login_url='login')
 def cancelarservicioasignado(request, id):
     servicio = Servicio.objects.get(id=id)
     servicio.estado = "cancelado"
@@ -348,7 +348,7 @@ def pendiente_cliente(request):
     return render(request, 'layout\Diseño_cliente\pendiente_cliente.html', {'servicios': servicios})
 
 
-
+@login_required(login_url='login')
 def asignacion(request, id):
     form = AsignacionForm()
     servicio = Servicio.objects.get(id=id)
@@ -360,7 +360,7 @@ def asignacion(request, id):
         return redirect('pendiente')
     context = {'form': form}
     return render(request, 'layout/Diseño_admin/asignacion.html', context)
-
+@login_required(login_url='login')
 def reasignacion(request, id):
     form = AsignacionForm()
     servicio = Servicio.objects.get(id=id)
@@ -372,7 +372,7 @@ def reasignacion(request, id):
         return redirect('asignado')
     context = {'form': form}
     return render(request, 'layout/Diseño_admin/asignacion.html', context)
-
+@login_required(login_url='login')
 def ServicioRealizado(request, id):
     servicio = Servicio.objects.get(id=id)
     servicio.estado = 'realizado'
@@ -380,16 +380,13 @@ def ServicioRealizado(request, id):
     print(id)
     return redirect('enProceso')
 
-
+@login_required(login_url='login')
 def enproceso(request, id):
     servicio = Servicio.objects.get(id=id)
     servicio.estado = "enproceso"
     servicio.save()
     print(id)
     return redirect('pendiente_rep')
-
-
-# endregion
 
 @login_required(login_url='login')
 def eliminarserviciocancelado(request, id):
@@ -402,3 +399,7 @@ def eliminarpqrsf(request, id):
     usuario = Pqrs.objects.get(id=id)
     usuario.delete()
     return redirect('verpqrs')
+
+# endregion
+
+
