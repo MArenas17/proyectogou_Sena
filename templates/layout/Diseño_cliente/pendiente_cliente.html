@@ -4,20 +4,24 @@
 {% block contenido %}
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    function eliminarS(id){
+    function eliminarS(id) {
         Swal.fire({
-            title : 'Esta seguro que desea borrar ?',
-            text : 'Si lo borras no podras recuperarlo',
-            icon : 'warning',
-            buttons : true ,
-            dangerMode : true ,
-        })
-        .then ((willDelete)=>{
-            if (willDelete){
-                location.href = "/eliminarS/"+id
-            }
-            else{
-                swal ('No se borro el registro')
+            title: '¿Estás seguro de que quieres eliminar el servicio?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Sí, eliminar`,
+            denyButtonText: `Cancelar`,
+            customClass: {
+                confirmButton: 'btn btn-danger mx-1',
+                denyButton: 'btn btn-secondary mx-1',
+            },
+            buttonsStyling: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/eliminarS/' + id;
+                console.log("Confirmado eliminar" + id)
+            } else if (result.isDenied) {
+                console.log("Cancelar eliminación" + id)
             }
         });
     }

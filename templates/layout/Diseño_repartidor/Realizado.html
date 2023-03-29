@@ -2,35 +2,12 @@
 {% load static %}
 
 {% block contenido %}
-    <script>
-function mostrarSweetAlert(id) {
-  Swal.fire({
-    title: 'Elige una opción',
-    showDenyButton: false,
-    showCancelButton: true,
-    confirmButtonText: `En Proceso`,
-    cancelButtonText:`Atrás`,
-    customClass: {
-        confirmButton: 'btn btn-dark mx-1',
-        denyButton: 'btn btn-secondary mx-1',
-        cancelButton: 'boton mx-1',
-    },
-    buttonsStyling: false,
-  }).then((result) => {
-    /* Comprueba si se ha hecho clic en el botón de confirmación */
-    if (result.isConfirmed) {
-      window.location.href = '/enproceso/'+id;
-        console.log("Click en Asignar" + id)
-    }
-  });
-}
-</script>
 
 <div class="contain_admin">
     
   <div class="table-responsive">
     <table class="table table-striped">
-      <h3>Pedidos Pendientes</h3>
+      <h3>Pedidos Realizados</h3>
       <thead>
         <tr>
           <th scope="col">Fecha y Hora</th>
@@ -47,7 +24,7 @@ function mostrarSweetAlert(id) {
         {% for c in servicios %}
         <tr>
           <td>{{ c.fecha_hora }}</td>
-          <td><button  id="boton1" class="btn btn-link " onclick="mostrarSweetAlert({{ c.id }})">{{ c.tipo }}</button></td>
+          <td>{{ c.tipo }}</td>
           <td>{{ c.sector }}</td>
           <td>{{ c.direccion }}</td>
           <td>{{ c.celular }}</td>

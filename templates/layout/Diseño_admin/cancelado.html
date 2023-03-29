@@ -2,7 +2,29 @@
 {% load static %}
 
 {% block contenido %}
-
+<script>
+    function eliminarS(id) {
+        Swal.fire({
+            title: '¿Estás seguro de que quieres eliminar el servicio?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Sí, eliminar`,
+            denyButtonText: `Cancelar`,
+            customClass: {
+                confirmButton: 'btn btn-danger mx-1',
+                denyButton: 'btn btn-secondary mx-1',
+            },
+            buttonsStyling: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/eliminarserviciocancelado/' + id;
+                console.log("Confirmado eliminar" + id)
+            } else if (result.isDenied) {
+                console.log("Cancelar eliminación" + id)
+            }
+        });
+    }
+</script>
 <div class="contain_admin">
 
   <div class="table-responsive">
@@ -24,7 +46,7 @@
         {% for c in servicios %}
         <tr>
           <td>{{ c.fecha_hora }}</td>
-          <td>>{{ c.tipo }}</td>
+          <td><button  id="boton1" class="btn btn-link " onclick="eliminarS({{ c.id }})">{{ c.tipo }}</button></td>
           <td>{{ c.sector }}</td>
           <td>{{ c.direccion }}</td>
           <td>{{ c.celular }}</td>

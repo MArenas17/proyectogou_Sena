@@ -2,7 +2,29 @@
 {% load static %}
 
 {% block contenido %}
-
+    <script>
+    function eliminarS(id) {
+        Swal.fire({
+            title: '¿Seguro deseas eliminar?',
+            showDenyButton: true,
+            showCancelButton: false,
+            confirmButtonText: `Sí, eliminar`,
+            denyButtonText: `Cancelar`,
+            customClass: {
+                confirmButton: 'btn btn-danger mx-1',
+                denyButton: 'btn btn-secondary mx-1',
+            },
+            buttonsStyling: false,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '/eliminarpqrsf/' + id;
+                console.log("Confirmado eliminar" + id)
+            } else if (result.isDenied) {
+                console.log("Cancelar eliminación" + id)
+            }
+        });
+    }
+</script>
 <div class="contain_admin">
 <div class="table-responsive">
     <table class="table table-striped">
@@ -21,7 +43,7 @@
         <tr>
           <td>{{ c.nombre }}</td>
           <td>{{ c.email }}</td>
-          <td>{{ c.asunto}}</td>
+          <td><button  id="boton1" class="btn btn-link " onclick="eliminarS({{ c.id }})">{{ c.asunto }}</button></td>
           <td>{{ c.mensaje }}</td>
 
         </tr>

@@ -200,11 +200,16 @@ def cancelado(request):
     servicios = Servicio.objects.filter(estado='cancelado')
     return render(request, 'layout\Diseño_admin\cancelado.html', {'servicios': servicios})
 
+@login_required(login_url='login')
+def enProceso(request):
+    servicios = Servicio.objects.filter(estado='enproceso')
+    return render(request, 'layout\Diseño_repartidor\enproceso.html', {'servicios': servicios})
+
 
 @login_required(login_url='login')
 def realizado(request):
     servicios = Servicio.objects.filter(estado='realizado')
-    return render(request, 'layout\Diseño_admin\pendiente.html', {'servicios': servicios})
+    return render(request, 'layout\Diseño_repartidor\Realizado.html', {'servicios': servicios})
 
 
 def cancelarServicio(request, id):
@@ -213,6 +218,14 @@ def cancelarServicio(request, id):
     servicio.save()
     print(id)
     return redirect('pendiente')
+
+def cancelarservicioasignado(request, id):
+    servicio = Servicio.objects.get(id=id)
+    servicio.estado = "cancelado"
+    servicio.save()
+    print(id)
+    return redirect('asignado')
+
 
 
 @login_required(login_url='login')
@@ -335,6 +348,7 @@ def pendiente_cliente(request):
     return render(request, 'layout\Diseño_cliente\pendiente_cliente.html', {'servicios': servicios})
 
 
+
 def asignacion(request, id):
     form = AsignacionForm()
     servicio = Servicio.objects.get(id=id)
@@ -347,10 +361,44 @@ def asignacion(request, id):
     context = {'form': form}
     return render(request, 'layout/Diseño_admin/asignacion.html', context)
 
+def reasignacion(request, id):
+    form = AsignacionForm()
+    servicio = Servicio.objects.get(id=id)
+    if request.method == 'POST':
+        repartidor = User.objects.get(id = request.POST['Repartidor'])
+        servicio.Repartidor = repartidor
+        servicio.estado = 'asignado'
+        servicio.save()
+        return redirect('asignado')
+    context = {'form': form}
+    return render(request, 'layout/Diseño_admin/asignacion.html', context)
+
 def ServicioRealizado(request, id):
     servicio = Servicio.objects.get(id=id)
     servicio.estado = 'realizado'
     servicio.save()
     print(id)
+    return redirect('enProceso')
+
+
+def enproceso(request, id):
+    servicio = Servicio.objects.get(id=id)
+    servicio.estado = "enproceso"
+    servicio.save()
+    print(id)
     return redirect('pendiente_rep')
+
+
 # endregion
+
+@login_required(login_url='login')
+def eliminarserviciocancelado(request, id):
+    usuario = Servicio.objects.get(id=id)
+    usuario.delete()
+    return redirect('cancelado')
+
+@login_required(login_url='login')
+def eliminarpqrsf(request, id):
+    usuario = Pqrs.objects.get(id=id)
+    usuario.delete()
+    return redirect('verpqrs')

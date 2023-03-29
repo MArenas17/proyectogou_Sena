@@ -8,7 +8,7 @@ function mostrarSweetAlert(id) {
     title: 'Elige una opción',
     showDenyButton: false,
     showCancelButton: true,
-    confirmButtonText: `En Proceso`,
+    confirmButtonText: `Servicio Realizado`,
     cancelButtonText:`Atrás`,
     customClass: {
         confirmButton: 'btn btn-dark mx-1',
@@ -19,7 +19,7 @@ function mostrarSweetAlert(id) {
   }).then((result) => {
     /* Comprueba si se ha hecho clic en el botón de confirmación */
     if (result.isConfirmed) {
-      window.location.href = '/enproceso/'+id;
+      window.location.href = '/ServicioRealizado/'+id;
         console.log("Click en Asignar" + id)
     }
   });
@@ -30,7 +30,7 @@ function mostrarSweetAlert(id) {
     
   <div class="table-responsive">
     <table class="table table-striped">
-      <h3>Pedidos Pendientes</h3>
+      <h3>Pedidos En Proceso</h3>
       <thead>
         <tr>
           <th scope="col">Fecha y Hora</th>

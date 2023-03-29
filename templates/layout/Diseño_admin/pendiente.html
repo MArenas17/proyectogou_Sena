@@ -10,8 +10,8 @@ function mostrarSweetAlert(id) {
     showDenyButton: true,
     showCancelButton: true,
     confirmButtonText: `Asignar`,
-    cancelButtonText:`Cancelar`,
-    denyButtonText: `Eliminar`,
+    cancelButtonText:`Atrás`,
+    denyButtonText: `Cancelar`,
 
     customClass: {
         confirmButton: 'btn btn-dark mx-1',
@@ -28,10 +28,10 @@ function mostrarSweetAlert(id) {
 
         console.log("Click en Cancelar" + id)
         Swal.fire({
-          title: '¿Estás seguro de que quieres eliminar el servicio?',
+          title: '¿Estás seguro de que quieres cancelar el servicio?',
           showDenyButton: true,
           showCancelButton: false,
-          confirmButtonText: `Sí, eliminar`,
+          confirmButtonText: `Sí, cancelar`,
           denyButtonText: `Cancelar`,
           customClass: {
               confirmButton: 'btn btn-danger mx-1',
