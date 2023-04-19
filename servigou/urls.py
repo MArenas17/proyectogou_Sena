@@ -5,11 +5,13 @@ from .import views
 urlpatterns = [
     path('', views.index, name= 'index'),
     
+    path('pdf/<str:pdf_name>', views.pdf, name='pdf'),
 
     #HOME
     path('home_cliente/', views.home_cliente, name= 'home_cliente'),
     path('pendiente/', views.pendiente, name= 'pendiente'),
     path('home/', views.inicio, name= 'home'),
+    path('realizadoA/', views.serviciosrealizados, name='realizadoA'),
 
     #URL DE PUBLICACION
     path('CrearPublicacion/', views.crearpublicacion, name='Crearpublicacion' ),

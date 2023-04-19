@@ -1,8 +1,21 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
-
 from .forms import *
 from .models import *
+from django.http import FileResponse
+from django.http import HttpResponse
+from django.conf import settings
+import os
+
+
+def pdf(request, pdf_name):
+    file_path = os.path.join(settings.MEDIA_ROOT, pdf_name)
+    if os.path.exists(file_path):
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    return HttpResponse ("archivo no existe")
 
 
 def index(request):
@@ -324,6 +337,12 @@ def pendiente(request):
 def verpqrs(request):
     pqrs = Pqrs.objects.all()
     return render(request, 'layout/Diseño_admin/verpqrs.html', {'pqrs': pqrs})
+
+@login_required(login_url='login')
+def serviciosrealizados(request):
+    servicios = Servicio.objects.filter(estado='realizado')
+    context = {'servicios':servicios}
+    return render(request, 'layout/Diseño_admin/Realizado.html', context )
 
 
 # endregion

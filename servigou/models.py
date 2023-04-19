@@ -13,18 +13,12 @@ class User(AbstractUser):
 
 
 class Ruta(models.Model):
-    valor_km = models.BigIntegerField(null=False, blank=False)
-    km = models.IntegerField(null=False, blank=False)
-    porcentaje_liquidacion = models.DecimalField(
-        null=False, blank=False, max_digits=7, decimal_places=2)
-    incremento = models.IntegerField(null=True, blank=True)
-    transporte = models.DecimalField(
-        null=False, blank=False, max_digits=7, decimal_places=2)
-    total_liquidacion = models.DecimalField(
-        null=False, blank=False, max_digits=7, decimal_places=2)
+    nombre = models.CharField(max_length=30, null=False, blank=False, default='ruta')
+    valor = models.BigIntegerField(null=False, blank=False)
+    descripcion = models.CharField(max_length=100, null=False, blank=False, default='ruta')
 
     def __str__(self):
-        return self.km
+        return self.nombre
 
 
 # De uno a muchos
