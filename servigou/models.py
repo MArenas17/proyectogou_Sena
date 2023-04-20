@@ -4,7 +4,7 @@ from django.utils import timezone
 
 
 class User(AbstractUser):
-    documento = models.IntegerField( blank=False, unique=True)
+    documento = models.IntegerField(unique=True, null=True, blank=False)
     celular = models.IntegerField(null=True, blank=False)
     direccion = models.CharField(max_length=20, null=True, blank=False)
 
