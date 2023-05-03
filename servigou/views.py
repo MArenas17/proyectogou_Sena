@@ -1,11 +1,14 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.db import IntegrityError
 from .forms import *
 from .models import *
 from django.http import FileResponse
 from django.http import HttpResponse
 from django.conf import settings
 import os
+import time
 
 
 def pdf(request, pdf_name):
@@ -124,15 +127,20 @@ def eliminarR(request, id):
 # region de Usuario
 def crearU(request):
     if request.method == 'POST':
-        user = User.objects.create(
-            username=request.POST['username'], first_name=request.POST['first_name'],
-            password=request.POST['password'], direccion=request.POST['direccion'], email=request.POST['email'],
-            documento=request.POST['documento'], celular=request.POST['celular'])
-        user.set_password(request.POST['password'])
-        user.save()
-        user.groups.add(request.POST['groups'])
-        user.save()
-        return redirect('login')
+        form = UserForm(request.POST)
+        try:
+            user = User.objects.create(
+                username=request.POST['username'], first_name=request.POST['first_name'],
+                password=request.POST['password'], direccion=request.POST['direccion'], email=request.POST['email'],
+                documento=request.POST['documento'], celular=request.POST['celular'])
+            user.set_password(request.POST['password'])
+            user.save()
+            user.groups.add(request.POST['groups'])
+            user.save()
+            messages.success(request, 'Registro realizado!')
+        except IntegrityError as e:
+            error_message = str(e).replace('UNIQUE constraint failed: servigou_user.', '')
+            messages.error(request, f"El campo '{error_message}' ya existe en la base de datos.")
     form = UserForm()
     context = {
         'form': form}
@@ -191,7 +199,10 @@ def eliminarU(request, id):
 def crearS(request):
     idUser = request.user.id
     if request.method == 'POST':
-        form = ServicioForm(request.POST, initial={"User": idUser})
+        form = ServicioForm(request.POST,
+                            initial={"User": idUser,
+                                     "direccion": request.user.direccion,
+                                     "celular": request.user.celular})
         if form.is_valid:
             form.save()
             return redirect('homecliente')

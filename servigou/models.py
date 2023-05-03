@@ -28,13 +28,13 @@ class Ruta(models.Model):
 class Servicio(models.Model):
     fecha_hora = models.DateTimeField(default=timezone.now)
     tipo = models.CharField(max_length=30, null=False, blank=False)
-    sector = models.CharField(max_length=30, null=False, blank=False)
     direccion = models.CharField(max_length=20, null=True, blank=False)
     celular = models.CharField(max_length=13,null=True, blank=False)
     descripcion = models.CharField(max_length=1000, null=False, blank=False)
     estado = models.CharField(max_length=50, default='sin_asignar')
     Repartidor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='repartidor', default=1, null=True)
     User = models.ForeignKey(User,on_delete=models.CASCADE, related_name='User')
+    ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE, related_name='ruta', default=1)
 
     def __str__(self):
         return self.descripcion
@@ -56,8 +56,7 @@ class Pqrs(models.Model):
 
 
 class Publicacion(models.Model):
-    nombre_publicacion = models.CharField(
-        null=False, blank=False, max_length=20)
+    nombre_publicacion = models.CharField(null=False, blank=False, max_length=20)
     tipo_archivo = models.CharField(null=False, blank=False, max_length=8)
     User = models.ForeignKey(User, on_delete=models.CASCADE)
 

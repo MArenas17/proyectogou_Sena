@@ -1,18 +1,55 @@
 {% extends 'layout/baseform.html' %}
  {% load static %}
 
-
  {% block contenido %}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+      <script>
+        Swal.fire({
+          title: "{{ message }}",
+          icon: 'success'
+        }).then(function(){
+          window.location.href = "{% url 'login' %}";
+        })
+      </script>
+    {% elif message.tags == 'error' %}
+      <script>
+        Swal.fire({
+          title: "{{ message }}",
+          icon: 'error'
+        })
+      </script>
+    {% endif %}
+  {% endfor %}
+{% endif %}
 
 
 <div class="container_reg" style="width: 430px">
   <form method="POST" action="">
     <br/>
     <h3>Registro de Usuario</h3>
-    {% csrf_token %} {{form.as_table}}
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      {% for field in form %}
+        {% if field.errors %}
+          <tr>
+            <td colspan="2">
+              {% for error in field.errors %}
+                <p class="error">{{ error }}</p>
+              {% endfor %}
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
     <br />
-    <button class="boton" type="submit" onclick="mostrarSweetAlert()">Enviar</button>
+    <button class="boton" type="submit" >Enviar</button>
     <a class="boton1" href="{% url 'index' %}">Volver</a>
   </form>
 </div>
+
 {% endblock %}
