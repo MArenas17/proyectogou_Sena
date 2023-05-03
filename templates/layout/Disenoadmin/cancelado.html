@@ -1,11 +1,11 @@
-{% extends 'layout\Diseño_admin\base_admin.html' %}
+{% extends 'layout/Disenoadmin/baseadmin.html' %}
 {% load static %}
 
 {% block contenido %}
-    <script>
+<script>
     function eliminarS(id) {
         Swal.fire({
-            title: '¿Seguro deseas eliminar?',
+            title: '¿Estás seguro de que quieres eliminar el servicio?',
             showDenyButton: true,
             showCancelButton: false,
             confirmButtonText: `Sí, eliminar`,
@@ -17,7 +17,7 @@
             buttonsStyling: false,
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '/eliminarpqrsf/' + id;
+                window.location.href = '/eliminarserviciocancelado/' + id;
                 console.log("Confirmado eliminar" + id)
             } else if (result.isDenied) {
                 console.log("Cancelar eliminación" + id)
@@ -26,25 +26,33 @@
     }
 </script>
 <div class="contain_admin">
-<div class="table-responsive">
+
+  <div class="table-responsive">
     <table class="table table-striped">
-      <h3>PQRSF</h3>
+      <h3>Pedidos Cancelados</h3>
       <thead>
         <tr>
+          <th scope="col">Fecha y Hora</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Sector</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Descripción</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Email</th>
-          <th scope="col">Asunto</th>
-          <th scope="col">Mensaje</th>
-
+          <th scope="col">$</th>
         </tr>
       </thead>
       <tbody>
-        {% for c in pqrs %}
+        {% for c in servicios %}
         <tr>
-          <td>{{ c.nombre }}</td>
-          <td>{{ c.email }}</td>
-          <td><button  id="boton1" class="btn btn-link " onclick="eliminarS({{ c.id }})">{{ c.asunto }}</button></td>
-          <td>{{ c.mensaje }}</td>
+          <td>{{ c.fecha_hora }}</td>
+          <td><button  id="boton1" class="btn btn-link " onclick="eliminarS({{ c.id }})">{{ c.tipo }}</button></td>
+          <td>{{ c.sector }}</td>
+          <td>{{ c.direccion }}</td>
+          <td>{{ c.celular }}</td>
+          <td>{{ c.descripcion }}</td>
+          <td>{{ c.User }}</td>
+          <td>{{ c.ruta__transporte }}</td>
 
         </tr>
         {% endfor %}
@@ -52,6 +60,7 @@
     </table>
   </div>
 </div>
+
 
 
 {% endblock contenido %}

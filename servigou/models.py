@@ -30,7 +30,7 @@ class Servicio(models.Model):
     tipo = models.CharField(max_length=30, null=False, blank=False)
     sector = models.CharField(max_length=30, null=False, blank=False)
     direccion = models.CharField(max_length=20, null=True, blank=False)
-    celular = models.IntegerField(null=True, blank=False)
+    celular = models.CharField(max_length=13,null=True, blank=False)
     descripcion = models.CharField(max_length=1000, null=False, blank=False)
     estado = models.CharField(max_length=50, default='sin_asignar')
     Repartidor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='repartidor', default=1, null=True)

@@ -8,7 +8,7 @@ urlpatterns = [
     path('pdf/<str:pdf_name>', views.pdf, name='pdf'),
 
     #HOME
-    path('home_cliente/', views.home_cliente, name= 'home_cliente'),
+    path('homecliente/', views.homecliente, name= 'homecliente'),
     path('pendiente/', views.pendiente, name= 'pendiente'),
     path('home/', views.inicio, name= 'home'),
     path('realizadoA/', views.serviciosrealizados, name='realizadoA'),
@@ -47,7 +47,7 @@ urlpatterns = [
     path('actualizarS/<int:id>', views.actualizarS, name='actualizarS'),
     path('eliminarS/<int:id>', views.eliminarS, name='eliminarS'),
     path('cancelar/servicio/<int:id>', views.cancelarServicio, name='cancelarS'),
-    path('pendiente_cliente/', views.pendiente_cliente, name='pendiente_cliente'),
+    path('pendientecliente/', views.pendientecliente, name='pendientecliente'),
 
     #URL DE ROL
     path('crearRol/', views.crearRol, name="crearRol"),
@@ -58,8 +58,8 @@ urlpatterns = [
     path('verpqrs/', views.verpqrs, name="verpqrs"),
 
     #Home_domici
-    path('Home_repartidor/', views.Home_repartidor, name= 'Home_repartidor'),
-    path('pendiente_rep/', views.pendiente_rep, name= 'pendiente_rep'),
+    path('Homerepartidor/', views.Homerepartidor, name= 'Homerepartidor'),
+    path('pendienterep/', views.pendienterep, name= 'pendienterep'),
     path('ServicioRealizado/<int:id>', views.ServicioRealizado, name="ServicioRealizado"),
     #end_domi
 

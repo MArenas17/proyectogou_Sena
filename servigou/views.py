@@ -28,7 +28,7 @@ def index(request):
             return redirect('index')
 
     form = PqrsForm()
-    return render(request, 'layout\partials\Pprincipal\inicio.html', {'form': form})
+    return render(request, 'layout/partials/Pprincipal/inicio.html', {'form': form})
 
 
 # region de Publicacion
@@ -194,35 +194,35 @@ def crearS(request):
         form = ServicioForm(request.POST, initial={"User": idUser})
         if form.is_valid:
             form.save()
-            return redirect('home_cliente')
+            return redirect('homecliente')
         else:
-            return redirect('home_cliente')
+            return redirect('homecliente')
     else:
         form = ServicioForm(initial={"User": idUser})
-    return render(request, 'layout\Diseño_cliente\crearS.html', {'form': form})
+    return render(request, 'layout/Disenocliente/crearS.html', {'form': form})
 
 
 @login_required(login_url='login')
 def asignado(request):
     servicios = Servicio.objects.filter(estado='asignado')
-    return render(request, 'layout/Diseño_admin/asignados.html', {'servicios': servicios})
+    return render(request, 'layout/Disenoadmin/asignados.html', {'servicios': servicios})
 
 
 @login_required(login_url='login')
 def cancelado(request):
     servicios = Servicio.objects.filter(estado='cancelado')
-    return render(request, 'layout\Diseño_admin\cancelado.html', {'servicios': servicios})
+    return render(request, 'layout/Disenoadmin/cancelado.html', {'servicios': servicios})
 
 @login_required(login_url='login')
 def enProceso(request):
     servicios = Servicio.objects.filter(estado='enproceso')
-    return render(request, 'layout\Diseño_repartidor\enproceso.html', {'servicios': servicios})
+    return render(request, 'layout/Disenorepartidor/enproceso.html', {'servicios': servicios})
 
 
 @login_required(login_url='login')
 def realizado(request):
     servicios = Servicio.objects.filter(estado='realizado')
-    return render(request, 'layout\Diseño_repartidor\Realizado.html', {'servicios': servicios})
+    return render(request, 'layout/Disenorepartidor/Realizado.html', {'servicios': servicios})
 
 @login_required(login_url='login')
 def cancelarServicio(request, id):
@@ -231,6 +231,7 @@ def cancelarServicio(request, id):
     servicio.save()
     print(id)
     return redirect('pendiente')
+
 @login_required(login_url='login')
 def cancelarservicioasignado(request, id):
     servicio = Servicio.objects.get(id=id)
@@ -261,7 +262,7 @@ def actualizarS(request, id):
 def eliminarS(request, id):
     usuario = Servicio.objects.get(id=id)
     usuario.delete()
-    return redirect(pendiente_cliente)
+    return redirect(pendientecliente)
 
 
 # endregion
@@ -316,55 +317,55 @@ def eliminarRol(request, id):
 @login_required(login_url='login')
 def inicio(request):
     if request.user.groups.filter(name='Cliente').exists():
-        return redirect('home_cliente')
+        return redirect('homecliente')
     elif request.user.groups.filter(name='Repartidor').exists():
-        return redirect('Home_repartidor')
-    return render(request, 'layout\Diseño_admin\home.html', {})
+        return redirect('Homerepartidor')
+    return render(request, 'layout/Disenoadmin/home.html', {})
 
 
 @login_required(login_url='login')
-def home_cliente(request):
-    return render(request, 'layout\Diseño_cliente\home_cliente.html')
+def homecliente(request):
+    return render(request, 'layout/Disenocliente/homecliente.html')
 
 
 @login_required(login_url='login')
 def pendiente(request):
     servicios = Servicio.objects.filter(estado='sin_asignar')
     context = {'servicios': servicios}
-    return render(request, 'layout/Diseño_admin/pendiente.html', context)
+    return render(request, 'layout/Disenoadmin/pendiente.html', context)
 
 
 def verpqrs(request):
     pqrs = Pqrs.objects.all()
-    return render(request, 'layout/Diseño_admin/verpqrs.html', {'pqrs': pqrs})
+    return render(request, 'layout/Disenoadmin/verpqrs.html', {'pqrs': pqrs})
 
 @login_required(login_url='login')
 def serviciosrealizados(request):
     servicios = Servicio.objects.filter(estado='realizado')
     context = {'servicios':servicios}
-    return render(request, 'layout/Diseño_admin/Realizado.html', context )
+    return render(request, 'layout/Disenoadmin/Realizado.html', context )
 
 
 # endregion
 
 # region repartidor
 @login_required(login_url='login')
-def Home_repartidor(request):
-    return render(request, 'layout\Diseño_repartidor\Home_repartidor.html')
+def Homerepartidor(request):
+    return render(request, 'layout/Disenorepartidor/Homerepartidor.html')
 
 
 @login_required(login_url='login')
-def pendiente_rep(request):
+def pendienterep(request):
     repartidor = request.user.id
     print(repartidor)
     servicios = Servicio.objects.filter(estado='asignado',Repartidor_id=repartidor)
-    return render(request, 'layout\Diseño_repartidor\pendiente_rep.html', {'servicios': servicios})
+    return render(request, 'layout/Disenorepartidor/pendienterep.html', {'servicios': servicios})
 
 
 @login_required(login_url='login')
-def pendiente_cliente(request):
+def pendientecliente(request):
     servicios = Servicio.objects.filter(estado='sin_asignar', User=request.user)
-    return render(request, 'layout\Diseño_cliente\pendiente_cliente.html', {'servicios': servicios})
+    return render(request, 'layout/Disenocliente/pendientecliente.html', {'servicios': servicios})
 
 
 @login_required(login_url='login')
@@ -378,7 +379,7 @@ def asignacion(request, id):
         servicio.save()
         return redirect('pendiente')
     context = {'form': form}
-    return render(request, 'layout/Diseño_admin/asignacion.html', context)
+    return render(request, 'layout/Disenoadmin/asignacion.html', context)
 @login_required(login_url='login')
 def reasignacion(request, id):
     form = AsignacionForm()
@@ -390,7 +391,7 @@ def reasignacion(request, id):
         servicio.save()
         return redirect('asignado')
     context = {'form': form}
-    return render(request, 'layout/Diseño_admin/asignacion.html', context)
+    return render(request, 'layout/Disenoadmin/asignacion.html', context)
 @login_required(login_url='login')
 def ServicioRealizado(request, id):
     servicio = Servicio.objects.get(id=id)
@@ -405,7 +406,7 @@ def enproceso(request, id):
     servicio.estado = "enproceso"
     servicio.save()
     print(id)
-    return redirect('pendiente_rep')
+    return redirect('pendienterep')
 
 @login_required(login_url='login')
 def eliminarserviciocancelado(request, id):

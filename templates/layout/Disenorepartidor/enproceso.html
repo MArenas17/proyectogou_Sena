@@ -1,18 +1,15 @@
-{% extends 'layout/Diseño_admin/base_admin.html' %}
+{% extends 'layout/Disenorepartidor/baserepartidor.html' %}
 {% load static %}
 
 {% block contenido %}
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
+    <script>
 function mostrarSweetAlert(id) {
   Swal.fire({
     title: 'Elige una opción',
-    showDenyButton: true,
+    showDenyButton: false,
     showCancelButton: true,
-    confirmButtonText: `Asignar Nuevamente`,
+    confirmButtonText: `Servicio Realizado`,
     cancelButtonText:`Atrás`,
-    denyButtonText: `Cancelar Servicio`,
-
     customClass: {
         confirmButton: 'btn btn-dark mx-1',
         denyButton: 'btn btn-secondary mx-1',
@@ -22,29 +19,8 @@ function mostrarSweetAlert(id) {
   }).then((result) => {
     /* Comprueba si se ha hecho clic en el botón de confirmación */
     if (result.isConfirmed) {
-      window.location.href = '/reasignacion/'+id;
+      window.location.href = '/ServicioRealizado/'+id;
         console.log("Click en Asignar" + id)
-    } else if (result.isDenied) {
-        console.log("Click en Cancelar" + id)
-        Swal.fire({
-          title: '¿Estás seguro de que quieres cancelar el servicio?',
-          showDenyButton: true,
-          showCancelButton: false,
-          confirmButtonText: `Sí, cancelar`,
-          denyButtonText: `Cancelar`,
-          customClass: {
-              confirmButton: 'btn btn-danger mx-1',
-              denyButton: 'btn btn-secondary mx-1',
-          },
-          buttonsStyling: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            window.location.href = '/cancelarservicioasignado/'+ id;
-            console.log("Confirmado eliminar" + id)
-          } else if (result.isDenied) {
-            console.log("Cancelar eliminación" + id)
-          }
-        });
     }
   });
 }
@@ -54,7 +30,7 @@ function mostrarSweetAlert(id) {
     
   <div class="table-responsive">
     <table class="table table-striped">
-      <h3>Pedidos Asignados</h3>
+      <h3>Pedidos En Proceso</h3>
       <thead>
         <tr>
           <th scope="col">Fecha y Hora</th>
@@ -64,7 +40,6 @@ function mostrarSweetAlert(id) {
           <th scope="col">Celular</th>
           <th scope="col">Descripción</th>
           <th scope="col">Nombre</th>
-          <th scope="col">Repartidor</th>
           <th scope="col">$</th>
         </tr>
       </thead>
@@ -78,7 +53,6 @@ function mostrarSweetAlert(id) {
           <td>{{ c.celular }}</td>
           <td>{{ c.descripcion }}</td>
           <td>{{ c.User }}</td>
-          <td>{{ c.Repartidor }}</td>
           <td>{{ c.ruta__transporte }}</td>
         </tr>
         {% endfor %}
@@ -87,5 +61,5 @@ function mostrarSweetAlert(id) {
   </div>
 </div>
 
-
 {% endblock contenido %}
+
