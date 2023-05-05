@@ -1,7 +1,30 @@
 {% extends 'layout/baseform.html' %}
- {% load static %}
-  {% block titulo %}Crear Usuario {% endblock %}
- {% block contenido %}
+{% load static %}
+{% block titulo %}Actualizar usuario {% endblock %}
+{% block contenido %}
+
+{% if messages %}
+  {% for message in messages %}
+    {% if message.tags == 'success' %}
+      <script>
+        Swal.fire({
+          title: "{{ message }}",
+          icon: 'success'
+        }).then(function(){
+          window.location.href = "{% url 'home' %}";
+        })
+      </script>
+    {% elif message.tags == 'error' %}
+      <script>
+        Swal.fire({
+          title: "{{ message }}",
+          icon: 'error'
+        })
+      </script>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
 <div class="container_reg" style="width: 430px">
   <form method="POST" action="">
     <br/>

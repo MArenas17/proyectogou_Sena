@@ -4,11 +4,9 @@ from django.shortcuts import render, redirect
 from django.db import IntegrityError
 from .forms import *
 from .models import *
-from django.http import FileResponse
 from django.http import HttpResponse
 from django.conf import settings
 import os
-import time
 
 
 def pdf(request, pdf_name):
@@ -176,11 +174,11 @@ def actualizarU(request, id):
     usuario = User.objects.get(id=id)
     if request.method == "POST":
         formUpdate = UserForm2(request.POST, instance=usuario)
-        if formUpdate.is_valid():
-            formUpdate.save()
-            return redirect('home')
-        else:
-            print(formUpdate.errors)
+        try:
+                formUpdate.save()
+                messages.success(request, "Actualizado correctamente")
+        except Exception as e:
+                messages.error(request, f"El error es : '{e}'")
     else:
         form = UserForm2(instance=usuario)
     context = {"form": form}
@@ -229,6 +227,10 @@ def enProceso(request):
     servicios = Servicio.objects.filter(estado='enproceso')
     return render(request, 'layout/Disenorepartidor/enproceso.html', {'servicios': servicios})
 
+@login_required(login_url='login')
+def enprocesoA(request):
+    servicios = Servicio.objects.filter(estado='enproceso')
+    return render(request, 'layout/Disenoadmin/enprocesoA.html', {'servicios': servicios})
 
 @login_required(login_url='login')
 def realizado(request):
@@ -391,6 +393,7 @@ def asignacion(request, id):
         return redirect('pendiente')
     context = {'form': form}
     return render(request, 'layout/Disenoadmin/asignacion.html', context)
+
 @login_required(login_url='login')
 def reasignacion(request, id):
     form = AsignacionForm()
@@ -403,6 +406,7 @@ def reasignacion(request, id):
         return redirect('asignado')
     context = {'form': form}
     return render(request, 'layout/Disenoadmin/asignacion.html', context)
+
 @login_required(login_url='login')
 def ServicioRealizado(request, id):
     servicio = Servicio.objects.get(id=id)

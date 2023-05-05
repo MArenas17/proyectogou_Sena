@@ -1,0 +1,67 @@
+{% extends 'layout/Disenoadmin/baseadmin.html' %}
+{% load static %}
+
+{% block contenido %}
+    <script>
+function mostrarSweetAlert(id) {
+  Swal.fire({
+    title: 'Elige una opción',
+    showDenyButton: false,
+    showCancelButton: true,
+    confirmButtonText: `Servicio Realizado`,
+    cancelButtonText:`Atrás`,
+    customClass: {
+        confirmButton: 'btn btn-dark mx-1',
+        denyButton: 'btn btn-secondary mx-1',
+        cancelButton: 'boton mx-1',
+    },
+    buttonsStyling: false,
+  }).then((result) => {
+    /* Comprueba si se ha hecho clic en el botón de confirmación */
+    if (result.isConfirmed) {
+      window.location.href = '/ServicioRealizado/'+id;
+        console.log("Click en Asignar" + id)
+    }
+  });
+}
+</script>
+
+<div class="contain_admin">
+    
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <h3>Pedidos En Proceso</h3>
+      <thead>
+        <tr>
+          <th scope="col">Fecha y Hora</th>
+          <th scope="col">Tipo</th>
+          <th scope="col">Sector</th>
+          <th scope="col">Dirección</th>
+          <th scope="col">Celular</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">$</th>
+          <th scope="col">Repartidor</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in servicios %}
+        <tr>
+          <td>{{ c.fecha_hora }}</td>
+          <td><button  id="boton1" class="btn btn-link " onclick="mostrarSweetAlert({{ c.id }})">{{ c.tipo }}</button></td>
+          <td>{{ c.ruta }}</td>
+          <td>{{ c.direccion }}</td>
+          <td>{{ c.celular }}</td>
+          <td>{{ c.descripcion }}</td>
+          <td>{{ c.User }}</td>
+          <td>{{ c.ruta.valor }}</td>
+          <td>{{ c.Repartidor }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock contenido %}
+

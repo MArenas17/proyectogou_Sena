@@ -12,6 +12,7 @@ urlpatterns = [
     path('pendiente/', views.pendiente, name= 'pendiente'),
     path('home/', views.inicio, name= 'home'),
     path('realizadoA/', views.serviciosrealizados, name='realizadoA'),
+    path('enprocesoA/', views.enprocesoA, name='enprocesoA'),
 
     #URL DE PUBLICACION
     path('CrearPublicacion/', views.crearpublicacion, name='Crearpublicacion' ),
