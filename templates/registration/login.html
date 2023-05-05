@@ -1,19 +1,42 @@
-{% extends 'layout/baseform.html' %} 
-{% load static %} 
+{% extends 'layout/base3.html' %}
+{% load static %}
 {% block titulo %}Inicio de sesión{% endblock %}
- {% block contenido %}
 
-<div class="contain_login" >
-        <form class="form" method="post">
-          <h2>Iniciar Sesión</h2>
-          {% csrf_token %} 
-          {{ form.as_table }}
-          <button type="submit" class="boton">Ingresar</button>
-        </form>
-        <a href="{% url 'crearU' %}">¿No te encuentras registrado?</a>
-        <br>
-        <a href="{% url 'index' %}">Volver</a>
+{% block contenido %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form method="post">
+            {% csrf_token %}
+            <h2 class="card-title text-center mb-4">Iniciar Sesión</h2>
+            <div class="mb-3">
+              {{ form.username.label_tag }}
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
+                <input type="text" name="username" class="form-control" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+              </div>
+            </div>
+            <div class="mb-3">
+              {{ form.password.label_tag }}
+              <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
+                <input type="password" name="password" class="form-control" autocomplete="current-password" required id="id_password">
+              </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button type="submit" class="btn btn-block mt-2" style="background-color: #E74C3C; color: white;">Ingresar</button>
+              <span>¿Olvidaste tu contraseña? <a href="{% url 'reset_password' %}">Haz clic</a></span>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
 {% if request.user.is_authenticated%}
 <script>
   window.addEventListener('load',function(){
@@ -22,3 +45,4 @@
 </script>
 {% endif %}
 {% endblock %}
+
