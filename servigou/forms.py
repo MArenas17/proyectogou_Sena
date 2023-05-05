@@ -1,5 +1,5 @@
 from django.forms import ModelForm, TextInput, DateTimeInput, Select, NumberInput, PasswordInput, EmailInput, \
-    HiddenInput, Textarea
+    HiddenInput, Textarea, forms
 
 from .models import Ruta, Publicacion, User, Servicio, Rol, Pqrs
 
@@ -176,4 +176,18 @@ class PqrsForm(ModelForm):
             'email': 'Correo Electrónico',
             'asunto': 'Asunto',
             'mensaje': 'Mensaje',
+        }
+
+class consolidado(forms.Form):
+        fields = '__all__'
+        widgets = {
+            'fechainicial':TextInput(attrs={'class': 'form-control'}),
+            'fechafinal': TextInput(attrs={'class': 'form-control'}),
+            'repartidor': TextInput(attrs={'class': 'form-control'}),
+
+        }
+        labels = {
+            'fechainicial': 'Fecha inicial',
+            'fechafinal': 'Fecha final',
+            'repartidor': 'Repartidor',
         }

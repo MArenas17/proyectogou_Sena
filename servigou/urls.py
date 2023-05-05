@@ -65,5 +65,7 @@ urlpatterns = [
     #end_domi
 
     path('asignacion/<int:id>', views.asignacion, name='asignacion'),
-    path('reasignacion/<int:id>', views.reasignacion, name='reasignacion')
+    path('reasignacion/<int:id>', views.reasignacion, name='reasignacion'),
+
+    path('consolidado/', views.consolidado, name='consolidado'),
 ]

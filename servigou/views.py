@@ -16,7 +16,7 @@ def pdf(request, pdf_name):
             response = HttpResponse(fh.read(), content_type='application/pdf')
             response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
             return response
-    return HttpResponse ("archivo no existe")
+    return HttpResponse("archivo no existe")
 
 
 def index(request):
@@ -175,12 +175,12 @@ def actualizarU(request, id):
     if request.method == "POST":
         formUpdate = UserForm2(request.POST, instance=usuario)
         try:
-                formUpdate.save()
-                messages.success(request, "Actualizado correctamente")
+            formUpdate.save()
+            messages.success(request, "Actualizado correctamente")
         except Exception as e:
-                messages.error(request, f"El error es : '{e}'")
-    else:
-        form = UserForm2(instance=usuario)
+            messages.error(request, f"El error es : '{e}'")
+
+    form = UserForm2(instance=usuario)
     context = {"form": form}
     return render(request, "Usuario/actualizarU.html", context)
 
@@ -214,13 +214,20 @@ def crearS(request):
 @login_required(login_url='login')
 def asignado(request):
     servicios = Servicio.objects.filter(estado='asignado')
-    return render(request, 'layout/Disenoadmin/asignados.html', {'servicios': servicios})
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenoadmin/asignados.html', {'page_obj': servicios})
 
 
 @login_required(login_url='login')
 def cancelado(request):
     servicios = Servicio.objects.filter(estado='cancelado')
-    return render(request, 'layout/Disenoadmin/cancelado.html', {'servicios': servicios})
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenoadmin/cancelado.html', {'page_obj': servicios})
+
 
 @login_required(login_url='login')
 def enProceso(request):
@@ -230,12 +237,20 @@ def enProceso(request):
 @login_required(login_url='login')
 def enprocesoA(request):
     servicios = Servicio.objects.filter(estado='enproceso')
-    return render(request, 'layout/Disenoadmin/enprocesoA.html', {'servicios': servicios})
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenoadmin/enprocesoA.html', {'page_obj': servicios})
+
 
 @login_required(login_url='login')
 def realizado(request):
     servicios = Servicio.objects.filter(estado='realizado')
-    return render(request, 'layout/Disenorepartidor/Realizado.html', {'servicios': servicios})
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenorepartidor/Realizado.html', {'page_obj': servicios})
+
 
 @login_required(login_url='login')
 def cancelarServicio(request, id):
@@ -245,6 +260,7 @@ def cancelarServicio(request, id):
     print(id)
     return redirect('pendiente')
 
+
 @login_required(login_url='login')
 def cancelarservicioasignado(request, id):
     servicio = Servicio.objects.get(id=id)
@@ -252,7 +268,6 @@ def cancelarservicioasignado(request, id):
     servicio.save()
     print(id)
     return redirect('asignado')
-
 
 
 @login_required(login_url='login')
@@ -344,19 +359,29 @@ def homecliente(request):
 @login_required(login_url='login')
 def pendiente(request):
     servicios = Servicio.objects.filter(estado='sin_asignar')
-    context = {'servicios': servicios}
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    context = {'page_obj': servicios}
     return render(request, 'layout/Disenoadmin/pendiente.html', context)
 
 
 def verpqrs(request):
     pqrs = Pqrs.objects.all()
-    return render(request, 'layout/Disenoadmin/verpqrs.html', {'pqrs': pqrs})
+    paginator = Paginator(pqrs, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    pqrs = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenoadmin/verpqrs.html', {'page_obj': pqrs})
+
 
 @login_required(login_url='login')
 def serviciosrealizados(request):
     servicios = Servicio.objects.filter(estado='realizado')
-    context = {'servicios':servicios}
-    return render(request, 'layout/Disenoadmin/Realizado.html', context )
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    context = {'page_obj': servicios}
+    return render(request, 'layout/Disenoadmin/Realizado.html', context)
 
 
 # endregion
@@ -371,14 +396,21 @@ def Homerepartidor(request):
 def pendienterep(request):
     repartidor = request.user.id
     print(repartidor)
-    servicios = Servicio.objects.filter(estado='asignado',Repartidor_id=repartidor)
-    return render(request, 'layout/Disenorepartidor/pendienterep.html', {'servicios': servicios})
+    servicios = Servicio.objects.filter(estado='asignado', Repartidor_id=repartidor)
+    servicios = Servicio.objects.filter(estado='sin_asignar', User=request.user)
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenorepartidor/pendienterep.html', {'page_obj': servicios})
 
 
 @login_required(login_url='login')
 def pendientecliente(request):
     servicios = Servicio.objects.filter(estado='sin_asignar', User=request.user)
-    return render(request, 'layout/Disenocliente/pendientecliente.html', {'servicios': servicios})
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenocliente/pendientecliente.html', {'page_obj': servicios})
 
 
 @login_required(login_url='login')
@@ -386,7 +418,7 @@ def asignacion(request, id):
     form = AsignacionForm()
     servicio = Servicio.objects.get(id=id)
     if request.method == 'POST':
-        repartidor = User.objects.get(id = request.POST['Repartidor'])
+        repartidor = User.objects.get(id=request.POST['Repartidor'])
         servicio.Repartidor = repartidor
         servicio.estado = 'asignado'
         servicio.save()
@@ -394,18 +426,20 @@ def asignacion(request, id):
     context = {'form': form}
     return render(request, 'layout/Disenoadmin/asignacion.html', context)
 
+
 @login_required(login_url='login')
 def reasignacion(request, id):
     form = AsignacionForm()
     servicio = Servicio.objects.get(id=id)
     if request.method == 'POST':
-        repartidor = User.objects.get(id = request.POST['Repartidor'])
+        repartidor = User.objects.get(id=request.POST['Repartidor'])
         servicio.Repartidor = repartidor
         servicio.estado = 'asignado'
         servicio.save()
         return redirect('asignado')
     context = {'form': form}
     return render(request, 'layout/Disenoadmin/asignacion.html', context)
+
 
 @login_required(login_url='login')
 def ServicioRealizado(request, id):
@@ -415,6 +449,7 @@ def ServicioRealizado(request, id):
     print(id)
     return redirect('enProceso')
 
+
 @login_required(login_url='login')
 def enproceso(request, id):
     servicio = Servicio.objects.get(id=id)
@@ -423,11 +458,13 @@ def enproceso(request, id):
     print(id)
     return redirect('pendienterep')
 
+
 @login_required(login_url='login')
 def eliminarserviciocancelado(request, id):
     usuario = Servicio.objects.get(id=id)
     usuario.delete()
     return redirect('cancelado')
+
 
 @login_required(login_url='login')
 def eliminarpqrsf(request, id):
@@ -435,6 +472,10 @@ def eliminarpqrsf(request, id):
     usuario.delete()
     return redirect('verpqrs')
 
+@login_required(login_url='login')
+def consolidado(request):
+    form = consolidado
+    context = {'form': form}
+    return render(request, 'layout/Disenoadmin/consolidado.html', context)
+
 # endregion
-
-

@@ -76,3 +76,4 @@ class UsuarioRol(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
     fecha_registro = models.DateField(null=False, blank=False)
+

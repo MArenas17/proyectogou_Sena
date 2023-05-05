@@ -1,0 +1,30 @@
+{% extends 'layout/Disenoadmin/baseadmin.html' %}
+{% load static %}
+
+{% block contenido %}
+<div class="container_reg" style="width: 430px">
+  <form method="POST" action="">
+    <br/>
+    <h3>Consolidado</h3>
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+      {% for field in form %}
+        {% if field.errors %}
+          <tr>
+            <td colspan="2">
+              {% for error in field.errors %}
+                <p class="error">{{ error }}</p>
+              {% endfor %}
+            </td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+    <br />
+    <button class="boton" type="submit" >Enviar</button>
+  </form>
+</div>
+
+
+{% endblock contenido %}
