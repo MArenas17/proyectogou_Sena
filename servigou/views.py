@@ -6,6 +6,7 @@ from .forms import *
 from .models import *
 from django.http import HttpResponse
 from django.conf import settings
+from django.core.paginator import Paginator
 import os
 
 
@@ -231,8 +232,12 @@ def cancelado(request):
 
 @login_required(login_url='login')
 def enProceso(request):
-    servicios = Servicio.objects.filter(estado='enproceso')
-    return render(request, 'layout/Disenorepartidor/enproceso.html', {'servicios': servicios})
+    servicios = Servicio.objects.filter(estado="enproceso")
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenorepartidor/enproceso.html', {'page_obj': servicios})
+
 
 @login_required(login_url='login')
 def enprocesoA(request):
