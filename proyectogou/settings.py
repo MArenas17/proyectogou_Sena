@@ -133,3 +133,13 @@ AUTH_USER_MODEL = 'servigou.User'
 
 LOGIN_REDIRECT_URL="home"
 LOGOUT_REDIRECT_URL = "inicio"
+PASSWORD_CHANGE_REDIRECT_URL = 'home'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'gocontrasena@gmail.com'
+EMAIL_HOST_PASSWORD = 'mxycoyxbkjnxafwd'
+DEFAULT_FROM_EMAIL = 'gocontrasena@gmail.com'
+
