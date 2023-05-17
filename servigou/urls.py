@@ -52,6 +52,8 @@ urlpatterns = [
     path('eliminarS/<int:id>', views.eliminarS, name='eliminarS'),
     path('cancelar/servicio/<int:id>', views.cancelarServicio, name='cancelarS'),
     path('pendientecliente/', views.pendientecliente, name='pendientecliente'),
+    path('enprocesocliente/', views.enprocesocliente, name="enprocesocliente"),
+    path('enprocesoCliente/<int:id>', views.enprocesoCliente, name="enprocesoCliente"),
 
     #URL DE ROL
     path('crearRol/', views.crearRol, name="crearRol"),
@@ -70,7 +72,7 @@ urlpatterns = [
     path('asignacion/<int:id>', views.asignacion, name='asignacion'),
     path('reasignacion/<int:id>', views.reasignacion, name='reasignacion'),
 
-    path('consolidado/', views.consolidado, name='consolidado'),,
+    path('consolidado/', views.consolidado, name='consolidado'),
     path('reset_password/', auth_views.PasswordResetView.as_view(template_name="registration/password_reset.html"), name="reset_password"),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(template_name="registration/password_reset_done.html"), name='password_reset_done'),
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name='registration/password_reset_confirm.html'), name='password_reset_confirm'),

@@ -8,6 +8,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from django.core.paginator import Paginator
 import os
+from django.db.models import Sum
+
 
 
 def pdf(request, pdf_name):
@@ -136,7 +138,7 @@ def crearU(request):
             user.save()
             user.groups.add(request.POST['groups'])
             user.save()
-            messages.success(request, 'Registro realizado!')
+            messages.success(request, 'Registro Exitoso!')
         except IntegrityError as e:
             error_message = str(e).replace('UNIQUE constraint failed: servigou_user.', '')
             messages.error(request, f"El campo '{error_message}' ya existe en la base de datos.")
@@ -247,10 +249,22 @@ def enprocesoA(request):
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
     return render(request, 'layout/Disenoadmin/enprocesoA.html', {'page_obj': servicios})
 
+@login_required(login_url='login')
+def enprocesocliente(request):
+    cliente = request.user.id
+    print(cliente)
+    servicios = Servicio.objects.filter(estado='enproceso', User_id=cliente)
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    return render(request, 'layout/Disenocliente/enprocesocliente.html', {'page_obj': servicios})
+
 
 @login_required(login_url='login')
 def realizado(request):
-    servicios = Servicio.objects.filter(estado='realizado')
+    repartidor = request.user.id
+    print(repartidor)
+    servicios = Servicio.objects.filter(estado='realizado', Repartidor_id=repartidor)
     paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
     page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
@@ -381,12 +395,42 @@ def verpqrs(request):
 
 @login_required(login_url='login')
 def serviciosrealizados(request):
+    fecha_inicial = request.GET.get('fecha_inicial')
+    fecha_final = request.GET.get('fecha_final')
+    repartidor = request.GET.get('repartidor')
+
     servicios = Servicio.objects.filter(estado='realizado')
-    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+
+    if fecha_inicial:
+        servicios = servicios.filter(fecha_hora__gte=fecha_inicial)
+
+    if fecha_final:
+        servicios = servicios.filter(fecha_hora__lte=fecha_final)
+
+    if repartidor:
+        servicios = servicios.filter(Repartidor__icontains=repartidor)
+
+    total_valor = servicios.aggregate(total=Sum('ruta__valor'))['total']
+    valor_25_porcentaje = total_valor * 0.25
+
+
+    paginator = Paginator(servicios, 10)  # Mostrar 10 elementos por página
     page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
-    context = {'page_obj': servicios}
+
+    context = {
+    'page_obj': servicios,
+    'fecha_inicial': fecha_inicial,
+    'fecha_final': fecha_final,
+    'repartidor': repartidor,
+    'total_valor': total_valor,
+    'valor_25_porcentaje': valor_25_porcentaje
+}
+
+
     return render(request, 'layout/Disenoadmin/Realizado.html', context)
+
+
 
 
 # endregion
@@ -402,7 +446,6 @@ def pendienterep(request):
     repartidor = request.user.id
     print(repartidor)
     servicios = Servicio.objects.filter(estado='asignado', Repartidor_id=repartidor)
-    servicios = Servicio.objects.filter(estado='sin_asignar', User=request.user)
     paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
     page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
@@ -415,7 +458,20 @@ def pendientecliente(request):
     paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
     page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
-    return render(request, 'layout/Disenocliente/pendientecliente.html', {'page_obj': servicios})
+    context = {'page_obj': servicios}
+    return render(request, 'layout/Disenocliente/pendientecliente.html', context)
+
+
+
+@login_required(login_url='login')
+def pendiente(request):
+    servicios = Servicio.objects.filter(estado='sin_asignar')
+    paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
+    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
+    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+    context = {'page_obj': servicios}
+    return render(request, 'layout/Disenoadmin/pendiente.html', context)
+
 
 
 @login_required(login_url='login')
@@ -462,6 +518,14 @@ def enproceso(request, id):
     servicio.save()
     print(id)
     return redirect('pendienterep')
+
+@login_required(login_url='login')
+def enprocesoCliente(request, id):
+    servicio = Servicio.objects.get(id=id)
+    servicio.estado = "enprocesocliente"
+    servicio.save()
+    print(id)
+    return redirect('enprocesocliente')
 
 
 @login_required(login_url='login')

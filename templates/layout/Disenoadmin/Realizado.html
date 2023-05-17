@@ -6,8 +6,33 @@
 <div class="contain_admin">
     
   <div class="table-responsive">
-    <table class="table table-striped">
+    <form method="GET" action="{% url 'realizadoA' %}">
       <h3>Pedidos Realizados</h3>
+      <div class="form-row">
+        <div class="col-md-3 mb-3">
+          <label for="fecha_inicial">Fecha Inicial:</label>
+          <input type="date" class="form-control" name="fecha_inicial" value="{{ request.GET.fecha_inicial }}">
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="fecha_final">Fecha Final:</label>
+          <input type="date" class="form-control" name="fecha_final" value="{{ request.GET.fecha_final }}">
+        </div>
+        <div class="col-md-3 mb-3">
+          <label for="Repartidor">Repartidor:</label>
+          <input type="text" class="form-control" name="Repartidor" value="{{ request.GET.Repartidor }}">
+        </div>
+        <div class="total-valor col-md-3 mb-3" style="text-align: center ; color:#E74C3C ">
+          <strong><span style="font-size: large;">Total: ${{ total_valor }}</span></strong><br>
+          <strong><span style="font-size: x-large;">A Pagar: ${{ valor_25_porcentaje }}</span></strong>
+        </div>
+    
+        
+        <div class="col-md-3 mb-3">
+            <button type="submit" class="boton">Filtrar</button>
+        </div>
+      </div>
+    </form>
+    <table class="table table-striped">
       <thead>
         <tr>
           <th scope="col">Fecha y Hora</th>
@@ -16,8 +41,9 @@
           <th scope="col">Dirección</th>
           <th scope="col">Celular</th>
           <th scope="col">Descripción</th>
-          <th scope="col">Nombre</th>
+          <th scope="col">Cliente</th>
           <th scope="col">$</th>
+          <th scope="col">Repartidor</th>
         </tr>
       </thead>
       <tbody>
@@ -31,6 +57,7 @@
           <td>{{ c.descripcion }}</td>
           <td>{{ c.User }}</td>
           <td>{{ c.ruta.valor }}</td>
+          <td>{{ c.Repartidor }}</td>
         </tr>
         {% endfor %}
       </tbody>

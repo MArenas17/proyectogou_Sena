@@ -1,4 +1,4 @@
-{% extends 'layout/Disenorepartidor/baserepartidor.html' %}
+{% extends 'layout/Disenocliente/basecliente.html' %}
 {% load static %}
 
 {% block contenido %}
@@ -8,7 +8,7 @@ function mostrarSweetAlert(id) {
     title: 'Elige una opción',
     showDenyButton: false,
     showCancelButton: true,
-    confirmButtonText: `En Proceso`,
+    confirmButtonText: `Servicio Realizado`,
     cancelButtonText:`Atrás`,
     customClass: {
         confirmButton: 'btn btn-dark mx-1',
@@ -19,7 +19,7 @@ function mostrarSweetAlert(id) {
   }).then((result) => {
     /* Comprueba si se ha hecho clic en el botón de confirmación */
     if (result.isConfirmed) {
-      window.location.href = '/enproceso/'+id;
+      window.location.href = '/ServicioRealizado/'+id;
         console.log("Click en Asignar" + id)
     }
   });
@@ -27,10 +27,10 @@ function mostrarSweetAlert(id) {
 </script>
 
 <div class="contain_admin">
-
+    
   <div class="table-responsive">
     <table class="table table-striped">
-      <h3>Pedidos Pendientes</h3>
+      <h3>Pedidos En Proceso</h3>
       <thead>
         <tr>
           <th scope="col">Fecha y Hora</th>
@@ -39,26 +39,26 @@ function mostrarSweetAlert(id) {
           <th scope="col">Dirección</th>
           <th scope="col">Celular</th>
           <th scope="col">Descripción</th>
-          <th scope="col">Cliente</th>
           <th scope="col">$</th>
+          <th scope="col">Repartidor</th>
         </tr>
       </thead>
       <tbody>
         {% for c in page_obj %}
         <tr>
           <td>{{ c.fecha_hora }}</td>
-          <td><button  id="boton1" class="btn btn-link " onclick="mostrarSweetAlert({{ c.id }})">{{ c.tipo }}</button></td>
+          <td>{{ c.tipo }}</td>
           <td>{{ c.ruta }}</td>
           <td>{{ c.direccion }}</td>
           <td>{{ c.celular }}</td>
           <td>{{ c.descripcion }}</td>
-          <td>{{ c.User }}</td>
           <td>{{ c.ruta.valor }}</td>
+          <td>{{ c.Repartidor }}</td>
         </tr>
         {% endfor %}
       </tbody>
     </table>
-    <span class="step-links">
+        <span class="step-links">
       {% if page_obj.has_previous %}
         <a href="?page=1">&laquo; Primera</a>
         <a href="?page={{ page_obj.previous_page_number }}">&lsaquo; Anterior</a>
@@ -75,7 +75,6 @@ function mostrarSweetAlert(id) {
     </span>
   </div>
 </div>
-
 
 {% endblock contenido %}
 
