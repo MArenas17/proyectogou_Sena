@@ -408,7 +408,7 @@ def serviciosrealizados(request):
         servicios = servicios.filter(fecha_hora__lte=fecha_final)
 
     if repartidor:
-        servicios = servicios.filter(Repartidor__icontains=repartidor)
+        servicios = Servicio.objects.filter(Repartidor__icontains=repartidor)
 
     total_valor = servicios.aggregate(total=Sum('ruta__valor'))['total']
     valor_25_porcentaje = total_valor * 0.25
