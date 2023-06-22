@@ -32,7 +32,7 @@ class Servicio(models.Model):
     celular = models.CharField(max_length=13,null=True, blank=False)
     descripcion = models.CharField(max_length=1000, null=False, blank=False)
     estado = models.CharField(max_length=50, default='sin_asignar')
-    Repartidor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='repartidor', default=1, null=True)
+    repartidor = models.ForeignKey(User, on_delete=models.CASCADE, related_name='repartidor', default=1, null=True)
     User = models.ForeignKey(User,on_delete=models.CASCADE, related_name='User')
     ruta = models.ForeignKey(Ruta, on_delete=models.CASCADE, related_name='ruta', default=1)
 

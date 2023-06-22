@@ -6,20 +6,21 @@
 <div class="contain_admin">
     
   <div class="table-responsive">
-    <form method="GET" action="{% url 'realizadoA' %}">
+    <form method="POST" action="{% url 'realizadoA' %}">
+      {% csrf_token %}
       <h3>Pedidos Realizados</h3>
       <div class="form-row">
         <div class="col-md-3 mb-3">
           <label for="fecha_inicial">Fecha Inicial:</label>
-          <input type="date" class="form-control" name="fecha_inicial" value="{{ request.GET.fecha_inicial }}">
+          <input type="date" class="form-control" name="fecha_inicial">
         </div>
         <div class="col-md-3 mb-3">
           <label for="fecha_final">Fecha Final:</label>
-          <input type="date" class="form-control" name="fecha_final" value="{{ request.GET.fecha_final }}">
+          <input type="date" class="form-control" name="fecha_final">
         </div>
         <div class="col-md-3 mb-3">
           <label for="Repartidor">Repartidor:</label>
-          <input type="text" class="form-control" name="Repartidor" value="{{ request.GET.repartidor }}">
+          <input type="text" class="form-control" name="repartidor">
         </div>
         <div class="total-valor col-md-3 mb-3" style="text-align: center ; color:#E74C3C ">
           <strong><span style="font-size: large;">Total: ${{ total_valor }}</span></strong><br>
@@ -57,7 +58,7 @@
           <td>{{ c.descripcion }}</td>
           <td>{{ c.User }}</td>
           <td>{{ c.ruta.valor }}</td>
-          <td>{{ c.Repartidor }}</td>
+          <td>{{ c.repartidor }}</td>
         </tr>
         {% endfor %}
       </tbody>

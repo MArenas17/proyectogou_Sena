@@ -1,3 +1,5 @@
+from datetime import timedelta, datetime
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
@@ -9,7 +11,6 @@ from django.conf import settings
 from django.core.paginator import Paginator
 import os
 from django.db.models import Sum
-
 
 
 def pdf(request, pdf_name):
@@ -249,6 +250,7 @@ def enprocesoA(request):
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
     return render(request, 'layout/Disenoadmin/enprocesoA.html', {'page_obj': servicios})
 
+
 @login_required(login_url='login')
 def enprocesocliente(request):
     cliente = request.user.id
@@ -395,42 +397,49 @@ def verpqrs(request):
 
 @login_required(login_url='login')
 def serviciosrealizados(request):
-    fecha_inicial = request.GET.get('fecha_inicial')
-    fecha_final = request.GET.get('fecha_final')
-    repartidor = request.GET.get('repartidor')
-
-    servicios = Servicio.objects.filter(estado='realizado')
-
-    if fecha_inicial:
-        servicios = servicios.filter(fecha_hora__gte=fecha_inicial)
-
-    if fecha_final:
-        servicios = servicios.filter(fecha_hora__lte=fecha_final)
-
-    if repartidor:
-        servicios = Servicio.objects.filter(Repartidor__icontains=repartidor)
-
-    total_valor = servicios.aggregate(total=Sum('ruta__valor'))['total']
-    valor_25_porcentaje = total_valor * 0.25
+    if request.method == 'POST':
+        fecha_inicial = request.POST.get('fecha_inicial')
+        fecha_final = request.POST.get('fecha_final', '')
+        fecha_final_datetime = datetime.strptime(fecha_final, "%Y-%m-%d")
+        fecha_final = fecha_final_datetime + timedelta(days=1)
+        repartidor = request.POST.get('repartidor')
 
 
-    paginator = Paginator(servicios, 10)  # Mostrar 10 elementos por página
-    page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
-    servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+        servicios = Servicio.objects.filter(estado='realizado')
 
-    context = {
-    'page_obj': servicios,
-    'fecha_inicial': fecha_inicial,
-    'fecha_final': fecha_final,
-    'repartidor': repartidor,
-    'total_valor': total_valor,
-    'valor_25_porcentaje': valor_25_porcentaje
-}
+        if fecha_inicial and fecha_final and repartidor:
+            servicios = servicios.filter(fecha_hora__range=(fecha_inicial, fecha_final),
+                                         repartidor__first_name__icontains=repartidor)
+        elif fecha_inicial and repartidor:
+            servicios = servicios.filter(fecha_hora__gte=fecha_inicial, repartidor__first_name__icontains=repartidor)
 
+        elif fecha_inicial and fecha_final:
+            servicios = servicios.filter(fecha_hora__range=(fecha_inicial, fecha_final))
+
+        elif fecha_inicial:
+            servicios = servicios.filter(fecha_hora__gte=fecha_inicial)
+
+        elif repartidor:
+            servicios = servicios.filter(repartidor__first_name__icontains=repartidor)
+
+        total_valor = servicios.aggregate(total=Sum('ruta__valor'))['total']
+        valor_25_porcentaje = total_valor * 0.25
+
+        paginator = Paginator(servicios, 10)  # Mostrar 10 elementos por página
+        page = request.POST.get('page')  # Obtener el número de página actual desde la solicitud GET
+        servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
+
+        context = {
+            'page_obj': servicios,
+            'fecha_inicial': fecha_inicial,
+            'fecha_final': fecha_final,
+            'repartidor': repartidor,
+            'total_valor': total_valor,
+            'valor_25_porcentaje': valor_25_porcentaje}
+        return render(request, 'layout/Disenoadmin/Realizado.html', context)
+    context = {}
 
     return render(request, 'layout/Disenoadmin/Realizado.html', context)
-
-
 
 
 # endregion
@@ -462,7 +471,6 @@ def pendientecliente(request):
     return render(request, 'layout/Disenocliente/pendientecliente.html', context)
 
 
-
 @login_required(login_url='login')
 def pendiente(request):
     servicios = Servicio.objects.filter(estado='sin_asignar')
@@ -471,7 +479,6 @@ def pendiente(request):
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
     context = {'page_obj': servicios}
     return render(request, 'layout/Disenoadmin/pendiente.html', context)
-
 
 
 @login_required(login_url='login')
@@ -519,6 +526,7 @@ def enproceso(request, id):
     print(id)
     return redirect('pendienterep')
 
+
 @login_required(login_url='login')
 def enprocesoCliente(request, id):
     servicio = Servicio.objects.get(id=id)
@@ -540,6 +548,7 @@ def eliminarpqrsf(request, id):
     usuario = Pqrs.objects.get(id=id)
     usuario.delete()
     return redirect('verpqrs')
+
 
 @login_required(login_url='login')
 def consolidado(request):
