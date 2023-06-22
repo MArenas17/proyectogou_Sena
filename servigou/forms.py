@@ -55,8 +55,7 @@ class ServicioForm(ModelForm):
             'ruta': Select(attrs={'class': 'form-control'}),
             'direccion': TextInput(attrs={'class': 'form-control'}),
             'celular': NumberInput(attrs={'class': 'form-control'}),
-            'descripcion': Textarea(attrs={'class': 'form-control',
-                                           'placeholder': 'Ejemplo : Necesito que por favor me traigan del D1 una libra de panela, de la carniceria la fama una libra de carne para sudar'}),
+            'descripcion': Textarea(attrs={'class': 'form-control','placeholder': 'Ejemplo : Necesito que por favor me traigan del D1 una libra de panela, de la carniceria la fama una libra de carne para freir'}),
             'estado': HiddenInput,
             'User': HiddenInput(attrs={'class': 'form-control'}),
 
