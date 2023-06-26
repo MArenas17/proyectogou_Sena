@@ -1,7 +1,7 @@
 from django.forms import ModelForm, TextInput, DateTimeInput, Select, NumberInput, PasswordInput, EmailInput, \
     HiddenInput, Textarea, forms
 
-from .models import Ruta, Publicacion, User, Servicio, Rol, Pqrs
+from .models import Ruta, Publicacion, Servicio, Rol, Pqrs, User
 
 
 class PublicacionForm(ModelForm):
@@ -45,7 +45,7 @@ class RutaForm(ModelForm):
 class ServicioForm(ModelForm):
     class Meta:
         model = Servicio
-        exclude = ['Repartidor']
+        exclude = ['repartidor']
         tipos = (('Seleciona una opción', 'Seleciona una opción'), ('Mensajería', 'Mensajería'),
                  ('Ajustes de mercado', 'Ajustes de mercado'), ('Cajero en casa', 'Cajero en casa'),
                  ('Pago de factura', 'Pago de factura'), ('Pedimos por ti', 'Pedimos por ti'),)
@@ -104,12 +104,12 @@ class AsignacionForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['Repartidor'].queryset = User.objects.filter(groups__name='Repartidor')
+        self.fields['repartidor'].queryset = User.objects.filter(groups__name='Repartidor')
 
     class Meta:
         model = Servicio
         exclude = {'estado', 'User', 'sector', 'direccion','celular','descripcion','tipo','fecha_hora', 'ruta'}
-        widgets = {'Repartidor': Select(attrs={'class': 'form-control'})}
+        widgets = {'repartidor': Select(attrs={'class': 'form-control'})}
 
 
 

@@ -266,7 +266,7 @@ def enprocesocliente(request):
 def realizado(request):
     repartidor = request.user.id
     print(repartidor)
-    servicios = Servicio.objects.filter(estado='realizado', Repartidor_id=repartidor)
+    servicios = Servicio.objects.filter(estado='realizado', repartidor_id=repartidor)
     paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
     page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
@@ -400,8 +400,8 @@ def serviciosrealizados(request):
     if request.method == 'POST':
         fecha_inicial = request.POST.get('fecha_inicial')
         fecha_final = request.POST.get('fecha_final', '')
-        fecha_final_datetime = datetime.strptime(fecha_final, "%Y-%m-%d")
-        fecha_final = fecha_final_datetime + timedelta(days=1)
+        #fecha_final_datetime = datetime.strptime(fecha_final, "%d-%m-%Y")
+        #fecha_final = fecha_final_datetime + timedelta(days=1)
         repartidor = request.POST.get('repartidor')
 
 
@@ -418,12 +418,15 @@ def serviciosrealizados(request):
 
         elif fecha_inicial:
             servicios = servicios.filter(fecha_hora__gte=fecha_inicial)
-
+    
         elif repartidor:
             servicios = servicios.filter(repartidor__first_name__icontains=repartidor)
 
         total_valor = servicios.aggregate(total=Sum('ruta__valor'))['total']
-        valor_25_porcentaje = total_valor * 0.25
+        valor_25_porcentaje = 0
+
+        if total_valor is not None:
+            valor_25_porcentaje = total_valor * 0.25
 
         paginator = Paginator(servicios, 10)  # Mostrar 10 elementos por página
         page = request.POST.get('page')  # Obtener el número de página actual desde la solicitud GET
@@ -454,7 +457,7 @@ def Homerepartidor(request):
 def pendienterep(request):
     repartidor = request.user.id
     print(repartidor)
-    servicios = Servicio.objects.filter(estado='asignado', Repartidor_id=repartidor)
+    servicios = Servicio.objects.filter(estado='asignado', repartidor_id=repartidor)
     paginator = Paginator(servicios, 10)  # Mostrar 7 elementos por página
     page = request.GET.get('page')  # Obtener el número de página actual desde la solicitud GET
     servicios = paginator.get_page(page)  # Obtener los elementos para la página actual
@@ -486,8 +489,8 @@ def asignacion(request, id):
     form = AsignacionForm()
     servicio = Servicio.objects.get(id=id)
     if request.method == 'POST':
-        repartidor = User.objects.get(id=request.POST['Repartidor'])
-        servicio.Repartidor = repartidor
+        repartidor = User.objects.get(id=request.POST['repartidor'])
+        servicio.repartidor = repartidor
         servicio.estado = 'asignado'
         servicio.save()
         return redirect('pendiente')
@@ -500,8 +503,8 @@ def reasignacion(request, id):
     form = AsignacionForm()
     servicio = Servicio.objects.get(id=id)
     if request.method == 'POST':
-        repartidor = User.objects.get(id=request.POST['Repartidor'])
-        servicio.Repartidor = repartidor
+        repartidor = User.objects.get(id=request.POST['repartidor'])
+        servicio.repartidor = repartidor
         servicio.estado = 'asignado'
         servicio.save()
         return redirect('asignado')
